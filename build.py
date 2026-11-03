@@ -14,13 +14,13 @@ for wj in sorted(glob.glob(f'{H}/works/*/*/work.json')):
   arts=sorted([os.path.basename(p) for p in glob.glob(f'{wd}/art*') if p.lower().endswith(('.png','.jpg','.jpeg','.webp'))],key=lambda n:(n.split('.')[0]!='art',n))
   d['arts']=arts;d['dir']=wd
   b=f'{wd}/body.md';d['body']=open(b,encoding='utf-8').read() if os.path.exists(b) else d.get('summary','')
-  if sid in series: works.append(d)
+  if sid in series and d['creator']!='kota': works.append(d)
 so=lambda s:(series[s].get('order',999),s)
 works.sort(key=lambda w:(so(w['series']),creators.get(w['creator'],{}).get('order',999)))
 by_c={};[by_c.setdefault(w['creator'],[]).append(w) for w in works]
 # creators shown: those with works, or required (no 'optional')
 OPTIONAL={i for i,c in creators.items() if c.get('optional') or i=='kota'}
-shown=sorted([c for i,c in creators.items() if by_c.get(i) or i not in OPTIONAL],key=lambda c:(c.get('order',999),c['id']))
+shown=sorted([c for i,c in creators.items() if i!='kota' and (by_c.get(i) or i not in OPTIONAL)],key=lambda c:(c.get('order',999),c['id']))
 CSS="""*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;background:#f6f4ef;color:#222;line-height:1.85}
 a{color:inherit}header.top{background:#1d2440;color:#fff;padding:18px 24px}header.top a{text-decoration:none}header.top .brand{font-weight:700;letter-spacing:.06em}
 header.top nav{margin-top:6px;font-size:14px;opacity:.85}header.top nav a{margin-right:16px}

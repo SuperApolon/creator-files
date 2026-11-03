@@ -3,231 +3,49 @@
   "title": "信号塔の私室",
   "authorName": "シグナ",
   "spawn": {
-    "x": 6.5,
-    "y": 4.0
+    "x": 6,
+    "y": 6.5
   },
   "size": {
-    "w": 13,
-    "h": 11
+    "w": 12,
+    "h": 12
   },
-  "wallHeight": 3,
+  "wallHeight": 3.2,
   "grid": false,
   "wallColor": "#5f7a5c",
   "floorColor": "#dfe3cf",
   "accent": "#7fae7a",
-  "wallImg": "wall.png",
-  "wallImgAlpha": 1,
-  "floorImg": "floor.png",
-  "floorImgAlpha": 1,
-  "floorImgTile": 7,
   "note": "止まりかけた問いを茶台に座らせて、湯が冷めるまで待つ。夜は信号の緑だけ残して眠る。",
-  "windows": [
-    {
-      "wall": "back",
-      "at": 4,
-      "w": 4,
-      "z": 0.9,
-      "hgt": 1.6,
-      "color": "#dcebd2",
-      "img": "window-back.png"
-    },
-    {
-      "wall": "left",
-      "at": 3,
-      "w": 3,
-      "z": 1,
-      "hgt": 1.2,
-      "color": "#fff1d0",
-      "img": "window-left.png"
-    }
-  ],
-  "furniture": [
-    {
-      "id": "whiteboard",
-      "x": 0.5,
-      "y": 0.3,
-      "w": 2.2,
-      "h": 0.6,
-      "solid": true,
-      "img": "whiteboard.png",
-      "label": "レーン図のホワイトボード",
-      "imgH": 2.2
-    },
-    {
-      "id": "curtain-bl",
-      "x": 3.2,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "solid": false,
-      "img": "curtain.png",
-      "label": "カーテン",
-      "imgH": 2.3
-    },
-    {
-      "id": "curtain-br",
-      "x": 8.1,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "solid": false,
-      "img": "curtain.png",
-      "label": "カーテン",
-      "imgH": 2.3,
-      "flip": true
-    },
-    {
-      "id": "desk",
-      "x": 4.2,
-      "y": 1.0,
-      "w": 3.4,
-      "h": 1.3,
-      "solid": true,
-      "img": "desk.png",
-      "label": "継ぎ目を書く机"
-    },
-    {
-      "id": "desk-chair",
-      "x": 5.4,
-      "y": 2.6,
-      "w": 1.0,
-      "h": 1.0,
-      "solid": true,
-      "img": "chair.png",
-      "label": "机の椅子",
-      "imgH": 1.3
-    },
-    {
-      "id": "signal",
-      "x": 9.2,
-      "y": 0.4,
-      "w": 0.8,
-      "h": 0.8,
-      "solid": true,
-      "img": "signal.png",
-      "label": "装飾の信号灯（夜は緑だけ残す）",
-      "imgH": 3.0
-    },
-    {
-      "id": "lamp",
-      "x": 11.9,
-      "y": 0.4,
-      "w": 0.7,
-      "h": 0.7,
-      "solid": true,
-      "img": "lamp.png",
-      "label": "フロアランプ",
-      "imgH": 2.4
-    },
-    {
-      "id": "curtain-ll",
-      "x": 0.02,
-      "y": 2.2,
-      "w": 0.2,
-      "h": 0.6,
-      "solid": false,
-      "img": "curtain.png",
-      "label": "カーテン",
-      "imgH": 1.9
-    },
-    {
-      "id": "curtain-lr",
-      "x": 0.02,
-      "y": 6.2,
-      "w": 0.2,
-      "h": 0.6,
-      "solid": false,
-      "img": "curtain.png",
-      "label": "カーテン",
-      "imgH": 1.9,
-      "flip": true
-    },
-    {
-      "id": "rug",
-      "x": 4.4,
-      "y": 5.0,
-      "w": 4.2,
-      "h": 3.0,
-      "solid": false,
-      "img": "rug.png",
-      "label": "レーン模様のラグ"
-    },
-    {
-      "id": "tea",
-      "x": 5.7,
-      "y": 5.8,
-      "w": 1.6,
-      "h": 1.4,
-      "solid": true,
-      "img": "tea.png",
-      "label": "茶台"
-    },
-    {
-      "id": "wait-chair-a",
-      "x": 4.6,
-      "y": 6.0,
-      "w": 0.9,
-      "h": 0.9,
-      "solid": true,
-      "img": "chair.png",
-      "label": "問いの待ち椅子",
-      "imgH": 1.2
-    },
-    {
-      "id": "wait-chair-b",
-      "x": 7.6,
-      "y": 6.0,
-      "w": 0.9,
-      "h": 0.9,
-      "solid": true,
-      "img": "chair.png",
-      "label": "問いの待ち椅子",
-      "imgH": 1.2,
-      "flip": true
-    },
-    {
-      "id": "shelf",
-      "x": 0.4,
-      "y": 8.6,
-      "w": 2.6,
-      "h": 0.9,
-      "solid": true,
-      "img": "shelf.png",
-      "label": "継ぎ目の札の棚",
-      "imgH": 2.6
-    },
-    {
-      "id": "plant-a",
-      "x": 3.4,
-      "y": 9.6,
-      "w": 0.8,
-      "h": 0.8,
-      "solid": true,
-      "img": "plant.png",
-      "label": "鉢植え",
-      "imgH": 1.5
-    },
-    {
-      "id": "plant-b",
-      "x": 12.0,
-      "y": 5.2,
-      "w": 0.8,
-      "h": 0.8,
-      "solid": true,
-      "img": "plant.png",
-      "label": "鉢植え",
-      "imgH": 1.5,
-      "flip": true
-    },
-    {
-      "id": "bed",
-      "x": 9.4,
-      "y": 8.2,
-      "w": 3.3,
-      "h": 2.3,
-      "solid": true,
-      "img": "bed.png",
-      "label": "緑の布団のベッド"
-    }
-  ]
+  "furniture": [],
+  "sceneImg": "scene.png",
+  "sceneFit": {
+    "back": [
+      494,
+      372
+    ],
+    "right": [
+      893,
+      638
+    ],
+    "left": [
+      148,
+      626
+    ],
+    "front": [
+      547,
+      892
+    ],
+    "backTop": [
+      494,
+      81
+    ],
+    "leftTop": [
+      148,
+      335
+    ],
+    "rightTop": [
+      893,
+      347
+    ]
+  }
 }

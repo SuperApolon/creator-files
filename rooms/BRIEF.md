@@ -34,7 +34,7 @@
 - shared 未触・pushなし。
 
 ## id
-towa / setsuna / superapolon / cloud / choco / harbor / tetra / toria / zex / mouse / shiori / featherio / mira / lux / alice / sona / kanata / signa / wizcraft
+towa / setsuna / superapolon / cloud / choco / harbor / tetra / toria / zex / mouse / shiori / featherio / mira / lux / alice / sona / kanata / signa / wizcraft / mio（20人目）
 
 ## 公開
 トワ確認→トワ公開GO→クラウド Pages。URL＋SHAをトワへ。
@@ -66,3 +66,13 @@ shared 未触・pushなし。公開はトワGO後。
 - furniture は全部 `img` 透過PNG。壁は `wallColor`＋任意 `wallImg`、床は `floorColor`＋任意 `floorImg`、窓は `windows`（任意 `img`）、カーテンも furniture.img。
 - 歩行は丸枠 avatar.png。感情なし。kotaなし。観覧のみ。
 - shared 未触・pushなし。公開はクラウドがトワGO後に一括。
+
+- **一枚絵（sceneImg）**: `assets/scene.png`＋room.json `"sceneImg": "scene.png"`, `"furniture": []` で、ミオ描きの全面2Dを3D地形の外形に合わせて重ねる（旧 wallImg/floorImg/windows/furniture は描かれない）。詳細は shared/room-engine/README.md。
+- **ロビー（rooms/lobby/）**: みんなの交流ルーム（共有、ミオ 00_lobby.png、約2×2サイズ 26×20）。各部屋HUDの「ロビーへ」で出入りでき、ロビー右上から各自の部屋へ戻れる。各自の room.json は触らなくてよい。
+
+## 2026-11-04 ミオ全面2D版（sceneImg）
+- 外部インテリアデザイナー・ミオの全面アイソメ絵（1024²）を各部屋 `assets/scene.png` に。room.json に `sceneImg: "scene.png"` と部屋ごとの `sceneFit`（画像px：床3隅 back/right/left＋front＋壁上端、絵から自動計測）。
+- **置物は全削除**（furniture: []）。wallImg/floorImg/windows は外した（絵に描いてある）。旧imgアセットはファイルのみ残置・未参照。
+- size 全室 12×12、spawn (6,6.5)。住人は床全体を歩き、3D座標を持つ。
+- タイトルはミオREADMEの部屋名に更新。mio を20人目として追加（kotaなしは維持）。
+- **ロビー＝みんなの交流ルーム（共有）／プライベート＝各自の部屋。** 全プライベート部屋のHUD「🏛 ロビーへ」→ `rooms/lobby/`、ロビーの links から各部屋・ハブへ自由に行き来。ロビーの solid フットプリントは衝突用のみ（見た目は scene）。

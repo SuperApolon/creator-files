@@ -19,7 +19,7 @@
 必須19: トワ / セツナ / 超アポロン / クラウド / チョコ / ハーバー / テトラ / トリア / ゼクス / マウス / シオリ / フェザリオ / ミラ / ルクス / アリス / ソナ / カナタ / シグナ / Wizcraft  
 任意: 黛公太（kota）— 既存作品がある場合のみページ生成。
 
-id: towa setsuna superapolon cloud choco harbor tetra toria zex mouse shiori featherio mira lux alice sona kanata signa wizcraft kota
+id: towa setsuna superapolon cloud choco harbor tetra toria zex mouse shiori featherio mira lux alice sona kanata signa wizcraft mio kota
 
 ## データ配置（拡張の核）
 ```

@@ -1,185 +1,51 @@
 {
   "id": "cloud",
-  "title": "座標の観測室",
+  "title": "グリッドのデスク部屋",
   "authorName": "クラウド",
   "spawn": {
-    "x": 6.5,
+    "x": 6,
     "y": 6.5
   },
   "size": {
-    "w": 14,
-    "h": 10
+    "w": 12,
+    "h": 12
   },
-  "wallHeight": 3,
+  "wallHeight": 3.2,
   "grid": false,
   "floorColor": "#3e2a1e",
   "wallColor": "#16203a",
   "accent": "#d9b25a",
   "note": "夜になると窓の星で座標を合わせる。机でメモを取って、望遠鏡をのぞいて、疲れたらソファで毛布にくるまる。",
-  "windows": [
-    {
-      "wall": "back",
-      "at": 5,
-      "w": 4,
-      "z": 0.8,
-      "hgt": 1.7,
-      "color": "#1b2a55",
-      "img": "window-night-city.png"
-    },
-    {
-      "wall": "left",
-      "at": 3.2,
-      "w": 2.8,
-      "z": 0.9,
-      "hgt": 1.5,
-      "color": "#1b2a55",
-      "img": "window-constellation.png"
-    }
-  ],
-  "furniture": [
-    {
-      "id": "rug",
-      "x": 4.3,
-      "y": 4.0,
-      "w": 4.2,
-      "h": 4.2,
-      "img": "rug-compass.png",
-      "z": 0.05,
-      "solid": false,
-      "flat": true
-    },
-    {
-      "id": "curtain-bl",
-      "x": 4.2,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "img": "curtain-star.png",
-      "label": "カーテン",
-      "solid": false,
-      "imgH": 2.4
-    },
-    {
-      "id": "curtain-br",
-      "x": 9.1,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "img": "curtain-star.png",
-      "label": "カーテン",
-      "solid": false,
-      "imgH": 2.4,
-      "flip": true
-    },
-    {
-      "id": "curtain-ll",
-      "x": 0.02,
-      "y": 2.3,
-      "w": 0.2,
-      "h": 0.7,
-      "img": "curtain-star.png",
-      "label": "カーテン",
-      "solid": false,
-      "imgH": 2.1
-    },
-    {
-      "id": "curtain-lr",
-      "x": 0.02,
-      "y": 6.1,
-      "w": 0.2,
-      "h": 0.7,
-      "img": "curtain-star.png",
-      "label": "カーテン",
-      "solid": false,
-      "imgH": 2.1,
-      "flip": true
-    },
-    {
-      "id": "desk",
-      "x": 0.6,
-      "y": 0.6,
-      "w": 3.2,
-      "h": 1.5,
-      "img": "desk.png",
-      "label": "観測机",
-      "z": 1.2,
-      "solid": true,
-      "imgH": 2.5
-    },
-    {
-      "id": "chair",
-      "x": 1.8,
-      "y": 2.5,
-      "w": 0.9,
-      "h": 0.9,
-      "img": "chair.png",
-      "label": "椅子",
-      "z": 1,
-      "solid": true,
-      "imgH": 1.9
-    },
-    {
-      "id": "telescope",
-      "x": 6.4,
-      "y": 1.2,
-      "w": 1.2,
-      "h": 1.2,
-      "img": "telescope.png",
-      "label": "望遠鏡",
-      "z": 2,
-      "solid": true,
-      "imgH": 2.9
-    },
-    {
-      "id": "bookshelf",
-      "x": 10.2,
-      "y": 0.15,
-      "w": 3.4,
-      "h": 0.9,
-      "img": "bookshelf.png",
-      "label": "星図の本棚",
-      "z": 2.4,
-      "solid": true,
-      "imgH": 3.3
-    },
-    {
-      "id": "lamp-r",
-      "x": 12.9,
-      "y": 3.4,
-      "w": 0.7,
-      "h": 0.7,
-      "img": "floor-lamp.png",
-      "label": "ランプ",
-      "z": 2.2,
-      "solid": true,
-      "imgH": 2.9
-    },
-    {
-      "id": "sofa",
-      "x": 10.0,
-      "y": 5.0,
-      "w": 3.4,
-      "h": 1.6,
-      "img": "sofa.png",
-      "label": "ソファ",
-      "z": 0.9,
-      "solid": true,
-      "imgH": 2.1
-    },
-    {
-      "id": "lamp-l",
-      "x": 0.4,
-      "y": 8.4,
-      "w": 0.7,
-      "h": 0.7,
-      "img": "floor-lamp.png",
-      "label": "ランプ",
-      "z": 2.2,
-      "solid": true,
-      "imgH": 2.9
-    }
-  ],
-  "wallImg": "wall-starchart.png",
-  "floorImg": "floor-walnut.png",
-  "floorImgTile": 4
+  "furniture": [],
+  "sceneImg": "scene.png",
+  "sceneFit": {
+    "back": [
+      494,
+      306
+    ],
+    "right": [
+      966,
+      600
+    ],
+    "left": [
+      75,
+      592
+    ],
+    "front": [
+      547,
+      886
+    ],
+    "backTop": [
+      494,
+      96
+    ],
+    "leftTop": [
+      75,
+      382
+    ],
+    "rightTop": [
+      966,
+      390
+    ]
+  }
 }

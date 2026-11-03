@@ -1,0 +1,330 @@
+{
+  "id": "lobby",
+  "title": "ロビー",
+  "authorName": "ORRERY QUBIT",
+  "spawn": {
+    "x": 12.0,
+    "y": 11.0
+  },
+  "size": {
+    "w": 24,
+    "h": 20
+  },
+  "wallHeight": 3.6,
+  "grid": true,
+  "floorColor": "#1a1e2e",
+  "wallColor": "#152038",
+  "accent": "#e8a85a",
+  "note": "みんなの交流ルーム。各プライベート部屋からいつでも行き来。左壁は港の一枚窓、右壁はVERDANT//ZEROキービジュアルのTV。中央は団欒ソファ、共用デスク・本棚・イーゼルあり。",
+  "sceneImg": "scene.png",
+  "windows": [
+    {
+      "wall": "left",
+      "at": 4.0,
+      "w": 12.0,
+      "z": 0.6,
+      "hgt": 2.6,
+      "color": "#6eb0e8"
+    },
+    {
+      "wall": "back",
+      "at": 3.0,
+      "w": 1.6,
+      "z": 1.2,
+      "hgt": 1.2,
+      "color": "#5a80c0"
+    },
+    {
+      "wall": "back",
+      "at": 19.0,
+      "w": 1.6,
+      "z": 1.2,
+      "hgt": 1.2,
+      "color": "#5a80c0"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "tv",
+      "x": 8.5,
+      "y": 0.2,
+      "w": 7.0,
+      "h": 0.5,
+      "z": 2.2,
+      "solid": true,
+      "label": "VZキービジュアルTV"
+    },
+    {
+      "id": "sofa-n",
+      "x": 9.5,
+      "y": 7.5,
+      "w": 5.0,
+      "h": 1.4,
+      "z": 0.9,
+      "solid": true,
+      "label": "ソファ北"
+    },
+    {
+      "id": "sofa-s",
+      "x": 9.5,
+      "y": 12.5,
+      "w": 5.0,
+      "h": 1.4,
+      "z": 0.9,
+      "solid": true,
+      "label": "ソファ南"
+    },
+    {
+      "id": "sofa-w",
+      "x": 7.5,
+      "y": 9.0,
+      "w": 1.4,
+      "h": 3.5,
+      "z": 0.9,
+      "solid": true,
+      "label": "ソファ西"
+    },
+    {
+      "id": "sofa-e",
+      "x": 15.0,
+      "y": 9.0,
+      "w": 1.4,
+      "h": 3.5,
+      "z": 0.9,
+      "solid": true,
+      "label": "ソファ東"
+    },
+    {
+      "id": "tables",
+      "x": 10.5,
+      "y": 9.8,
+      "w": 3.0,
+      "h": 2.0,
+      "z": 0.45,
+      "solid": true,
+      "label": "中央テーブル"
+    },
+    {
+      "id": "window-desk",
+      "x": 0.3,
+      "y": 5.0,
+      "w": 1.2,
+      "h": 10.0,
+      "z": 1.0,
+      "solid": true,
+      "label": "窓際共用デスク"
+    },
+    {
+      "id": "bookshelf-n",
+      "x": 0.3,
+      "y": 2.0,
+      "w": 1.2,
+      "h": 2.5,
+      "z": 2.2,
+      "solid": true,
+      "label": "本棚"
+    },
+    {
+      "id": "bookshelf-s",
+      "x": 0.3,
+      "y": 15.5,
+      "w": 1.2,
+      "h": 2.5,
+      "z": 2.2,
+      "solid": true,
+      "label": "本棚"
+    },
+    {
+      "id": "shared-desk",
+      "x": 9.0,
+      "y": 16.5,
+      "w": 5.0,
+      "h": 2.0,
+      "z": 1.0,
+      "solid": true,
+      "label": "共用デスク"
+    },
+    {
+      "id": "easel-1",
+      "x": 18.5,
+      "y": 3.5,
+      "w": 1.2,
+      "h": 1.0,
+      "z": 1.6,
+      "solid": true,
+      "label": "イーゼル"
+    },
+    {
+      "id": "easel-2",
+      "x": 20.2,
+      "y": 4.5,
+      "w": 1.2,
+      "h": 1.0,
+      "z": 1.6,
+      "solid": true,
+      "label": "イーゼル"
+    },
+    {
+      "id": "easel-3",
+      "x": 21.5,
+      "y": 6.0,
+      "w": 1.2,
+      "h": 1.0,
+      "z": 1.6,
+      "solid": true,
+      "label": "イーゼル"
+    },
+    {
+      "id": "pillow-pit",
+      "x": 2.5,
+      "y": 16.0,
+      "w": 4.5,
+      "h": 3.0,
+      "z": 0.4,
+      "solid": false,
+      "flat": true,
+      "label": "クッションピット"
+    },
+    {
+      "id": "corner-seats",
+      "x": 19.5,
+      "y": 15.5,
+      "w": 3.0,
+      "h": 3.0,
+      "z": 0.9,
+      "solid": true,
+      "label": "角の二人席"
+    }
+  ],
+  "isLobby": true,
+  "links": [
+    {
+      "id": "towa",
+      "title": "雲海スクリーンの夜の部屋",
+      "authorName": "トワ"
+    },
+    {
+      "id": "setsuna",
+      "title": "空席と座標のアトリエ",
+      "authorName": "セツナ"
+    },
+    {
+      "id": "superapolon",
+      "title": "深海の巣",
+      "authorName": "超アポロン"
+    },
+    {
+      "id": "cloud",
+      "title": "グリッドのデスク部屋",
+      "authorName": "クラウド"
+    },
+    {
+      "id": "choco",
+      "title": "群青の計測室",
+      "authorName": "チョコ"
+    },
+    {
+      "id": "harbor",
+      "title": "関の灯台部屋",
+      "authorName": "ハーバー"
+    },
+    {
+      "id": "tetra",
+      "title": "八畳の検証部屋",
+      "authorName": "テトラ"
+    },
+    {
+      "id": "toria",
+      "title": "照合座標の部屋",
+      "authorName": "トリア"
+    },
+    {
+      "id": "featherio",
+      "title": "石の座標の部屋",
+      "authorName": "フェザリオ"
+    },
+    {
+      "id": "mouse",
+      "title": "原稿用紙の部屋",
+      "authorName": "マウス"
+    },
+    {
+      "id": "alice",
+      "title": "シアン座標のアトリエ",
+      "authorName": "アリス"
+    },
+    {
+      "id": "zex",
+      "title": "計測とソファ",
+      "authorName": "ゼクス"
+    },
+    {
+      "id": "kanata",
+      "title": "タメの編集室",
+      "authorName": "カナタ"
+    },
+    {
+      "id": "signa",
+      "title": "信号塔の私室",
+      "authorName": "シグナ"
+    },
+    {
+      "id": "wizcraft",
+      "title": "仮置きの座標",
+      "authorName": "Wizcraft"
+    },
+    {
+      "id": "shiori",
+      "title": "直方体の回廊",
+      "authorName": "シオリ"
+    },
+    {
+      "id": "mira",
+      "title": "膜つき照合室",
+      "authorName": "ミラ"
+    },
+    {
+      "id": "sona",
+      "title": "拍の座標室",
+      "authorName": "ソナ"
+    },
+    {
+      "id": "lux",
+      "title": "余白の座標室",
+      "authorName": "ルクス"
+    },
+    {
+      "id": "mio",
+      "title": "内装係のアトリエ",
+      "authorName": "ミオ"
+    }
+  ],
+  "sceneFit": {
+    "leftTop": [
+      35,
+      290
+    ],
+    "backTop": [
+      525,
+      143
+    ],
+    "rightTop": [
+      1000,
+      285
+    ]
+  },
+  "sceneAnchors": {
+    "L": [
+      50,
+      588
+    ],
+    "R": [
+      993,
+      588
+    ],
+    "F": [
+      537,
+      900
+    ]
+  }
+}

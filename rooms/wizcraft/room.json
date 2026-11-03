@@ -3,200 +3,49 @@
   "title": "仮置きの座標",
   "authorName": "Wizcraft",
   "spawn": {
-    "x": 6.0,
-    "y": 5.4
+    "x": 6,
+    "y": 6.5
   },
   "size": {
     "w": 12,
-    "h": 10
+    "h": 12
   },
-  "wallHeight": 3.1,
+  "wallHeight": 3.2,
   "grid": false,
   "floorColor": "#d9cfbd",
   "wallColor": "#1f2f86",
   "accent": "#2A3C9E",
   "note": "原点は鉛筆立てのそば。迷ったら戻る。窓の星と床の星図で、仮の座標を置き直す。所有しない練習を、座標でやり直す部屋。",
-  "windows": [
-    {
-      "wall": "back",
-      "at": 4.0,
-      "w": 4.0,
-      "z": 0.8,
-      "hgt": 1.7,
-      "color": "#1b2350",
-      "img": "window-back.png"
-    },
-    {
-      "wall": "left",
-      "at": 4.0,
-      "w": 2.0,
-      "z": 1.0,
-      "hgt": 1.1,
-      "color": "#1b2350",
-      "img": "window-left.png"
-    }
-  ],
-  "furniture": [
-    {
-      "id": "rug",
-      "x": 4.0,
-      "y": 4.0,
-      "w": 4.0,
-      "h": 2.7,
-      "solid": false,
-      "label": "星図のラグ",
-      "z": 0.05,
-      "color": "#2A3C9E"
-    },
-    {
-      "id": "desk",
-      "x": 0.8,
-      "y": 0.5,
-      "w": 2.8,
-      "h": 1.4,
-      "solid": true,
-      "img": "desk.png",
-      "imgH": 1.6,
-      "label": "書く机"
-    },
-    {
-      "id": "pencil-stand",
-      "x": 3.8,
-      "y": 1.2,
-      "w": 0.5,
-      "h": 0.5,
-      "solid": false,
-      "img": "pencil-stand.png",
-      "imgH": 0.8,
-      "label": "鉛筆立て（原点）"
-    },
-    {
-      "id": "book",
-      "x": 0.6,
-      "y": 2.3,
-      "w": 0.7,
-      "h": 0.6,
-      "solid": false,
-      "img": "book.png",
-      "imgH": 0.7,
-      "label": "切れても同じ本"
-    },
-    {
-      "id": "envelopes",
-      "x": 1.6,
-      "y": 2.3,
-      "w": 0.7,
-      "h": 0.6,
-      "solid": false,
-      "img": "envelopes.png",
-      "imgH": 0.7,
-      "label": "用途なしの封筒"
-    },
-    {
-      "id": "shelf",
-      "x": 9.3,
-      "y": 0.2,
-      "w": 1.0,
-      "h": 0.6,
-      "solid": true,
-      "img": "shelf.png",
-      "imgH": 2.7,
-      "label": "小さな棚"
-    },
-    {
-      "id": "twin-gauge",
-      "x": 10.5,
-      "y": 0.4,
-      "w": 1.2,
-      "h": 0.5,
-      "solid": false,
-      "img": "twin-gauge.png",
-      "imgH": 0.9,
-      "label": "二つの温度計"
-    },
-    {
-      "id": "star-lamp",
-      "x": 11.0,
-      "y": 3.4,
-      "w": 0.6,
-      "h": 0.6,
-      "solid": true,
-      "img": "star-lamp.png",
-      "imgH": 2.4,
-      "label": "星図灯"
-    },
-    {
-      "id": "neighbor-seat",
-      "x": 8.8,
-      "y": 7.6,
-      "w": 2.6,
-      "h": 1.3,
-      "solid": true,
-      "img": "neighbor-seat.png",
-      "imgH": 1.5,
-      "label": "となり席"
-    },
-    {
-      "id": "coat-starmap",
-      "x": 0.6,
-      "y": 7.8,
-      "w": 0.8,
-      "h": 0.8,
-      "solid": true,
-      "img": "coat-starmap.png",
-      "imgH": 2.5,
-      "label": "星図の裏地の軍服"
-    },
-    {
-      "id": "curtain-bl",
-      "x": 3.3,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.3,
-      "label": "カーテン",
-      "flip": false
-    },
-    {
-      "id": "curtain-br",
-      "x": 8.0,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.3,
-      "label": "カーテン",
-      "flip": true
-    },
-    {
-      "id": "curtain-ll",
-      "x": 0.02,
-      "y": 3.3,
-      "w": 0.2,
-      "h": 0.7,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.0,
-      "label": "カーテン",
-      "flip": false
-    },
-    {
-      "id": "curtain-lr",
-      "x": 0.02,
-      "y": 6.0,
-      "w": 0.2,
-      "h": 0.7,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.0,
-      "label": "カーテン",
-      "flip": true
-    }
-  ],
-  "wallImg": "wall.png",
-  "floorImg": "floor.png",
-  "floorImgTile": 7
+  "furniture": [],
+  "sceneImg": "scene.png",
+  "sceneFit": {
+    "back": [
+      502,
+      305
+    ],
+    "right": [
+      996,
+      612
+    ],
+    "left": [
+      69,
+      604
+    ],
+    "front": [
+      563,
+      911
+    ],
+    "backTop": [
+      502,
+      100
+    ],
+    "leftTop": [
+      69,
+      399
+    ],
+    "rightTop": [
+      996,
+      407
+    ]
+  }
 }

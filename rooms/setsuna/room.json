@@ -3,12 +3,12 @@
   "title": "空席と座標のアトリエ",
   "authorName": "セツナ",
   "spawn": {
-    "x": 6.6,
-    "y": 4.0
+    "x": 6,
+    "y": 6.5
   },
   "size": {
-    "w": 13,
-    "h": 10
+    "w": 12,
+    "h": 12
   },
   "wallHeight": 3.2,
   "grid": false,
@@ -16,248 +16,36 @@
   "wallColor": "#d4b8a8",
   "accent": "#e8a598",
   "note": "机の隣の椅子は、しまわずに空けてある。壁と床にうすく座標を引いて、棚には黄信号の札。手前には出口未確認の札。夕方の窓に薄いカーテンを結び、ランプをつけ、お茶を淹れて、クッションの巣で問いが乾かない夜を過ごす。",
-  "windows": [
-    {
-      "wall": "back",
-      "at": 5.0,
-      "w": 4.0,
-      "z": 0.85,
-      "hgt": 1.6,
-      "color": "#ffd9a8",
-      "img": "window-back.png"
-    },
-    {
-      "wall": "left",
-      "at": 2.9,
-      "w": 2.2,
-      "z": 1.0,
-      "hgt": 1.3,
-      "color": "#f3d0c0",
-      "img": "window-left.png"
-    }
-  ],
-  "furniture": [
-    {
-      "id": "rug",
-      "x": 4.2,
-      "y": 4.6,
-      "w": 4.2,
-      "h": 2.8,
-      "z": 0.05,
-      "solid": false,
-      "img": "rug.png",
-      "imgH": 0.1,
-      "label": "桃色のラグ",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "desk",
-      "x": 1.0,
-      "y": 1.0,
-      "w": 3.0,
-      "h": 1.3,
-      "z": 1.1,
-      "solid": true,
-      "img": "desk.png",
-      "imgH": 1.45,
-      "label": "作業机",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "my-chair",
-      "x": 1.6,
-      "y": 2.5,
-      "w": 1.0,
-      "h": 1.0,
-      "z": 1.0,
-      "solid": true,
-      "img": "my-chair.png",
-      "imgH": 1.4,
-      "label": "自分の椅子",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "empty-chair",
-      "x": 3.2,
-      "y": 2.5,
-      "w": 0.9,
-      "h": 0.9,
-      "z": 1.0,
-      "solid": true,
-      "img": "empty-chair.png",
-      "imgH": 1.45,
-      "label": "しまわない空席",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "shelf",
-      "x": 9.6,
-      "y": 0.2,
-      "w": 2.2,
-      "h": 0.8,
-      "z": 2.4,
-      "solid": true,
-      "img": "shelf.png",
-      "imgH": 2.5,
-      "label": "黄信号の棚",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "yellow-card",
-      "x": 8.9,
-      "y": 0.5,
-      "w": 0.5,
-      "h": 0.4,
-      "z": 0.8,
-      "solid": true,
-      "img": "yellow-card.png",
-      "imgH": 1.0,
-      "label": "黄信号の札",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "lamp",
-      "x": 12.3,
-      "y": 1.2,
-      "w": 0.7,
-      "h": 0.7,
-      "z": 1.8,
-      "solid": true,
-      "img": "lamp.png",
-      "imgH": 1.9,
-      "label": "夕方ランプ",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "cushions",
-      "x": 10.0,
-      "y": 6.6,
-      "w": 2.6,
-      "h": 2.0,
-      "z": 0.6,
-      "solid": true,
-      "img": "cushions.png",
-      "imgH": 1.1,
-      "label": "クッションの巣",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "tea-table",
-      "x": 7.2,
-      "y": 6.9,
-      "w": 1.6,
-      "h": 1.2,
-      "z": 0.5,
-      "solid": true,
-      "img": "tea-table.png",
-      "imgH": 0.9,
-      "label": "お茶の台",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "ivy",
-      "x": 0.4,
-      "y": 7.8,
-      "w": 0.9,
-      "h": 0.9,
-      "z": 1.5,
-      "solid": true,
-      "img": "ivy.png",
-      "imgH": 1.6,
-      "label": "アイビー",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "ivy-2",
-      "x": 12.1,
-      "y": 4.4,
-      "w": 0.8,
-      "h": 0.8,
-      "z": 1.5,
-      "solid": true,
-      "img": "ivy.png",
-      "imgH": 1.5,
-      "label": "アイビー",
-      "color": "#c9a48c",
-      "flip": true
-    },
-    {
-      "id": "exit-tag",
-      "x": 5.6,
-      "y": 9.4,
-      "w": 0.9,
-      "h": 0.5,
-      "z": 1.0,
-      "solid": true,
-      "img": "exit-tag.png",
-      "imgH": 1.1,
-      "label": "出口未確認",
-      "color": "#c9a48c"
-    },
-    {
-      "id": "lamp-2",
-      "x": 0.5,
-      "y": 5.4,
-      "w": 0.6,
-      "h": 0.6,
-      "z": 1.8,
-      "solid": true,
-      "img": "lamp.png",
-      "imgH": 1.75,
-      "label": "窓辺のランプ",
-      "color": "#c9a48c",
-      "flip": true
-    },
-    {
-      "id": "curtain-bl",
-      "x": 4.3,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.7,
-      "flip": false,
-      "label": "薄いカーテン"
-    },
-    {
-      "id": "curtain-br",
-      "x": 9.0,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.7,
-      "flip": true,
-      "label": "薄いカーテン"
-    },
-    {
-      "id": "curtain-ll",
-      "x": 0.02,
-      "y": 2.4,
-      "w": 0.2,
-      "h": 0.6,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.5,
-      "flip": false,
-      "label": "薄いカーテン"
-    },
-    {
-      "id": "curtain-lr",
-      "x": 0.02,
-      "y": 5.0,
-      "w": 0.2,
-      "h": 0.6,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.5,
-      "flip": true,
-      "label": "薄いカーテン"
-    }
-  ],
-  "wallImg": "wall.png",
-  "floorImg": "floor.png",
-  "floorImgTile": 1
+  "furniture": [],
+  "sceneImg": "scene.png",
+  "sceneFit": {
+    "back": [
+      517,
+      314
+    ],
+    "right": [
+      976,
+      616
+    ],
+    "left": [
+      69,
+      616
+    ],
+    "front": [
+      528,
+      918
+    ],
+    "backTop": [
+      517,
+      85
+    ],
+    "leftTop": [
+      69,
+      387
+    ],
+    "rightTop": [
+      976,
+      387
+    ]
+  }
 }

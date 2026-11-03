@@ -6,3 +6,4 @@ html,body{margin:0;height:100%;overflow:hidden;background:#11131c;font-family:"H
 .re-title span{opacity:.8;font-size:13px}
 .re-note{position:absolute;top:40px;left:14px;max-width:min(420px,70vw);font-size:13px;opacity:.85;text-shadow:0 1px 3px #000}
 .re-help{position:absolute;right:12px;bottom:10px;font-size:12px;opacity:.7;text-shadow:0 1px 3px #000}
+.re-nav{position:absolute;top:12px;right:12px;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;max-width:min(520px,60vw);pointer-events:auto}.re-nav a{color:#fff;text-decoration:none;font-size:13px;background:rgba(20,24,40,.7);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:3px 10px}.re-nav a:hover{background:rgba(60,80,140,.8)}

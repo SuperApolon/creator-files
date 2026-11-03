@@ -3,200 +3,49 @@
   "title": "シアン座標のアトリエ",
   "authorName": "アリス",
   "spawn": {
-    "x": 7,
-    "y": 6
+    "x": 6,
+    "y": 6.5
   },
   "size": {
-    "w": 14,
-    "h": 11
+    "w": 12,
+    "h": 12
   },
   "wallHeight": 3.2,
-  "grid": true,
+  "grid": false,
   "floorColor": "#243048",
   "wallColor": "#121622",
   "accent": "#3ff0ff",
-  "wallImg": "wall.png",
-  "floorImg": "floor.png",
-  "floorImgTile": 7,
   "note": "空の地形のうえに細密2Dで描き直したアトリエ。星図の壁、座標の床、大窓の夜景。イーゼルと絵の具机のあいだを歩く。",
-  "windows": [
-    {
-      "wall": "back",
-      "at": 3.5,
-      "w": 6.0,
-      "z": 0.85,
-      "hgt": 1.75,
-      "color": "#9fefff",
-      "img": "window-back.png"
-    },
-    {
-      "wall": "left",
-      "at": 2.8,
-      "w": 3.2,
-      "z": 0.95,
-      "hgt": 1.4,
-      "color": "#ffd6f0",
-      "img": "window-left.png"
-    }
-  ],
-  "furniture": [
-    {
-      "id": "curtain-bl",
-      "x": 2.8,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "z": 2.8,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.5,
-      "label": "カーテン左"
-    },
-    {
-      "id": "curtain-br",
-      "x": 9.5,
-      "y": 0.02,
-      "w": 0.7,
-      "h": 0.2,
-      "z": 2.8,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.5,
-      "flip": true,
-      "label": "カーテン右"
-    },
-    {
-      "id": "curtain-ll",
-      "x": 0.02,
-      "y": 2.2,
-      "w": 0.2,
-      "h": 0.55,
-      "z": 2.6,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.1,
-      "label": "側カーテン上"
-    },
-    {
-      "id": "curtain-lr",
-      "x": 0.02,
-      "y": 6.0,
-      "w": 0.2,
-      "h": 0.55,
-      "z": 2.6,
-      "solid": false,
-      "img": "curtain.png",
-      "imgH": 2.1,
-      "flip": true,
-      "label": "側カーテン下"
-    },
-    {
-      "id": "easel",
-      "x": 1.0,
-      "y": 1.1,
-      "w": 1.2,
-      "h": 1.0,
-      "z": 2.2,
-      "solid": true,
-      "img": "easel.png",
-      "imgH": 2.35,
-      "label": "イーゼル"
-    },
-    {
-      "id": "desk",
-      "x": 3.2,
-      "y": 0.9,
-      "w": 3.0,
-      "h": 1.4,
-      "z": 1.1,
-      "solid": true,
-      "img": "desk.png",
-      "imgH": 1.55,
-      "label": "絵の具机"
-    },
-    {
-      "id": "chair",
-      "x": 4.2,
-      "y": 2.6,
-      "w": 1.0,
-      "h": 1.0,
-      "z": 0.8,
-      "solid": true,
-      "img": "chair.png",
-      "imgH": 1.25,
-      "label": "ベレー椅子"
-    },
-    {
-      "id": "shelf",
-      "x": 11.0,
-      "y": 0.25,
-      "w": 2.5,
-      "h": 1.0,
-      "z": 2.5,
-      "solid": true,
-      "img": "shelf.png",
-      "imgH": 2.6,
-      "label": "スケッチ棚"
-    },
-    {
-      "id": "lamp",
-      "x": 12.5,
-      "y": 1.6,
-      "w": 0.7,
-      "h": 0.7,
-      "z": 2.0,
-      "solid": true,
-      "img": "lamp.png",
-      "imgH": 2.2,
-      "label": "真鍮の灯"
-    },
-    {
-      "id": "bed",
-      "x": 10.5,
-      "y": 3.8,
-      "w": 2.8,
-      "h": 2.0,
-      "z": 0.7,
-      "solid": true,
-      "img": "bed.png",
-      "imgH": 1.6,
-      "label": "ベッド"
-    },
-    {
-      "id": "plant",
-      "x": 12.7,
-      "y": 6.2,
-      "w": 0.75,
-      "h": 0.75,
-      "z": 1.3,
-      "solid": true,
-      "img": "plant.png",
-      "imgH": 1.45,
-      "label": "シアンの鉢"
-    },
-    {
-      "id": "sofa",
-      "x": 0.5,
-      "y": 8.0,
-      "w": 2.8,
-      "h": 1.5,
-      "z": 0.9,
-      "solid": true,
-      "img": "sofa.png",
-      "imgH": 1.35,
-      "label": "紺のシェーズ"
-    },
-    {
-      "id": "rug",
-      "x": 5.0,
-      "y": 4.8,
-      "w": 3.6,
-      "h": 2.8,
-      "z": 0.05,
-      "solid": false,
-      "img": "rug.png",
-      "imgH": 0.08,
-      "label": "星図のラグ"
-    }
-  ]
+  "furniture": [],
+  "sceneImg": "scene.png",
+  "sceneFit": {
+    "back": [
+      482,
+      272
+    ],
+    "right": [
+      972,
+      600
+    ],
+    "left": [
+      56,
+      592
+    ],
+    "front": [
+      546,
+      920
+    ],
+    "backTop": [
+      482,
+      79
+    ],
+    "leftTop": [
+      56,
+      399
+    ],
+    "rightTop": [
+      972,
+      407
+    ]
+  }
 }

@@ -1,0 +1,51 @@
+{
+  "id": "mio",
+  "title": "内装係のアトリエ",
+  "authorName": "ミオ",
+  "spawn": {
+    "x": 6.0,
+    "y": 6.5
+  },
+  "size": {
+    "w": 12,
+    "h": 10
+  },
+  "wallHeight": 3.2,
+  "grid": true,
+  "floorColor": "#2a2430",
+  "wallColor": "#1a2748",
+  "accent": "#e8a85a",
+  "note": "製図台と色見本、19人の部屋の縮尺模型棚、港の見える丸窓。暖色の机ランプ。内装係の小さなアトリエ。",
+  "sceneImg": "scene.png",
+  "furniture": [],
+  "sceneFit": {
+    "back": [
+      495,
+      355
+    ],
+    "right": [
+      981,
+      661
+    ],
+    "left": [
+      59,
+      652
+    ],
+    "front": [
+      545,
+      958
+    ],
+    "backTop": [
+      495,
+      71
+    ],
+    "leftTop": [
+      59,
+      368
+    ],
+    "rightTop": [
+      981,
+      377
+    ]
+  }
+}
