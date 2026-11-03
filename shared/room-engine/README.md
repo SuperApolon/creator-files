@@ -44,3 +44,19 @@ index.html で `new RoomEngine(...)` の戻り値を使える（観覧用の演�
 - 任意: `scale`（幅倍率, 既定1）、`imgH`（高さをタイル単位で指定。幅はアスペクトで追従）、`flip`（左右反転）。
 - `img` が無い／読込失敗時のみ従来の3D箱（`color`,`z`,`label`）でフォールバック（移行中）。
 - 衝突（`solid`）と奥行きソートは img の有無に関係なく床矩形 x,y,w,h のまま。
+
+## 壁紙・床・窓・カーテン（任意・公太FB）
+```json
+{
+  "wallColor": "#26304e", "floorColor": "#5c4634",
+  "wallImg": "wall.png", "wallImgAlpha": 1,
+  "floorImg": "floor.png", "floorImgAlpha": 1, "floorImgTile": 7,
+  "windows": [{"wall":"back","at":5,"w":4,"z":0.9,"hgt":1.6,"color":"#e3f2ff","img":"window-back.png"}]
+}
+```
+- `wallImg`（任意）: assets/ 内の画像。奥壁(back)・左壁(left)それぞれ全面に1枚を貼る（画像上端＝壁上端、下端＝床）。左壁は少し暗く重ねる。透過PNGなら下地の `wallColor` が透ける。横長（例 1400×300）推奨。
+- `floorImg`（任意）: 床全面に1枚貼る。`floorImgTile: n` を付けると n×n タイルごとに繰り返し（端は縮めて収める）。floorImg がある時 `grid` 線は薄くなる。透過なら `floorColor` 市松が透ける。
+- `wallImgAlpha` / `floorImgAlpha`（任意, 0–1, 既定1）: 貼り込みの不透明度。
+- `windows[].img`（任意）: 窓の矩形（`at`/`w`/`z`/`hgt`）に画像を貼る。景色＋枠を描き込んだPNGを想定。無い／読込失敗時は従来の `color` 色ポリ。
+- 画像が無い／読み込めない時はすべて従来の色だけで描画する（既存の room.json はそのまま動く）。
+- **カーテン・壁飾りは furniture の `img`**: `"solid": false` で、奥壁なら `y: 0.02, h: 0.2`、左壁なら `x: 0.02, w: 0.2` の薄い床矩形を窓の両脇に置き、`imgH`（例 2.3＝ほぼ壁の高さ）で丈を決めると、壁に掛かったように見える（ビルボードは床矩形の足元から立つので、壁に寄せた薄い矩形にするのがコツ。右側は `flip: true`）。

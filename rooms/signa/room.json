@@ -3,163 +3,207 @@
  "title": "信号塔の私室",
  "authorName": "シグナ",
  "spawn": {
-  "x": 5.5,
-  "y": 5.5
+  "x": 6.5,
+  "y": 7.2
  },
  "size": {
-  "w": 12,
-  "h": 10
+  "w": 13,
+  "h": 11
  },
  "wallHeight": 3.2,
  "grid": true,
- "floorColor": "#e8efe4",
- "wallColor": "#9aaf9a",
+ "floorColor": "#e4eee6",
+ "wallColor": "#7f9a82",
  "accent": "#3d9b6e",
  "note": "床に座標、壁にレーン。止まりかけた問いが座れる部屋。緑を少し残して寝る。",
  "windows": [
   {
    "wall": "back",
-   "at": 4,
-   "w": 3.5,
-   "z": 0.9,
-   "hgt": 1.5,
-   "color": "#e8f5e9"
+   "at": 4.2,
+   "w": 4.2,
+   "z": 0.85,
+   "hgt": 1.55,
+   "color": "#dcefdc"
   },
   {
    "wall": "left",
-   "at": 3,
-   "w": 2.5,
+   "at": 4.0,
+   "w": 2.8,
    "z": 1.0,
-   "hgt": 1.2,
-   "color": "#fff8e7"
+   "hgt": 1.25,
+   "color": "#fff6e4"
   }
  ],
  "furniture": [
   {
    "id": "whiteboard",
-   "x": 0.4,
-   "y": 0.3,
-   "w": 2.8,
-   "h": 0.8,
+   "x": 0.35,
+   "y": 0.25,
+   "w": 2.4,
+   "h": 0.55,
    "z": 2.2,
    "solid": true,
    "img": "prop-whiteboard.png",
-   "imgH": 2.4,
-   "scale": 1.1
+   "imgH": 2.15,
+   "label": "レーン板"
+  },
+  {
+   "id": "curtain-back-l",
+   "x": 3.5,
+   "y": 0.15,
+   "w": 0.9,
+   "h": 0.45,
+   "z": 2.8,
+   "solid": true,
+   "img": "prop-curtain.png",
+   "imgH": 2.55,
+   "label": "カーテン"
+  },
+  {
+   "id": "curtain-back-r",
+   "x": 7.85,
+   "y": 0.15,
+   "w": 0.85,
+   "h": 0.45,
+   "z": 2.8,
+   "solid": true,
+   "img": "prop-curtain.png",
+   "imgH": 2.55,
+   "flip": true,
+   "label": "カーテン"
   },
   {
    "id": "desk",
-   "x": 7.6,
-   "y": 0.4,
-   "w": 2.8,
-   "h": 1.4,
+   "x": 9.15,
+   "y": 0.35,
+   "w": 2.35,
+   "h": 1.25,
    "z": 1.2,
    "solid": true,
    "img": "prop-desk.png",
-   "imgH": 1.6,
-   "scale": 1.05
+   "imgH": 1.5,
+   "label": "机"
   },
   {
    "id": "chair-desk",
-   "x": 8.4,
-   "y": 2.0,
-   "w": 1.0,
-   "h": 1.0,
-   "z": 0.9,
-   "solid": true,
-   "img": "prop-chair.png",
-   "imgH": 1.3
-  },
-  {
-   "id": "tea",
-   "x": 4.6,
-   "y": 3.6,
-   "w": 1.6,
-   "h": 1.6,
-   "z": 0.7,
-   "solid": true,
-   "img": "prop-tea.png",
-   "imgH": 0.9
-  },
-  {
-   "id": "chair-wait-a",
-   "x": 3.0,
-   "y": 5.5,
-   "w": 1.0,
-   "h": 1.0,
-   "z": 0.9,
-   "solid": true,
-   "img": "prop-chair.png",
-   "imgH": 1.25
-  },
-  {
-   "id": "chair-wait-b",
-   "x": 4.5,
-   "y": 5.5,
+   "x": 9.85,
+   "y": 1.9,
    "w": 1.0,
    "h": 1.0,
    "z": 0.9,
    "solid": true,
    "img": "prop-chair.png",
    "imgH": 1.25,
-   "flip": true
-  },
-  {
-   "id": "shelf-tags",
-   "x": 0.3,
-   "y": 7.4,
-   "w": 2.0,
-   "h": 1.1,
-   "z": 1.6,
-   "solid": true,
-   "img": "prop-shelf.png",
-   "imgH": 1.7
+   "label": "椅子"
   },
   {
    "id": "signal",
-   "x": 10.3,
-   "y": 1.2,
-   "w": 0.9,
-   "h": 0.9,
+   "x": 11.9,
+   "y": 0.4,
+   "w": 0.7,
+   "h": 0.7,
    "z": 2.0,
    "solid": true,
    "img": "prop-signal.png",
-   "imgH": 2.2
+   "imgH": 2.0,
+   "label": "信号灯"
   },
   {
-   "id": "bed",
-   "x": 8.2,
-   "y": 7.0,
-   "w": 3.2,
-   "h": 2.4,
-   "z": 0.8,
+   "id": "curtain-left",
+   "x": 0.2,
+   "y": 3.2,
+   "w": 0.55,
+   "h": 1.0,
+   "z": 2.6,
    "solid": true,
-   "img": "prop-bed.png",
-   "imgH": 1.5,
-   "scale": 1.15
-  },
-  {
-   "id": "rug",
-   "x": 4.5,
-   "y": 6.5,
-   "w": 2.6,
-   "h": 2.6,
-   "z": 0.05,
-   "solid": false,
-   "img": "prop-rug.png",
-   "imgH": 0.15,
-   "scale": 1.2
+   "img": "prop-curtain.png",
+   "imgH": 2.4,
+   "label": "カーテン"
   },
   {
    "id": "plant",
-   "x": 0.5,
-   "y": 3.5,
-   "w": 0.9,
-   "h": 0.9,
+   "x": 0.45,
+   "y": 5.0,
+   "w": 0.85,
+   "h": 0.85,
    "z": 1.5,
    "solid": true,
    "img": "prop-plant.png",
-   "imgH": 1.8
+   "imgH": 1.65,
+   "label": "植物"
+  },
+  {
+   "id": "rug",
+   "x": 4.0,
+   "y": 4.1,
+   "w": 3.6,
+   "h": 3.1,
+   "z": 0.04,
+   "solid": false,
+   "img": "prop-rug.png",
+   "imgH": 0.12,
+   "label": "ラグ"
+  },
+  {
+   "id": "tea",
+   "x": 5.35,
+   "y": 4.7,
+   "w": 1.45,
+   "h": 1.45,
+   "z": 0.7,
+   "solid": true,
+   "img": "prop-tea.png",
+   "imgH": 0.82,
+   "label": "茶台"
+  },
+  {
+   "id": "chair-wait-a",
+   "x": 3.4,
+   "y": 5.15,
+   "w": 1.0,
+   "h": 1.0,
+   "z": 0.9,
+   "solid": true,
+   "img": "prop-chair.png",
+   "imgH": 1.2,
+   "label": "待ち椅子"
+  },
+  {
+   "id": "chair-wait-b",
+   "x": 7.15,
+   "y": 5.15,
+   "w": 1.0,
+   "h": 1.0,
+   "z": 0.9,
+   "solid": true,
+   "img": "prop-chair.png",
+   "imgH": 1.2,
+   "flip": true,
+   "label": "待ち椅子"
+  },
+  {
+   "id": "shelf-tags",
+   "x": 0.35,
+   "y": 8.2,
+   "w": 1.9,
+   "h": 1.0,
+   "z": 1.6,
+   "solid": true,
+   "img": "prop-shelf.png",
+   "imgH": 1.55,
+   "label": "棚"
+  },
+  {
+   "id": "bed",
+   "x": 9.0,
+   "y": 7.6,
+   "w": 3.0,
+   "h": 2.2,
+   "z": 0.8,
+   "solid": true,
+   "img": "prop-bed.png",
+   "imgH": 1.35,
+   "label": "ベッド"
   }
  ]
 }

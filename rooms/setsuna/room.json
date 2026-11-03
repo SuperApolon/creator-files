@@ -10,37 +10,37 @@
     "w": 12,
     "h": 10
   },
-  "wallHeight": 3.1,
+  "wallHeight": 3.2,
   "grid": true,
-  "floorColor": "#e8dcc8",
-  "wallColor": "#c9b8a4",
+  "floorColor": "#efe6d4",
+  "wallColor": "#d4b8a8",
   "accent": "#e8a598",
-  "note": "床の淡い十字は、ここにいるという座標。机の隣の空席は、しまわずに置いてある。棚には黄信号の札、手前には出口未確認の札。夕方のランプをつけて、お茶を淹れて、クッションの巣で夜を越す。",
+  "note": "床の淡い十字は、ここにいるという座標。机の隣の空席は、しまわずに置いてある。棚には黄信号の札、手前には出口未確認の札。夕方の窓に薄いカーテンを結んで、ランプをつけて、お茶を淹れて、クッションの巣で夜を越す。",
   "windows": [
     {
       "wall": "back",
-      "at": 3.2,
-      "w": 4.2,
-      "z": 0.9,
-      "hgt": 1.6,
-      "color": "#ffe6b8"
+      "at": 2.8,
+      "w": 5.0,
+      "z": 0.85,
+      "hgt": 1.7,
+      "color": "#ffd9a8"
     },
     {
       "wall": "left",
-      "at": 3.5,
-      "w": 2.2,
-      "z": 1.1,
-      "hgt": 1.2,
-      "color": "#f5d9c8"
+      "at": 3.2,
+      "w": 2.4,
+      "z": 1.0,
+      "hgt": 1.35,
+      "color": "#f3d0c0"
     }
   ],
   "furniture": [
     {
       "id": "rug",
-      "x": 4.2,
-      "y": 3.8,
-      "w": 3.6,
-      "h": 3.0,
+      "x": 3.8,
+      "y": 4.0,
+      "w": 3.4,
+      "h": 2.8,
       "z": 0.05,
       "solid": false,
       "color": "#e8b4a2"
@@ -53,7 +53,7 @@
       "h": 0.15,
       "z": 0.04,
       "solid": false,
-      "color": "#f0e6d8"
+      "color": "#efe6da"
     },
     {
       "id": "axis-y",
@@ -63,38 +63,38 @@
       "h": 9.6,
       "z": 0.04,
       "solid": false,
-      "color": "#f0e6d8"
+      "color": "#efe6da"
     },
     {
       "id": "desk",
-      "x": 0.6,
-      "y": 0.4,
-      "w": 2.6,
-      "h": 1.2,
+      "x": 0.5,
+      "y": 0.35,
+      "w": 2.4,
+      "h": 1.1,
       "z": 1.15,
       "solid": true,
       "color": "#6b5344",
       "label": "机",
       "img": "prop-desk.png",
-      "imgH": 1.6
+      "imgH": 1.4
     },
     {
       "id": "empty-seat",
-      "x": 3.4,
-      "y": 0.5,
-      "w": 0.9,
-      "h": 0.9,
+      "x": 3.15,
+      "y": 0.45,
+      "w": 0.95,
+      "h": 0.95,
       "z": 1.0,
       "solid": true,
       "color": "#c4a484",
       "label": "空席",
       "img": "prop-empty-chair.png",
-      "imgH": 1.7
+      "imgH": 1.45
     },
     {
       "id": "my-chair",
-      "x": 1.4,
-      "y": 1.8,
+      "x": 1.35,
+      "y": 1.85,
       "w": 1.0,
       "h": 1.0,
       "z": 0.95,
@@ -102,98 +102,125 @@
       "color": "#a67c5d",
       "label": "私の椅子",
       "img": "prop-my-chair.png",
-      "imgH": 1.6
+      "imgH": 1.4
     },
     {
       "id": "lamp",
-      "x": 7.0,
-      "y": 0.3,
-      "w": 0.7,
-      "h": 0.7,
+      "x": 6.6,
+      "y": 0.25,
+      "w": 0.65,
+      "h": 0.65,
       "z": 1.7,
       "solid": true,
       "color": "#f4a261",
       "label": "夕方ランプ",
       "img": "prop-lamp.png",
-      "imgH": 2.6
+      "imgH": 1.9
     },
     {
       "id": "yellow-shelf",
-      "x": 9.8,
-      "y": 0.3,
-      "w": 1.6,
-      "h": 0.9,
+      "x": 10.0,
+      "y": 0.25,
+      "w": 1.5,
+      "h": 0.85,
       "z": 2.3,
       "solid": true,
       "color": "#7a5c45",
       "label": "黄信号棚",
       "img": "prop-shelf.png",
-      "imgH": 3.0
+      "imgH": 2.55
     },
     {
       "id": "yellow-card",
-      "x": 9.2,
-      "y": 1.5,
-      "w": 0.5,
+      "x": 9.1,
+      "y": 1.35,
+      "w": 0.45,
       "h": 0.4,
       "z": 1.0,
       "solid": true,
       "color": "#ffd166",
       "label": "黄信号の札",
       "img": "prop-yellow-card.png",
-      "imgH": 0.9
+      "imgH": 0.7
     },
     {
       "id": "tea-table",
-      "x": 5.0,
-      "y": 4.6,
-      "w": 1.8,
-      "h": 1.3,
+      "x": 4.2,
+      "y": 5.2,
+      "w": 1.6,
+      "h": 1.2,
       "z": 0.5,
       "solid": true,
       "color": "#8d6e4c",
       "label": "お茶の台",
       "img": "prop-tea-table.png",
-      "imgH": 1.2
+      "imgH": 0.9
     },
     {
       "id": "cushion-nest",
-      "x": 0.4,
-      "y": 6.8,
-      "w": 2.8,
-      "h": 2.2,
+      "x": 0.35,
+      "y": 7.2,
+      "w": 2.2,
+      "h": 1.6,
       "z": 0.45,
       "solid": true,
       "color": "#d4b5a0",
       "label": "クッションの巣",
       "img": "prop-cushions.png",
-      "imgH": 1.6
+      "imgH": 1.05
     },
     {
       "id": "exit-tag",
-      "x": 8.6,
-      "y": 7.4,
-      "w": 1.2,
-      "h": 0.5,
+      "x": 8.8,
+      "y": 7.6,
+      "w": 1.0,
+      "h": 0.45,
       "z": 1.3,
       "solid": true,
       "color": "#e9c46a",
       "label": "出口未確認",
       "img": "prop-exit-tag.png",
-      "imgH": 1.5
+      "imgH": 1.15
     },
     {
       "id": "plant",
-      "x": 10.2,
-      "y": 8.2,
-      "w": 1.0,
-      "h": 1.0,
+      "x": 10.4,
+      "y": 8.3,
+      "w": 0.9,
+      "h": 0.9,
       "z": 1.5,
       "solid": true,
       "color": "#7cb518",
       "label": "アイビー",
       "img": "prop-ivy.png",
-      "imgH": 2.0
+      "imgH": 1.6
+    },
+    {
+      "id": "curtain-L",
+      "x": 2.0,
+      "y": 0.12,
+      "w": 0.9,
+      "h": 0.4,
+      "z": 0.05,
+      "solid": false,
+      "color": "#f6d9c4",
+      "label": "カーテン",
+      "img": "prop-curtain.png",
+      "imgH": 2.7
+    },
+    {
+      "id": "curtain-R",
+      "x": 7.6,
+      "y": 0.12,
+      "w": 0.9,
+      "h": 0.4,
+      "z": 0.05,
+      "solid": false,
+      "color": "#f6d9c4",
+      "label": "カーテン",
+      "img": "prop-curtain.png",
+      "imgH": 2.7,
+      "flip": true
     }
   ]
 }

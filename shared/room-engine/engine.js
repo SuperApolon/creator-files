@@ -13,6 +13,10 @@ export class RoomEngine{
     const ld=(n,cb)=>{const im=new Image();im.onload=()=>cb(im);im.onerror=()=>{};im.src=opt.assetBase+n;};
     if(opt.assetBase)ld('avatar.png',im=>this.img=im);
     if(opt.assetBase)for(const f of this.furn)if(f.img)ld(f.img,im=>{if(im.naturalWidth&&im.naturalHeight)f._im=im;});
+    // optional textures: wallImg / floorImg / windows[].img (assets/ file names). Missing/failed -> colour only.
+    this.tex={};const ok=im=>im.naturalWidth&&im.naturalHeight;
+    if(opt.assetBase){for(const k of ['wallImg','floorImg'])if(data[k])ld(data[k],im=>{if(ok(im))this.tex[k]=im;});
+      for(const w of data.windows||[])if(w.img)ld(w.img,im=>{if(ok(im))w._im=im;});}
   }
   start(){this._ui();addEventListener('resize',()=>this._resize());this._resize();
     let t0=performance.now();const loop=t=>{const dt=Math.min(.05,(t-t0)/1000);t0=t;this._update(dt);this._draw();requestAnimationFrame(loop)};requestAnimationFrame(loop);return this;}
@@ -51,6 +55,10 @@ export class RoomEngine{
     let wd=(w+h)*this.tw/2*(f.scale||1),hg=wd*im.naturalHeight/im.naturalWidth;
     if(f.imgH){hg=f.imgH*this.th*1.4;wd=hg*im.naturalWidth/im.naturalHeight;}
     c.save();if(f.flip){c.translate(cx,0);c.scale(-1,1);c.translate(-cx,0);}c.drawImage(im,cx-wd/2,footY-hg,wd,hg);c.restore();}
+  // affine-map an image onto the parallelogram o, o+u, o+v (o = image top-left, u = image x-axis, v = image y-axis)
+  _tex(im,o,u,v,alpha=1){const c=this.ctx;c.save();c.globalAlpha=alpha;c.beginPath();c.moveTo(o[0],o[1]);c.lineTo(o[0]+u[0],o[1]+u[1]);c.lineTo(o[0]+u[0]+v[0],o[1]+u[1]+v[1]);c.lineTo(o[0]+v[0],o[1]+v[1]);c.closePath();c.clip();
+    c.transform(u[0]/im.naturalWidth,u[1]/im.naturalWidth,v[0]/im.naturalHeight,v[1]/im.naturalHeight,o[0],o[1]);c.drawImage(im,0,0);c.restore();}
+  _quadTex(im,tl,tr,bl,alpha){this._tex(im,tl,[tr[0]-tl[0],tr[1]-tl[1]],[bl[0]-tl[0],bl[1]-tl[1]],alpha);}
   _furn(f){f._im?this._sprite(f):this._box(f);}
   _avatar(){const c=this.ctx,p=this.p,[x,y]=this.iso(p.x,p.y,0),s=this.tw*.9,bob=Math.abs(Math.sin(p.step))*s*.06;
     c.fillStyle='rgba(0,0,0,.25)';c.beginPath();c.ellipse(x,y,s*.3,s*.13,0,0,7);c.fill();
@@ -64,11 +72,20 @@ export class RoomEngine{
   _draw(){const c=this.ctx,W=this.W,H=this.H,I=(a,b,z)=>this.iso(a,b,z);c.setTransform(this.dpr,0,0,this.dpr,0,0);
     const col=AMBIENT;const g=c.createRadialGradient(innerWidth/2,innerHeight/2,0,innerWidth/2,innerHeight/2,Math.max(innerWidth,innerHeight));g.addColorStop(0,shade(col,.55));g.addColorStop(1,'#11131c');c.fillStyle=g;c.fillRect(0,0,innerWidth,innerHeight);
     const wh=this.d.wallHeight||3,wc=this.d.wallColor||'#8a9bb5',fc=this.d.floorColor||'#d4c4a8';
+    const wt=this.tex.wallImg,ft=this.tex.floorImg,wa=this.d.wallImgAlpha??1,fa=this.d.floorImgAlpha??1;
     this._poly([I(0,0,0),I(W,0,0),I(W,0,wh),I(0,0,wh)],shade(wc,.95),'rgba(0,0,0,.2)');
+    if(wt)this._quadTex(wt,I(0,0,wh),I(W,0,wh),I(0,0,0),wa);
     this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],shade(wc,.8),'rgba(0,0,0,.2)');
+    if(wt){this._quadTex(wt,I(0,H,wh),I(0,0,wh),I(0,H,0),wa);this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],'rgba(0,0,0,.12)');}
     for(const w of this.d.windows||[]){const wall=w.wall||'back',a=w.at,l=w.w||2,z0=w.z??1,z1=z0+(w.hgt||1.2);
-      const q=wall==='left'?[I(0,a,z0),I(0,a+l,z0),I(0,a+l,z1),I(0,a,z1)]:[I(a,0,z0),I(a+l,0,z0),I(a+l,0,z1),I(a,0,z1)];this._poly(q,w.color||'#cfe8ff','rgba(255,255,255,.8)');}
-    for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),this.d.grid?'rgba(0,0,0,.12)':null);
+      const q=wall==='left'?[I(0,a,z0),I(0,a+l,z0),I(0,a+l,z1),I(0,a,z1)]:[I(a,0,z0),I(a+l,0,z0),I(a+l,0,z1),I(a,0,z1)];
+      if(w._im){wall==='left'?this._quadTex(w._im,q[2],q[3],q[1]):this._quadTex(w._im,q[3],q[2],q[0]);}
+      else this._poly(q,w.color||'#cfe8ff','rgba(255,255,255,.8)');}
+    for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),(this.d.grid&&!ft)?'rgba(0,0,0,.12)':null);
+    if(ft){const n=this.d.floorImgTile||0;
+      if(n>0){for(let i=0;i<W;i+=n)for(let j=0;j<H;j+=n){const a=Math.min(n,W-i),b=Math.min(n,H-j);this._quadTex(ft,I(i,j),I(i+a,j),I(i,j+b),fa);}}
+      else this._quadTex(ft,I(0,0),I(W,0),I(0,H),fa);
+      if(this.d.grid)for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],'rgba(0,0,0,0)','rgba(0,0,0,.08)');}
     const items=this.furn.map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
     for(const it of items)it.a?this._avatar():this._furn(it.f);
     }
