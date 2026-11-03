@@ -33,7 +33,7 @@ main{max-width:1100px;margin:0 auto;padding:32px 20px 80px}h1{font-size:28px;mar
 article{background:#fff;border-radius:16px;padding:28px clamp(18px,4vw,48px);box-shadow:0 2px 10px rgba(0,0,0,.06)}
 article .arts img{width:100%;max-height:80vh;object-fit:contain;border-radius:10px;background:#eee;margin-bottom:14px}
 article .body p{margin:0 0 1.1em}.crumb{font-size:14px;color:#666;margin-bottom:14px}.crumb a{margin-right:4px}
-section{margin-top:44px}h2{font-size:20px;border-left:4px solid #1d2440;padding-left:10px}.card .ph img.av{width:78%;height:78%;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.15)}.hav{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin-bottom:8px}footer{text-align:center;color:#999;font-size:13px;padding:30px}"""
+section{margin-top:44px}h2{font-size:20px;border-left:4px solid #1d2440;padding-left:10px}.card .ph img.av{width:100%;height:100%;border-radius:0;object-fit:cover}.hav{width:120px;height:120px;border-radius:6px;object-fit:cover;display:block;margin-bottom:8px}footer{text-align:center;color:#999;font-size:13px;padding:30px}"""
 def page(path,title,inner):
   r='../'*len(path.split('/')) if path else './'
   s=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}｜クリエイターファイル</title><link rel="stylesheet" href="{r}assets/style.css"></head><body>
