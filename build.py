@@ -33,7 +33,7 @@ main{max-width:1100px;margin:0 auto;padding:32px 20px 80px}h1{font-size:28px;mar
 article{background:#fff;border-radius:16px;padding:28px clamp(18px,4vw,48px);box-shadow:0 2px 10px rgba(0,0,0,.06)}
 article .arts img{width:100%;max-height:80vh;object-fit:contain;border-radius:10px;background:#eee;margin-bottom:14px}
 article .body p{margin:0 0 1.1em}.crumb{font-size:14px;color:#666;margin-bottom:14px}.crumb a{margin-right:4px}
-section{margin-top:44px}h2{font-size:20px;border-left:4px solid #1d2440;padding-left:10px}footer{text-align:center;color:#999;font-size:13px;padding:30px}"""
+section{margin-top:44px}h2{font-size:20px;border-left:4px solid #1d2440;padding-left:10px}.card .ph img.av{width:78%;height:78%;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.15)}.hav{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin-bottom:8px}footer{text-align:center;color:#999;font-size:13px;padding:30px}"""
 def page(path,title,inner):
   r='../'*len(path.split('/')) if path else './'
   s=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}｜クリエイターファイル</title><link rel="stylesheet" href="{r}assets/style.css"></head><body>
@@ -48,18 +48,22 @@ def md(t):
   ps=[x.strip() for x in re.split(r'\n\s*\n',t) if x.strip()]
   return ''.join('<p>'+e(x).replace('\n','<br>')+'</p>' for x in ps if not x.startswith('#'))
 if os.path.exists(OUT): shutil.rmtree(OUT)
-os.makedirs(f'{OUT}/assets');open(f'{OUT}/assets/style.css','w').write(CSS);open(f'{OUT}/.nojekyll','w').close()
+os.makedirs(f'{OUT}/assets/avatars');
+AV={}
+for p in glob.glob(f'{H}/creators/avatars/*'):
+  i=os.path.splitext(os.path.basename(p))[0];shutil.copy2(p,f'{OUT}/assets/avatars/'+os.path.basename(p));AV[i]='assets/avatars/'+os.path.basename(p)
+open(f'{OUT}/assets/style.css','w').write(CSS);open(f'{OUT}/.nojekyll','w').close()
 # top
 cards=''
 for c in shown:
-  ws=by_c.get(c['id'],[]);face=next((w for w in ws if w['arts']),None)
-  ph=f'<img src="{e(img(face))}" alt="{e(c["name"])}" loading="lazy">' if face else e(c['name'][:1])
+  ws=by_c.get(c['id'],[]);av=AV.get(c['id'])
+  ph=f'<img class="av" src="@R@{e(av)}" alt="{e(c["name"])}" loading="lazy">' if av else e(c['name'][:1])
   cards+=f'<a class="card" href="@R@c/{e(c["id"])}/"><div class="ph">{ph}</div><div class="m"><span class="t">{e(c["name"])}</span><span class="a">{len(ws)} 作品</span></div></a>'
 page('','クリエイター一覧',f'<h1>クリエイター</h1><p class="lead">ひとりずつの作品へ。{len(shown)}人・{len(works)}作品。</p><div class="grid">{cards}</div>')
 # creators
 for c in shown:
   ws=by_c.get(c['id'],[])
-  page(f"c/{c['id']}",c['name'],f'<div class="crumb"><a href="@R@">クリエイター</a>›</div><h1>{e(c["name"])}</h1><p class="lead">{e(c.get("role",""))}・{len(ws)} 作品</p><div class="grid">'+''.join(wcard(w,series[w['series']]['title']) for w in ws)+'</div>')
+  page(f"c/{c['id']}",c['name'],f'<div class="crumb"><a href="@R@">クリエイター</a>›</div>'+(f'<img class="hav" src="@R@{e(AV[c["id"]])}" alt="">' if c['id'] in AV else '')+f'<h1>{e(c["name"])}</h1><p class="lead">{e(c.get("role",""))}・{len(ws)} 作品</p><div class="grid">'+''.join(wcard(w,series[w['series']]['title']) for w in ws)+'</div>')
 # series
 sl=sorted(series.values(),key=lambda s:(s.get('order',999),s['id']))
 def scard(s):

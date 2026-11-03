@@ -4,7 +4,7 @@
 
 - `creators/<id>.json` … id, name, role, order（表示順のみ order で制御）
 - `series/<series-id>.json` … id, title, type, blurb, order, date（date はメタ用。公開HTMLには出さない）
-- `works/<series-id>/<id>/` … `work.json`（title, authorName, 任意 creator/summary）＋ `art.(png|jpg|webp)`（複数可: art-2 …）＋ 任意 `body.md`
+- `works/<series-id>/<id>/` … `work.json`（title, authorName, 任意 creator/summary）＋ `art.(png|jpg|webp)`（複数可: art-2 …）＋ 任意 `body.md` / `creators/avatars/<id>.png` がアイコン（走査して自動使用）
 - `python3 build.py` で `site/` を生成し、その中身をリポルートへ展開して公開（Pages: main / root）。
 
 ## 新シリーズ追加手順
