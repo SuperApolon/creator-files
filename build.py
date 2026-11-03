@@ -40,7 +40,7 @@ def page(path,title,inner):
 <header class="top"><a class="brand" href="{r}">ORRERY クリエイターファイル</a><nav><a href="{r}">クリエイター</a><a href="{r}s/">シリーズ</a></nav></header>
 <main>{inner.replace('@R@',r)}</main><footer>ORRERY QUBIT</footer></body></html>'''
   p=os.path.join(OUT,path,'index.html');os.makedirs(os.path.dirname(p),exist_ok=True);open(p,'w',encoding='utf-8').write(s)
-def img(w): return f"@R@w/{w['series']}/{w['id']}/{w['arts'][0]}" if w['arts'] else ''
+def img(w): return f"@R@w/{w['series']}/{w['id']}/{w['arts'][0]}" if w['arts'] else (f'@R@{COVER}' if COVER else '')
 def wcard(w,label):
   im=img(w);ph=f'<img src="{e(im)}" alt="{e(w["title"])}" loading="lazy">' if im else '✎'
   return f'<a class="card" href="@R@w/{e(w["series"])}/{e(w["id"])}/"><div class="ph">{ph}</div><div class="m"><span class="t">{e(w["title"])}</span><span class="a">{e(label)}</span></div></a>'
@@ -50,6 +50,8 @@ def md(t):
 if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(f'{OUT}/assets/avatars');
 AV={}
+COVER=None
+if os.path.exists(f'{H}/shared/writing-cover.png'): shutil.copy2(f'{H}/shared/writing-cover.png',f'{OUT}/assets/writing-cover.png');COVER='assets/writing-cover.png'
 for p in glob.glob(f'{H}/creators/avatars/*'):
   i=os.path.splitext(os.path.basename(p))[0];shutil.copy2(p,f'{OUT}/assets/avatars/'+os.path.basename(p));AV[i]='assets/avatars/'+os.path.basename(p)
 open(f'{OUT}/assets/style.css','w').write(CSS);open(f'{OUT}/.nojekyll','w').close()
@@ -80,6 +82,6 @@ for w in works:
   d=f"{OUT}/w/{w['series']}/{w['id']}";os.makedirs(d,exist_ok=True)
   for a in w['arts']: shutil.copy2(f"{w['dir']}/{a}",f"{d}/{a}")
   c=creators.get(w['creator'],{});s=series[w['series']]
-  arts=''.join(f'<img src="{e(a)}" alt="{e(w["title"])}">' for a in w['arts'])
+  arts=''.join(f'<img src="{e(a)}" alt="{e(w["title"])}">' for a in w['arts']) or (f'<img src="@R@{COVER}" alt="">' if COVER else '')
   page(f"w/{w['series']}/{w['id']}",w['title'],f'<article><div class="crumb"><a href="@R@c/{e(w["creator"])}/">{e(c.get("name",w.get("authorName","")))}</a>›<a href="@R@s/{e(s["id"])}/">{e(s["title"])}</a></div><h1>{e(w["title"])}</h1><p><span class="pill">{e(s["title"])}</span>作者: <a href="@R@c/{e(w["creator"])}/">{e(w.get("authorName") or c.get("name",""))}</a></p><div class="arts">{arts}</div><div class="body">{md(w["body"])}</div></article>')
 print(f'creators={len(shown)} series={len(sl)} works={len(works)} kota={"kota" in [c["id"] for c in shown]}')
