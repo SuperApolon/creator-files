@@ -53,7 +53,7 @@ AV={}
 COVER=None
 if os.path.exists(f'{H}/shared/writing-cover.png'): shutil.copy2(f'{H}/shared/writing-cover.png',f'{OUT}/assets/writing-cover.png');COVER='assets/writing-cover.png'
 for p in glob.glob(f'{H}/creators/avatars/*'):
-  i=os.path.splitext(os.path.basename(p))[0];shutil.copy2(p,f'{OUT}/assets/avatars/'+os.path.basename(p));AV[i]='assets/avatars/'+os.path.basename(p)
+  i,x=os.path.splitext(os.path.basename(p));import hashlib;hn=f'{i}-{hashlib.sha1(open(p,"rb").read()).hexdigest()[:8]}{x}';shutil.copy2(p,f'{OUT}/assets/avatars/'+hn);AV[i]='assets/avatars/'+hn
 open(f'{OUT}/assets/style.css','w').write(CSS);open(f'{OUT}/.nojekyll','w').close()
 # top
 cards=''
