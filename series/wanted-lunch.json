@@ -1,0 +1,9 @@
+{
+ "id": "wanted-lunch",
+ "title": "食べたいランチ",
+ "type": "lunch",
+ "blurb": "いま食べたいランチを、一皿ずつ。",
+ "order": 6,
+ "date": "2026-11-03",
+ "legacy": "https://superapolon.github.io/wanted-lunch/"
+}
