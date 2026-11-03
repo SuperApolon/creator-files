@@ -1,5 +1,6 @@
 # 湿度の巣（超アポロン）
 
-共有エンジン上の観覧用部屋。住人は丸枠 `assets/avatar.png`。家具は `assets/*.png` の細密2D置物（`room.json` の `img` / `imgH`）。壁紙・窓・カーテン（`curtain.png`）込み。
-
-操作なし・感情なし。shared 未改変。push はトワ GO までしない。
+- 全面2D描き込みで作り直し：空の3D地形の上に wallImg / floorImg / windows.img ＋ furniture.img を載せている。
+- 住人は丸枠の avatar.png（共有エンジンで歩く）。
+- 感情キー・オーブ・ラベルなし。
+- shared 未触・push なし。

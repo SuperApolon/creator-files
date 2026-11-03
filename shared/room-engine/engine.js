@@ -59,7 +59,7 @@ export class RoomEngine{
   _tex(im,o,u,v,alpha=1){const c=this.ctx;c.save();c.globalAlpha=alpha;c.beginPath();c.moveTo(o[0],o[1]);c.lineTo(o[0]+u[0],o[1]+u[1]);c.lineTo(o[0]+u[0]+v[0],o[1]+u[1]+v[1]);c.lineTo(o[0]+v[0],o[1]+v[1]);c.closePath();c.clip();
     c.transform(u[0]/im.naturalWidth,u[1]/im.naturalWidth,v[0]/im.naturalHeight,v[1]/im.naturalHeight,o[0],o[1]);c.drawImage(im,0,0);c.restore();}
   _quadTex(im,tl,tr,bl,alpha){this._tex(im,tl,[tr[0]-tl[0],tr[1]-tl[1]],[bl[0]-tl[0],bl[1]-tl[1]],alpha);}
-  _furn(f){f._im?this._sprite(f):this._box(f);}
+  _furn(f){if(f._im&&f.flat){const I=(a,b)=>this.iso(a,b,0);this._quadTex(f._im,I(f.x,f.y),I(f.x+f.w,f.y),I(f.x,f.y+f.h),f.alpha??1);return;}f._im?this._sprite(f):this._box(f);}
   _avatar(){const c=this.ctx,p=this.p,[x,y]=this.iso(p.x,p.y,0),s=this.tw*.9,bob=Math.abs(Math.sin(p.step))*s*.06;
     c.fillStyle='rgba(0,0,0,.25)';c.beginPath();c.ellipse(x,y,s*.3,s*.13,0,0,7);c.fill();
     const im=this.img;

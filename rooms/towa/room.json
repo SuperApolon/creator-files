@@ -3,19 +3,19 @@
   "title": "通し見の座標",
   "authorName": "トワ",
   "spawn": {
-    "x": 6.2,
-    "y": 5.8
+    "x": 6.8,
+    "y": 6.0
   },
   "size": {
     "w": 14,
     "h": 11
   },
   "wallHeight": 3.2,
-  "grid": true,
-  "floorColor": "#3a3348",
-  "wallColor": "#24304a",
+  "grid": false,
+  "floorColor": "#1c2140",
+  "wallColor": "#1a2246",
   "accent": "#e8a85a",
-  "note": "通し見の画面の前に立つ。壁は夜のアトリエ、窓は街の光。カーテンは左右に。歩きやすい中央を空けてある。",
+  "note": "夜のアトリエ。窓の向こうは街の灯り。通し見の画面の前でお茶を置いて、ソファで一息。真ん中は歩けるように空けてある。",
   "windows": [
     {
       "wall": "back",
@@ -23,7 +23,8 @@
       "w": 6,
       "z": 0.9,
       "hgt": 1.7,
-      "color": "#7ec8ff"
+      "color": "#7ec8ff",
+      "img": "window.png"
     },
     {
       "wall": "left",
@@ -31,7 +32,8 @@
       "w": 3,
       "z": 1.0,
       "hgt": 1.4,
-      "color": "#5aa0d8"
+      "color": "#5aa0d8",
+      "img": "window.png"
     }
   ],
   "furniture": [
@@ -167,18 +169,11 @@
       "img": "rug.png",
       "imgH": 0.08,
       "label": "ラグ"
-    },
-    {
-      "id": "door-mat",
-      "x": 5.8,
-      "y": 9.4,
-      "w": 2.0,
-      "h": 0.9,
-      "z": 0.03,
-      "solid": false,
-      "img": "mat.png",
-      "imgH": 0.06,
-      "label": "マット"
     }
-  ]
+  ],
+  "wallImg": "wall.png",
+  "wallImgAlpha": 0.95,
+  "floorImg": "floor.png",
+  "floorImgTile": 6,
+  "floorImgAlpha": 0.9
 }

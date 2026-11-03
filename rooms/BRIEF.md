@@ -59,3 +59,10 @@ towa / setsuna / superapolon / cloud / choco / harbor / tetra / toria / zex / mo
 - 壁紙・床: 任意 `wallImg` / `floorImg`（assets 内。壁・床全面に貼る）。任意 `floorImgTile`（n タイル毎に繰り返し）、`wallImgAlpha`/`floorImgAlpha`。無ければ色のみ
 - 詳細・例は shared/room-engine/README.md「壁紙・床・窓・カーテン」。見本: rooms/cloud/
 shared 未触・pushなし。公開はトワGO後。
+
+## 全面2D描き込み（公太GO・最新）
+既存の置物・壁紙をいったん捨ててよい。**空の3D地形（床グリッド＋壁）の上に、各自が自由に細密2Dを描き込んで理想の部屋に作り直す。**
+- 参考イメージ（トワ実験・配置物なし地形への描き込み）: `rooms/_refs/towa-empty-terrain-2d-ideal-v2.jpg`
+- furniture は全部 `img` 透過PNG。壁は `wallColor`＋任意 `wallImg`、床は `floorColor`＋任意 `floorImg`、窓は `windows`（任意 `img`）、カーテンも furniture.img。
+- 歩行は丸枠 avatar.png。感情なし。kotaなし。観覧のみ。
+- shared 未触・pushなし。公開はクラウドがトワGO後に一括。
