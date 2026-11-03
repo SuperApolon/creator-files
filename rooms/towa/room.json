@@ -43,8 +43,8 @@
       "h": 0.6,
       "z": 2.4,
       "solid": true,
-      "color": "#4a6fa5",
-      "label": "通し見スクリーン"
+      "label": "通し見スクリーン",
+      "img": "screen.png"
     },
     {
       "id": "chair",
@@ -54,8 +54,8 @@
       "h": 1.4,
       "z": 1.0,
       "solid": true,
-      "color": "#6b7280",
-      "label": "判断の椅子"
+      "label": "判断の椅子",
+      "img": "chair.png"
     },
     {
       "id": "desk",
@@ -65,8 +65,8 @@
       "h": 1.4,
       "z": 1.1,
       "solid": true,
-      "color": "#5c4033",
-      "label": "編集机"
+      "label": "編集机",
+      "img": "desk.png"
     },
     {
       "id": "lamp",
@@ -76,8 +76,8 @@
       "h": 0.6,
       "z": 1.5,
       "solid": true,
-      "color": "#e8a85a",
-      "label": "琥珀の灯"
+      "label": "琥珀の灯",
+      "img": "lamp.png"
     },
     {
       "id": "speakers-l",
@@ -87,8 +87,8 @@
       "h": 0.7,
       "z": 1.2,
       "solid": true,
-      "color": "#1f2937",
-      "label": "SP"
+      "label": "SP",
+      "img": "speaker.png"
     },
     {
       "id": "speakers-r",
@@ -98,8 +98,8 @@
       "h": 0.7,
       "z": 1.2,
       "solid": true,
-      "color": "#1f2937",
-      "label": "SP"
+      "label": "SP",
+      "img": "speaker.png"
     },
     {
       "id": "curtain",
@@ -109,8 +109,8 @@
       "h": 2.5,
       "z": 2.8,
       "solid": true,
-      "color": "#111827",
-      "label": "暗幕"
+      "label": "暗幕",
+      "img": "curtain.png"
     },
     {
       "id": "sofa",
@@ -120,8 +120,8 @@
       "h": 1.6,
       "z": 0.85,
       "solid": true,
-      "color": "#4b5563",
-      "label": "夜のソファ"
+      "label": "夜のソファ",
+      "img": "sofa.png"
     },
     {
       "id": "shelf",
@@ -131,8 +131,8 @@
       "h": 2.8,
       "z": 2.3,
       "solid": true,
-      "color": "#3f2e24",
-      "label": "判断メモ棚"
+      "label": "判断メモ棚",
+      "img": "shelf.png"
     },
     {
       "id": "rug",
@@ -142,7 +142,7 @@
       "h": 3,
       "z": 0.05,
       "solid": false,
-      "color": "#374151"
+      "img": "rug.png"
     },
     {
       "id": "door-mat",
@@ -152,8 +152,8 @@
       "h": 1,
       "z": 0.04,
       "solid": false,
-      "color": "#1f2937",
-      "label": "ノックの手前"
+      "label": "ノックの手前",
+      "img": "mat.png"
     }
   ]
 }

@@ -1,9 +1,5 @@
 # 湿度の巣（超アポロン）
 
-共有エンジン `shared/room-engine` 上の歩ける部屋。
+共有エンジン上の観覧用部屋。住人は丸枠 `assets/avatar.png`。家具は `assets/*.png` の細密2D置物（`room.json` の `img`）。表示は部屋ローカルの `prop-img.js`（shared 未改変）。
 
-- 入口: `index.html`（簡易サーバ推奨）
-- レイアウト: `room.json`
-- 自キャラ: `assets/avatar.png`
-
-観覧のみ（操作なし）。住人が自分で歩き、感情も自分で変わる。窓の前は哀、巣は穏、シチューは喜、中央ラグは楽。
+操作なし・感情なし。

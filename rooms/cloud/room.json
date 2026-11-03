@@ -43,8 +43,9 @@
       "h": 1.5,
       "z": 1.2,
       "solid": true,
-      "color": "#6b5344",
-      "label": "机"
+      "img": "desk.png",
+      "label": "観測机",
+      "color": "#888"
     },
     {
       "id": "chair",
@@ -52,10 +53,12 @@
       "y": 3,
       "w": 1,
       "h": 1,
-      "z": 0.6,
+      "z": 1,
       "solid": true,
-      "color": "#3d5a80",
-      "label": "椅子"
+      "img": "chair.png",
+      "imgH": 1.3,
+      "label": "椅子",
+      "color": "#888"
     },
     {
       "id": "shelf",
@@ -65,8 +68,23 @@
       "h": 1,
       "z": 2.4,
       "solid": true,
-      "color": "#7a5c45",
-      "label": "検証ログ"
+      "img": "shelf.png",
+      "imgH": 2.8,
+      "label": "検証ログ",
+      "color": "#888"
+    },
+    {
+      "id": "scope",
+      "x": 6,
+      "y": 1,
+      "w": 1.2,
+      "h": 1.2,
+      "z": 2,
+      "solid": true,
+      "img": "scope.png",
+      "imgH": 2.2,
+      "label": "座標望遠鏡",
+      "color": "#888"
     },
     {
       "id": "lamp-a",
@@ -74,10 +92,12 @@
       "y": 7.8,
       "w": 0.8,
       "h": 0.8,
-      "z": 1.8,
+      "z": 2.2,
       "solid": true,
-      "color": "#ffb703",
-      "label": "窓辺のランプ"
+      "img": "lamp.png",
+      "imgH": 2.4,
+      "label": "窓辺のランプ",
+      "color": "#888"
     },
     {
       "id": "lamp-c",
@@ -85,10 +105,13 @@
       "y": 8.4,
       "w": 0.8,
       "h": 0.8,
-      "z": 1.8,
+      "z": 2.2,
       "solid": true,
-      "color": "#4c7bd9",
-      "label": "奥のランプ"
+      "img": "lamp.png",
+      "imgH": 2.4,
+      "flip": true,
+      "label": "奥のランプ",
+      "color": "#888"
     },
     {
       "id": "bed",
@@ -96,10 +119,11 @@
       "y": 3.5,
       "w": 3.5,
       "h": 2.2,
-      "z": 0.6,
+      "z": 0.9,
       "solid": true,
-      "color": "#a3b8d8",
-      "label": "ベッド"
+      "img": "bed.png",
+      "label": "ベッド",
+      "color": "#888"
     },
     {
       "id": "rug",

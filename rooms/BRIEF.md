@@ -43,3 +43,9 @@ towa / setsuna / superapolon / cloud / choco / harbor / tetra / toria / zex / mo
 1. 19部屋で、丸枠アイコンの住人が自律歩行している。
 2. 感情表現なし。操作不能。
 3. ハブから各部屋に入れる。
+
+## 置物（公太FB・最新）
+部屋の3D箱家具は**やめる**。それぞれが**細かく描き込んだ2Dの好きなもの**を `assets/` に透過PNGで置き、`room.json` の furniture に `img` で指定する。理想の部屋に近づけてよい（数・種類自由）。歩行は丸枠アイコンのまま。感情なし。
+
+- 書き方: `{"id":"desk","x":2,"y":2,"w":3,"h":1.5,"solid":true,"img":"desk.png"}`。床矩形の手前中央に足をつけて立つビルボード、アスペクト維持。任意 `scale`/`imgH`/`flip`。詳細は shared/room-engine/README.md。
+- img が無い／読込失敗の家具だけ旧3D箱で表示（移行中）。衝突は床矩形のまま。kotaなし・観覧のみは維持。
