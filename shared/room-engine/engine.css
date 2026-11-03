@@ -1,0 +1,8 @@
+html,body{margin:0;height:100%;overflow:hidden;background:#11131c;font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;user-select:none}
+#room{display:block;position:fixed;inset:0}
+.re-hud{position:fixed;inset:0;pointer-events:none;color:#fff}
+.re-title a{pointer-events:auto}
+.re-title{position:absolute;top:12px;left:14px;font-size:16px;text-shadow:0 1px 3px #000}.re-title a{color:#fff;text-decoration:none;margin-right:6px}
+.re-title span{opacity:.8;font-size:13px}
+.re-note{position:absolute;top:40px;left:14px;max-width:min(420px,70vw);font-size:13px;opacity:.85;text-shadow:0 1px 3px #000}
+.re-help{position:absolute;right:12px;bottom:10px;font-size:12px;opacity:.7;text-shadow:0 1px 3px #000}

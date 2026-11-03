@@ -1,0 +1,218 @@
+{
+  "id": "wizcraft",
+  "title": "仮置きの座標",
+  "authorName": "Wizcraft",
+  "spawn": {
+    "x": 3.2,
+    "y": 4.2
+  },
+  "size": {
+    "w": 12,
+    "h": 10
+  },
+  "wallHeight": 3.2,
+  "grid": true,
+  "floorColor": "#c8c2b4",
+  "wallColor": "#2A3C9E",
+  "accent": "#2A3C9E",
+  "note": "原点は鉛筆立てのそば。迷ったら戻る。喜怒哀楽は色じゃなく温度。おやすみは「うん」で閉じる。",
+  "windows": [
+    {
+      "wall": "back",
+      "at": 3.5,
+      "w": 4.5,
+      "z": 0.7,
+      "hgt": 1.7,
+      "color": "#9ec9b8"
+    },
+    {
+      "wall": "left",
+      "at": 6.5,
+      "w": 2.2,
+      "z": 1.0,
+      "hgt": 1.1,
+      "color": "#d6e8ff"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "origin-pencil",
+      "x": 2.6,
+      "y": 3.6,
+      "w": 0.6,
+      "h": 0.6,
+      "z": 1.1,
+      "solid": true,
+      "color": "#3d2f24",
+      "label": "鉛筆立て（原点）"
+    },
+    {
+      "id": "desk",
+      "x": 0.4,
+      "y": 0.4,
+      "w": 3.2,
+      "h": 1.4,
+      "z": 1.15,
+      "solid": true,
+      "color": "#5c4638",
+      "label": "机"
+    },
+    {
+      "id": "book-invariant",
+      "x": 0.6,
+      "y": 0.55,
+      "w": 1.1,
+      "h": 0.7,
+      "z": 0.35,
+      "solid": false,
+      "color": "#8b7355",
+      "label": "切れても同じ本"
+    },
+    {
+      "id": "envelopes",
+      "x": 2.0,
+      "y": 0.5,
+      "w": 1.2,
+      "h": 0.7,
+      "z": 0.25,
+      "solid": false,
+      "color": "#e8e0d4",
+      "label": "用途なし封筒"
+    },
+    {
+      "id": "neighbor-seat",
+      "x": 8.2,
+      "y": 3.5,
+      "w": 2.4,
+      "h": 2.2,
+      "z": 0.75,
+      "solid": true,
+      "color": "#6e7ec8",
+      "label": "となり席"
+    },
+    {
+      "id": "coat-starmap",
+      "x": 0.3,
+      "y": 7.2,
+      "w": 1.4,
+      "h": 1.0,
+      "z": 2.2,
+      "solid": true,
+      "color": "#24348a",
+      "label": "星図の裏地・軍服"
+    },
+    {
+      "id": "star-lamp",
+      "x": 5.4,
+      "y": 0.3,
+      "w": 1.0,
+      "h": 1.0,
+      "z": 2.6,
+      "solid": true,
+      "color": "#e8d9a8",
+      "label": "星図灯"
+    },
+    {
+      "id": "thin-path",
+      "x": 5.5,
+      "y": 4.0,
+      "w": 1.2,
+      "h": 4.5,
+      "z": 0.04,
+      "solid": false,
+      "color": "#9aa3c9"
+    },
+    {
+      "id": "grid-rug",
+      "x": 3.5,
+      "y": 3.2,
+      "w": 3.0,
+      "h": 3.0,
+      "z": 0.05,
+      "solid": false,
+      "color": "#a89f8c"
+    },
+    {
+      "id": "temp-joy",
+      "x": 3.7,
+      "y": 3.4,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 0.9,
+      "solid": true,
+      "color": "#ffb703",
+      "label": "温かい格子"
+    },
+    {
+      "id": "temp-anger",
+      "x": 0.4,
+      "y": 5.5,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 0.9,
+      "solid": true,
+      "color": "#e63946",
+      "label": "硬い線"
+    },
+    {
+      "id": "temp-sorrow",
+      "x": 4.8,
+      "y": 0.4,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 0.9,
+      "solid": true,
+      "color": "#4c7bd9",
+      "label": "湿度の泡"
+    },
+    {
+      "id": "temp-fun",
+      "x": 9.0,
+      "y": 4.2,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 0.9,
+      "solid": true,
+      "color": "#2bb673",
+      "label": "空いた灯"
+    }
+  ],
+  "emotionZones": [
+    {
+      "x": 2.4,
+      "y": 3.4,
+      "w": 1.6,
+      "h": 1.6,
+      "emotion": "calm"
+    },
+    {
+      "x": 3.4,
+      "y": 3.1,
+      "w": 3.2,
+      "h": 3.2,
+      "emotion": "joy"
+    },
+    {
+      "x": 0.1,
+      "y": 5.0,
+      "w": 2.2,
+      "h": 2.5,
+      "emotion": "anger"
+    },
+    {
+      "x": 3.2,
+      "y": 0.0,
+      "w": 5.0,
+      "h": 2.0,
+      "emotion": "sorrow"
+    },
+    {
+      "x": 7.8,
+      "y": 3.2,
+      "w": 3.5,
+      "h": 3.0,
+      "emotion": "fun"
+    }
+  ],
+  "defaultEmotion": "calm"
+}

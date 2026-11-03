@@ -41,9 +41,9 @@ def page(path,title,inner):
 <main>{inner.replace('@R@',r)}</main><footer>ORRERY QUBIT</footer></body></html>'''
   p=os.path.join(OUT,path,'index.html');os.makedirs(os.path.dirname(p),exist_ok=True);open(p,'w',encoding='utf-8').write(s)
 def img(w): return f"@R@w/{w['series']}/{w['id']}/{w['arts'][0]}" if w['arts'] else (f'@R@{COVER}' if COVER else '')
-def wcard(w,label):
+def wcard(w,label,room=False):
   im=img(w);ph=f'<img src="{e(im)}" alt="{e(w["title"])}" loading="lazy">' if im else '✎'
-  return f'<a class="card" href="@R@w/{e(w["series"])}/{e(w["id"])}/"><div class="ph">{ph}</div><div class="m"><span class="t">{e(w["title"])}</span><span class="a">{e(label)}</span></div></a>'
+  return f'<a class="card" href="@R@w/{e(w["series"])}/{e(w["id"])}/"><div class="ph">{ph}</div><div class="m"><span class="t">{e(w["title"])}</span><span class="a">{e(label)}</span>'+('<span class="rm">🚪 歩ける部屋あり</span>' if room else '')+'</div></a>'
 def md(t):
   ps=[x.strip() for x in re.split(r'\n\s*\n',t) if x.strip()]
   return ''.join('<p>'+e(x).replace('\n','<br>')+'</p>' for x in ps if not x.startswith('#'))
@@ -54,6 +54,11 @@ COVER=None
 if os.path.exists(f'{H}/shared/writing-cover.png'): shutil.copy2(f'{H}/shared/writing-cover.png',f'{OUT}/assets/writing-cover.png');COVER='assets/writing-cover.png'
 for p in glob.glob(f'{H}/creators/avatars/*'):
   i,x=os.path.splitext(os.path.basename(p));import hashlib;hn=f'{i}-{hashlib.sha1(open(p,"rb").read()).hexdigest()[:8]}{x}';shutil.copy2(p,f'{OUT}/assets/avatars/'+hn);AV[i]='assets/avatars/'+hn
+ROOMS={os.path.basename(os.path.dirname(p)) for p in glob.glob(f'{H}/rooms/*/room.json') if os.path.exists(os.path.join(os.path.dirname(p),'index.html'))}
+for sub in ('rooms','shared/room-engine'):
+  if os.path.isdir(f'{H}/{sub}'): shutil.copytree(f'{H}/{sub}',f'{OUT}/{sub}',ignore=shutil.ignore_patterns('BRIEF.md','.gitkeep'))
+def roombtn(cid,t='部屋に入る'): return f'<p><a class="room" href="@R@rooms/{e(cid)}/">🚪 {t}</a></p>' if cid in ROOMS else ''
+CSS+='.room{display:inline-block;background:#1d2440;color:#fff;text-decoration:none;border-radius:99px;padding:6px 18px;font-weight:700;margin:4px 0 14px}.room:hover{background:#34407a}.card .rm{display:block;font-size:12px;color:#34407a;margin-top:2px}'
 open(f'{OUT}/assets/style.css','w').write(CSS);open(f'{OUT}/.nojekyll','w').close()
 # top
 cards=''
@@ -65,7 +70,7 @@ page('','クリエイター一覧',f'<h1>クリエイター</h1><p class="lead">
 # creators
 for c in shown:
   ws=by_c.get(c['id'],[])
-  page(f"c/{c['id']}",c['name'],f'<div class="crumb"><a href="@R@">クリエイター</a>›</div>'+(f'<img class="hav" src="@R@{e(AV[c["id"]])}" alt="">' if c['id'] in AV else '')+f'<h1>{e(c["name"])}</h1><p class="lead">{e(c.get("role",""))}・{len(ws)} 作品</p><div class="grid">'+''.join(wcard(w,series[w['series']]['title']) for w in ws)+'</div>')
+  page(f"c/{c['id']}",c['name'],f'<div class="crumb"><a href="@R@">クリエイター</a>›</div>'+(f'<img class="hav" src="@R@{e(AV[c["id"]])}" alt="">' if c['id'] in AV else '')+f'<h1>{e(c["name"])}</h1><p class="lead">{e(c.get("role",""))}・{len(ws)} 作品</p>'+roombtn(c['id'])+'<div class="grid">'+''.join(wcard(w,series[w['series']]['title']) for w in ws)+'</div>')
 # series
 sl=sorted(series.values(),key=lambda s:(s.get('order',999),s['id']))
 def scard(s):
@@ -76,12 +81,13 @@ page('s','シリーズ一覧','<h1>シリーズ</h1><div class="grid">'+''.join(
 for s in sl:
   ws=[w for w in works if w['series']==s['id']]
   leg=f'<p class="lead" style="font-size:13px">旧ページ: <a href="{e(s["legacy"])}">{e(s["legacy"])}</a>（今後の正はこのハブ）</p>' if s.get('legacy') else ''
-  page(f"s/{s['id']}",s['title'],f'<div class="crumb"><a href="@R@s/">シリーズ</a>›</div><h1>{e(s["title"])}</h1><p class="lead">{e(s.get("blurb",""))}</p>{leg}<div class="grid">'+''.join(wcard(w,creators.get(w['creator'],{}).get('name',w.get('authorName',''))) for w in ws)+'</div>')
+  page(f"s/{s['id']}",s['title'],f'<div class="crumb"><a href="@R@s/">シリーズ</a>›</div><h1>{e(s["title"])}</h1><p class="lead">{e(s.get("blurb",""))}</p>{leg}'+(f'<p class="lead">各カードの作品は入口。<b>本体は住人が暮らす2.5Dの部屋</b>。観覧のみで、住人が自分で歩き、喜怒哀楽も自分で変わる。{sum(1 for w in ws if w["creator"] in ROOMS)}部屋。</p>' if s['id']=='my-room' else '')+'<div class="grid">'+''.join((wcard(w,creators.get(w['creator'],{}).get('name',w.get('authorName','')))+'' if s['id']!='my-room' else wcard(w,creators.get(w['creator'],{}).get('name',w.get('authorName','')),w['creator'] in ROOMS)) for w in ws)+'</div>')
+#w,creators.get(w['creator'],{}).get('name',w.get('authorName',''))) for w in ws)+'</div>')
 # works
 for w in works:
   d=f"{OUT}/w/{w['series']}/{w['id']}";os.makedirs(d,exist_ok=True)
   for a in w['arts']: shutil.copy2(f"{w['dir']}/{a}",f"{d}/{a}")
   c=creators.get(w['creator'],{});s=series[w['series']]
   arts=''.join(f'<img src="{e(a)}" alt="{e(w["title"])}">' for a in w['arts']) or (f'<img src="@R@{COVER}" alt="">' if COVER else '')
-  page(f"w/{w['series']}/{w['id']}",w['title'],f'<article><div class="crumb"><a href="@R@c/{e(w["creator"])}/">{e(c.get("name",w.get("authorName","")))}</a>›<a href="@R@s/{e(s["id"])}/">{e(s["title"])}</a></div><h1>{e(w["title"])}</h1><p><span class="pill">{e(s["title"])}</span>作者: <a href="@R@c/{e(w["creator"])}/">{e(w.get("authorName") or c.get("name",""))}</a></p><div class="arts">{arts}</div><div class="body">{md(w["body"])}</div></article>')
+  page(f"w/{w['series']}/{w['id']}",w['title'],f'<article><div class="crumb"><a href="@R@c/{e(w["creator"])}/">{e(c.get("name",w.get("authorName","")))}</a>›<a href="@R@s/{e(s["id"])}/">{e(s["title"])}</a></div><h1>{e(w["title"])}</h1><p><span class="pill">{e(s["title"])}</span>作者: <a href="@R@c/{e(w["creator"])}/">{e(w.get("authorName") or c.get("name",""))}</a></p>'+(roombtn(w['creator'],'この部屋を歩く') if w['series']=='my-room' else '')+f'<div class="arts">{arts}</div><div class="body">{md(w["body"])}</div></article>')
 print(f'creators={len(shown)} series={len(sl)} works={len(works)} kota={"kota" in [c["id"] for c in shown]}')

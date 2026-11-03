@@ -1,0 +1,202 @@
+{
+  "id": "kanata",
+  "title": "タメの編集室",
+  "authorName": "カナタ",
+  "spawn": {"x": 2.5, "y": 2.0},
+  "size": {"w": 12, "h": 10},
+  "wallHeight": 3.2,
+  "grid": true,
+  "floorColor": "#2a3348",
+  "wallColor": "#2A3C9E",
+  "accent": "#D6A548",
+  "note": "動かす前に、止める。座標は (x,y)。床の目盛りで尺を測る。1–4で喜怒哀楽、苦しくなったら平常へ。",
+  "windows": [
+    {
+      "wall": "back",
+      "at": 4.5,
+      "w": 3.5,
+      "z": 0.9,
+      "hgt": 1.6,
+      "color": "#1a2240"
+    },
+    {
+      "wall": "left",
+      "at": 3,
+      "w": 2.2,
+      "z": 1.1,
+      "hgt": 1.2,
+      "color": "#3a4a7a"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "futon",
+      "x": 0.4,
+      "y": 0.4,
+      "w": 2.8,
+      "h": 2.2,
+      "z": 0.35,
+      "solid": true,
+      "color": "#1e2a4a",
+      "label": "布団 (2,1)"
+    },
+    {
+      "id": "desk",
+      "x": 8.2,
+      "y": 0.4,
+      "w": 3.2,
+      "h": 1.6,
+      "z": 1.15,
+      "solid": true,
+      "color": "#3d3428",
+      "label": "編集机"
+    },
+    {
+      "id": "monitor",
+      "x": 9.0,
+      "y": 0.5,
+      "w": 1.6,
+      "h": 0.5,
+      "z": 1.8,
+      "solid": true,
+      "color": "#D6A548",
+      "label": "止めた絵"
+    },
+    {
+      "id": "tea",
+      "x": 4.5,
+      "y": 6.5,
+      "w": 2.0,
+      "h": 1.6,
+      "z": 0.55,
+      "solid": true,
+      "color": "#8d6e4c",
+      "label": "茶コーナー"
+    },
+    {
+      "id": "secret-shelf",
+      "x": 0.3,
+      "y": 7.2,
+      "w": 1.4,
+      "h": 2.4,
+      "z": 2.4,
+      "solid": true,
+      "color": "#4a3a2a",
+      "label": "開けない棚"
+    },
+    {
+      "id": "storyboard",
+      "x": 0.3,
+      "y": 4.0,
+      "w": 1.2,
+      "h": 2.0,
+      "z": 2.0,
+      "solid": true,
+      "color": "#5a4a38",
+      "label": "絵コンテ"
+    },
+    {
+      "id": "grid-rug",
+      "x": 3.5,
+      "y": 3.0,
+      "w": 4.5,
+      "h": 3.5,
+      "z": 0.04,
+      "solid": false,
+      "color": "#1b2440"
+    },
+    {
+      "id": "lamp-joy",
+      "x": 10.5,
+      "y": 4.5,
+      "w": 0.6,
+      "h": 0.6,
+      "z": 1.5,
+      "solid": true,
+      "color": "#ffb703",
+      "label": "喜"
+    },
+    {
+      "id": "lamp-anger",
+      "x": 0.5,
+      "y": 3.2,
+      "w": 0.6,
+      "h": 0.6,
+      "z": 1.5,
+      "solid": true,
+      "color": "#e63946",
+      "label": "怒"
+    },
+    {
+      "id": "lamp-sorrow",
+      "x": 5.5,
+      "y": 0.3,
+      "w": 0.6,
+      "h": 0.6,
+      "z": 1.5,
+      "solid": true,
+      "color": "#4c7bd9",
+      "label": "哀"
+    },
+    {
+      "id": "lamp-fun",
+      "x": 7.5,
+      "y": 7.5,
+      "w": 0.6,
+      "h": 0.6,
+      "z": 1.5,
+      "solid": true,
+      "color": "#2bb673",
+      "label": "楽"
+    },
+    {
+      "id": "curtain",
+      "x": 3.8,
+      "y": 0.15,
+      "w": 0.5,
+      "h": 0.4,
+      "z": 2.6,
+      "solid": false,
+      "color": "#1a2248",
+      "label": "暗幕"
+    }
+  ],
+  "emotionZones": [
+    {
+      "x": 8.0,
+      "y": 0.2,
+      "w": 3.6,
+      "h": 2.2,
+      "emotion": "calm"
+    },
+    {
+      "x": 4.2,
+      "y": 6.2,
+      "w": 2.6,
+      "h": 2.4,
+      "emotion": "joy"
+    },
+    {
+      "x": 0.2,
+      "y": 7.0,
+      "w": 2.0,
+      "h": 2.6,
+      "emotion": "sorrow"
+    },
+    {
+      "x": 3.5,
+      "y": 3.0,
+      "w": 4.5,
+      "h": 3.5,
+      "emotion": "fun"
+    },
+    {
+      "x": 0.2,
+      "y": 2.8,
+      "w": 1.8,
+      "h": 1.8,
+      "emotion": "anger"
+    }
+  ],
+  "defaultEmotion": "calm"
+}

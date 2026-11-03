@@ -1,0 +1,197 @@
+{
+  "id": "towa",
+  "title": "通し見の座標",
+  "authorName": "トワ",
+  "spawn": {
+    "x": 6,
+    "y": 6
+  },
+  "size": {
+    "w": 14,
+    "h": 11
+  },
+  "wallHeight": 3.2,
+  "grid": true,
+  "floorColor": "#2a3148",
+  "wallColor": "#1a2238",
+  "accent": "#e8a85a",
+  "note": "夜に深くなる通し見のロフト。床の格子が座標で、喜怒哀楽は灯の色に乗る。まずみんなの作品を静かに見る場所。",
+  "windows": [
+    {
+      "wall": "back",
+      "at": 4,
+      "w": 5,
+      "z": 0.8,
+      "hgt": 1.6,
+      "color": "#3d4a6e"
+    },
+    {
+      "wall": "left",
+      "at": 3,
+      "w": 2.5,
+      "z": 1,
+      "hgt": 1.2,
+      "color": "#2f3a55"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "screen",
+      "x": 3.5,
+      "y": 0.3,
+      "w": 6,
+      "h": 0.6,
+      "z": 2.4,
+      "solid": true,
+      "color": "#4a6fa5",
+      "label": "通し見スクリーン"
+    },
+    {
+      "id": "chair",
+      "x": 5.5,
+      "y": 2.2,
+      "w": 1.4,
+      "h": 1.4,
+      "z": 1.0,
+      "solid": true,
+      "color": "#6b7280",
+      "label": "判断の椅子"
+    },
+    {
+      "id": "desk",
+      "x": 10.5,
+      "y": 0.4,
+      "w": 2.8,
+      "h": 1.4,
+      "z": 1.1,
+      "solid": true,
+      "color": "#5c4033",
+      "label": "編集机"
+    },
+    {
+      "id": "lamp",
+      "x": 12.2,
+      "y": 1.6,
+      "w": 0.6,
+      "h": 0.6,
+      "z": 1.5,
+      "solid": true,
+      "color": "#e8a85a",
+      "label": "琥珀の灯"
+    },
+    {
+      "id": "speakers-l",
+      "x": 3.2,
+      "y": 1.0,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 1.2,
+      "solid": true,
+      "color": "#1f2937",
+      "label": "SP"
+    },
+    {
+      "id": "speakers-r",
+      "x": 9.0,
+      "y": 1.0,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 1.2,
+      "solid": true,
+      "color": "#1f2937",
+      "label": "SP"
+    },
+    {
+      "id": "curtain",
+      "x": 0.3,
+      "y": 0.3,
+      "w": 1.2,
+      "h": 2.5,
+      "z": 2.8,
+      "solid": true,
+      "color": "#111827",
+      "label": "暗幕"
+    },
+    {
+      "id": "sofa",
+      "x": 0.4,
+      "y": 7.5,
+      "w": 3.5,
+      "h": 1.6,
+      "z": 0.85,
+      "solid": true,
+      "color": "#4b5563",
+      "label": "夜のソファ"
+    },
+    {
+      "id": "shelf",
+      "x": 12.2,
+      "y": 7.5,
+      "w": 1.2,
+      "h": 2.8,
+      "z": 2.3,
+      "solid": true,
+      "color": "#3f2e24",
+      "label": "判断メモ棚"
+    },
+    {
+      "id": "rug",
+      "x": 4.5,
+      "y": 4.5,
+      "w": 4,
+      "h": 3,
+      "z": 0.05,
+      "solid": false,
+      "color": "#374151"
+    },
+    {
+      "id": "door-mat",
+      "x": 6,
+      "y": 9.5,
+      "w": 2,
+      "h": 1,
+      "z": 0.04,
+      "solid": false,
+      "color": "#1f2937",
+      "label": "ノックの手前"
+    }
+  ],
+  "emotionZones": [
+    {
+      "x": 3.5,
+      "y": 0.2,
+      "w": 6,
+      "h": 2.5,
+      "emotion": "calm"
+    },
+    {
+      "x": 0.3,
+      "y": 7.2,
+      "w": 4,
+      "h": 2.5,
+      "emotion": "sorrow"
+    },
+    {
+      "x": 10,
+      "y": 0.3,
+      "w": 3.5,
+      "h": 2.5,
+      "emotion": "fun"
+    },
+    {
+      "x": 11.5,
+      "y": 7,
+      "w": 2.2,
+      "h": 3.5,
+      "emotion": "anger"
+    },
+    {
+      "x": 4.5,
+      "y": 4.5,
+      "w": 4,
+      "h": 3,
+      "emotion": "joy"
+    }
+  ],
+  "defaultEmotion": "calm"
+}

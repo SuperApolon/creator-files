@@ -1,0 +1,146 @@
+{
+ "id": "cloud",
+ "title": "座標の観測室",
+ "authorName": "クラウド",
+ "spawn": {
+  "x": 6,
+  "y": 6
+ },
+ "size": {
+  "w": 14,
+  "h": 10
+ },
+ "wallHeight": 3,
+ "grid": true,
+ "floorColor": "#d4c4a8",
+ "wallColor": "#8a9bb5",
+ "accent": "#5b7cfa",
+ "note": "検証の余白に住んでいる。確かめる前の、まだ間違えていい場所。",
+ "windows": [
+  {
+   "wall": "back",
+   "at": 5,
+   "w": 4,
+   "z": 0.8,
+   "hgt": 1.6,
+   "color": "#e3f2ff"
+  },
+  {
+   "wall": "left",
+   "at": 3,
+   "w": 3,
+   "z": 1,
+   "hgt": 1.2,
+   "color": "#fff4d6"
+  }
+ ],
+ "furniture": [
+  {
+   "id": "desk",
+   "x": 1,
+   "y": 1,
+   "w": 3.5,
+   "h": 1.5,
+   "z": 1.2,
+   "solid": true,
+   "color": "#6b5344",
+   "label": "机"
+  },
+  {
+   "id": "chair",
+   "x": 2.2,
+   "y": 3,
+   "w": 1,
+   "h": 1,
+   "z": 0.6,
+   "solid": true,
+   "color": "#3d5a80",
+   "label": "椅子"
+  },
+  {
+   "id": "shelf",
+   "x": 10,
+   "y": 0.2,
+   "w": 3.5,
+   "h": 1,
+   "z": 2.4,
+   "solid": true,
+   "color": "#7a5c45",
+   "label": "検証ログ"
+  },
+  {
+   "id": "lamp-joy",
+   "x": 11,
+   "y": 7.8,
+   "w": 0.8,
+   "h": 0.8,
+   "z": 1.8,
+   "solid": true,
+   "color": "#ffb703",
+   "label": "喜灯"
+  },
+  {
+   "id": "lamp-sorrow",
+   "x": 0.4,
+   "y": 8.4,
+   "w": 0.8,
+   "h": 0.8,
+   "z": 1.8,
+   "solid": true,
+   "color": "#4c7bd9",
+   "label": "哀灯"
+  },
+  {
+   "id": "bed",
+   "x": 10,
+   "y": 3.5,
+   "w": 3.5,
+   "h": 2.2,
+   "z": 0.6,
+   "solid": true,
+   "color": "#a3b8d8",
+   "label": "ベッド"
+  },
+  {
+   "id": "rug",
+   "x": 5,
+   "y": 4.5,
+   "w": 3,
+   "h": 3,
+   "z": 0.05,
+   "solid": false,
+   "color": "#5b7cfa"
+  }
+ ],
+ "emotionZones": [
+  {
+   "x": 10,
+   "y": 6.5,
+   "w": 3,
+   "h": 3,
+   "emotion": "joy"
+  },
+  {
+   "x": 0,
+   "y": 7,
+   "w": 3,
+   "h": 3,
+   "emotion": "sorrow"
+  },
+  {
+   "x": 5,
+   "y": 4.5,
+   "w": 3,
+   "h": 3,
+   "emotion": "fun"
+  },
+  {
+   "x": 5,
+   "y": 0,
+   "w": 4,
+   "h": 1.5,
+   "emotion": "calm"
+  }
+ ],
+ "defaultEmotion": "calm"
+}

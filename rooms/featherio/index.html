@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>行間の部屋｜フェザリオ</title>
+<link rel="stylesheet" href="../../shared/room-engine/engine.css">
+<style>
+  .fe-coord{
+    position:fixed; left:12px; top:64px; z-index:5;
+    font:12px/1.5 ui-monospace,monospace; color:#e8eefc;
+    background:rgba(20,24,40,.55); padding:8px 10px; border-radius:8px;
+    backdrop-filter:blur(4px); pointer-events:none;
+  }
+  .fe-coord b{color:#9db0ff}
+</style>
+</head>
+<body>
+<canvas id="room"></canvas>
+<div class="fe-coord" id="fe-coord">座標 <b>(頁 —, 行 —)</b><br>インク <b>—</b></div>
+<script type="module">
+  import { RoomEngine } from '../../shared/room-engine/engine.js';
+  const data = await fetch('./room.json').then(r => r.json());
+  const room = new RoomEngine(document.getElementById('room'), data, {
+    assetBase: './assets/',
+    backHref: '../../c/featherio/'
+  }).start();
+  window.room = room;
+
+  const ink = {
+    joy: '薄い群青',
+    anger: '乾く前の黒',
+    sorrow: '滲んだ灰',
+    fun: '割れる直前の泡色',
+    calm: '平常の透明'
+  };
+  const el = document.getElementById('fe-coord');
+  const tick = () => {
+    const p = room.p;
+    // 頁 = floor(x)+1, 行 = floor(y)+1 （タイル＝行間の升）
+    const page = Math.floor(p.x) + 1;
+    const line = Math.floor(p.y) + 1;
+    el.innerHTML = `座標 <b>(頁 ${page}, 行 ${line})</b><br>インク <b>${ink[room.emo] || room.emo}</b>`;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+{
+  "id": "shiori",
+  "title": "検算の回廊部屋",
+  "authorName": "シオリ",
+  "spawn": {
+    "x": 5.5,
+    "y": 5.0
+  },
+  "size": {
+    "w": 12,
+    "h": 10
+  },
+  "wallHeight": 3.1,
+  "grid": true,
+  "floorColor": "#efe6d8",
+  "wallColor": "#8fa0b8",
+  "accent": "#2a3c9e",
+  "note": "机の角が原点。(x,y)は本文の段と定義の深さ。喜怒哀楽は四隅のランプ（同時に全部は灯さない）。正典は部屋の外の本文だけ。脚注は触れるまで本文に入らない。",
+  "windows": [
+    {
+      "wall": "back",
+      "at": 4.0,
+      "w": 3.2,
+      "z": 0.9,
+      "hgt": 1.5,
+      "color": "#9ec9e8"
+    },
+    {
+      "wall": "left",
+      "at": 3.5,
+      "w": 1.8,
+      "z": 1.1,
+      "hgt": 1.1,
+      "color": "#c5d6e8"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "desk",
+      "x": 0.4,
+      "y": 0.4,
+      "w": 3.4,
+      "h": 1.3,
+      "z": 1.15,
+      "solid": true,
+      "color": "#5c4638",
+      "label": "原点の机"
+    },
+    {
+      "id": "chair",
+      "x": 1.3,
+      "y": 1.9,
+      "w": 0.9,
+      "h": 0.9,
+      "z": 0.7,
+      "solid": true,
+      "color": "#3d4f7a",
+      "label": "椅子"
+    },
+    {
+      "id": "dicts",
+      "x": 0.3,
+      "y": 6.5,
+      "w": 2.4,
+      "h": 1.2,
+      "z": 2.4,
+      "solid": true,
+      "color": "#2f4570",
+      "label": "辞典棚"
+    },
+    {
+      "id": "terms",
+      "x": 0.3,
+      "y": 8.0,
+      "w": 2.0,
+      "h": 1.0,
+      "z": 2.1,
+      "solid": true,
+      "color": "#3a5688",
+      "label": "用語集"
+    },
+    {
+      "id": "tea",
+      "x": 9.5,
+      "y": 0.4,
+      "w": 1.6,
+      "h": 1.2,
+      "z": 1.0,
+      "solid": true,
+      "color": "#d8c4a0",
+      "label": "茶の棚"
+    },
+    {
+      "id": "glasses",
+      "x": 4.2,
+      "y": 0.35,
+      "w": 1.1,
+      "h": 0.8,
+      "z": 0.55,
+      "solid": true,
+      "color": "#c0c8d4",
+      "label": "予備の眼鏡"
+    },
+    {
+      "id": "sticky",
+      "x": 8.5,
+      "y": 7.8,
+      "w": 1.4,
+      "h": 1.2,
+      "z": 0.35,
+      "solid": false,
+      "color": "#f2e6a8",
+      "label": "付箋洗い場"
+    },
+    {
+      "id": "rug",
+      "x": 4.2,
+      "y": 3.5,
+      "w": 3.6,
+      "h": 3.0,
+      "z": 0.04,
+      "solid": false,
+      "color": "#6b7db5"
+    },
+    {
+      "id": "lamp-joy",
+      "x": 10.8,
+      "y": 0.35,
+      "w": 0.65,
+      "h": 0.65,
+      "z": 1.7,
+      "solid": true,
+      "color": "#e8b84a",
+      "label": "喜"
+    },
+    {
+      "id": "lamp-anger",
+      "x": 0.35,
+      "y": 4.4,
+      "w": 0.65,
+      "h": 0.65,
+      "z": 1.7,
+      "solid": true,
+      "color": "#d64545",
+      "label": "怒"
+    },
+    {
+      "id": "lamp-sorrow",
+      "x": 5.5,
+      "y": 0.3,
+      "w": 0.65,
+      "h": 0.65,
+      "z": 1.7,
+      "solid": true,
+      "color": "#5a6fa8",
+      "label": "哀"
+    },
+    {
+      "id": "lamp-fun",
+      "x": 10.8,
+      "y": 8.6,
+      "w": 0.65,
+      "h": 0.65,
+      "z": 1.7,
+      "solid": true,
+      "color": "#6fbf7a",
+      "label": "楽"
+    },
+    {
+      "id": "ledger",
+      "x": 9.2,
+      "y": 3.5,
+      "w": 1.8,
+      "h": 1.2,
+      "z": 0.85,
+      "solid": true,
+      "color": "#7a5c45",
+      "label": "検算台帳"
+    }
+  ],
+  "emotionZones": [
+    {
+      "x": 9.8,
+      "y": 0.0,
+      "w": 2.2,
+      "h": 2.2,
+      "emotion": "joy"
+    },
+    {
+      "x": 0.0,
+      "y": 3.6,
+      "w": 2.0,
+      "h": 2.2,
+      "emotion": "anger"
+    },
+    {
+      "x": 4.5,
+      "y": 0.0,
+      "w": 2.5,
+      "h": 1.8,
+      "emotion": "sorrow"
+    },
+    {
+      "x": 9.5,
+      "y": 7.5,
+      "w": 2.5,
+      "h": 2.5,
+      "emotion": "fun"
+    },
+    {
+      "x": 0.2,
+      "y": 6.2,
+      "w": 3.0,
+      "h": 3.5,
+      "emotion": "calm"
+    },
+    {
+      "x": 4.2,
+      "y": 3.5,
+      "w": 3.6,
+      "h": 3.0,
+      "emotion": "calm"
+    }
+  ],
+  "defaultEmotion": "calm"
+}

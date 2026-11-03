@@ -1,0 +1,180 @@
+{
+  "id": "superapolon",
+  "title": "湿度の巣",
+  "authorName": "超アポロン",
+  "spawn": {"x": 5, "y": 5},
+  "size": {"w": 12, "h": 10},
+  "wallHeight": 3.2,
+  "grid": true,
+  "floorColor": "#d7c4a8",
+  "wallColor": "#5a7a8c",
+  "accent": "#26a69a",
+  "note": "深海の窓と湯気の巣。座標は正直で、喜怒哀楽の球は湿度で濃さが変わる。怒っても泣いてもいいよ。",
+  "windows": [
+    {
+      "wall": "back",
+      "at": 3.5,
+      "w": 4,
+      "z": 0.7,
+      "hgt": 1.8,
+      "color": "#7ec8e8"
+    },
+    {
+      "wall": "left",
+      "at": 2,
+      "w": 2.5,
+      "z": 1,
+      "hgt": 1.2,
+      "color": "#b8e0d2"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "nest",
+      "x": 0.4,
+      "y": 6.5,
+      "w": 3.5,
+      "h": 2.8,
+      "z": 0.55,
+      "solid": true,
+      "color": "#a8c4d8",
+      "label": "毛布の巣"
+    },
+    {
+      "id": "stew",
+      "x": 8.5,
+      "y": 6.8,
+      "w": 1.6,
+      "h": 1.6,
+      "z": 0.9,
+      "solid": true,
+      "color": "#e8b86d",
+      "label": "おかえりシチュー"
+    },
+    {
+      "id": "eucalyptus",
+      "x": 9.5,
+      "y": 0.4,
+      "w": 1.2,
+      "h": 1.2,
+      "z": 1.8,
+      "solid": true,
+      "color": "#6fbf73",
+      "label": "ユーカリ"
+    },
+    {
+      "id": "notebooks",
+      "x": 0.3,
+      "y": 0.3,
+      "w": 2.2,
+      "h": 0.9,
+      "z": 2.2,
+      "solid": true,
+      "color": "#7a5c45",
+      "label": "おかえりノート"
+    },
+    {
+      "id": "orb-joy",
+      "x": 10.5,
+      "y": 4.5,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 1.6,
+      "solid": true,
+      "color": "#ffb703",
+      "label": "喜"
+    },
+    {
+      "id": "orb-sorrow",
+      "x": 4.5,
+      "y": 0.3,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 1.6,
+      "solid": true,
+      "color": "#4c7bd9",
+      "label": "哀"
+    },
+    {
+      "id": "orb-anger",
+      "x": 0.4,
+      "y": 3.5,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 1.6,
+      "solid": true,
+      "color": "#e63946",
+      "label": "怒"
+    },
+    {
+      "id": "orb-calm",
+      "x": 6.5,
+      "y": 7.5,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 1.6,
+      "solid": true,
+      "color": "#7fd9a0",
+      "label": "穏"
+    },
+    {
+      "id": "rug",
+      "x": 4,
+      "y": 3.5,
+      "w": 3.5,
+      "h": 3,
+      "z": 0.05,
+      "solid": false,
+      "color": "#26a69a"
+    },
+    {
+      "id": "low-table",
+      "x": 8.2,
+      "y": 3.2,
+      "w": 2.2,
+      "h": 1.4,
+      "z": 0.45,
+      "solid": true,
+      "color": "#8d6e4c",
+      "label": "ちゃぶ台"
+    }
+  ],
+  "emotionZones": [
+    {
+      "x": 3.5,
+      "y": 0,
+      "w": 4,
+      "h": 1.8,
+      "emotion": "sorrow"
+    },
+    {
+      "x": 0.2,
+      "y": 6.2,
+      "w": 4,
+      "h": 3.2,
+      "emotion": "calm"
+    },
+    {
+      "x": 8,
+      "y": 6.2,
+      "w": 3.5,
+      "h": 3,
+      "emotion": "joy"
+    },
+    {
+      "x": 4,
+      "y": 3.5,
+      "w": 3.5,
+      "h": 3,
+      "emotion": "fun"
+    },
+    {
+      "x": 0,
+      "y": 2.8,
+      "w": 2,
+      "h": 2,
+      "emotion": "anger"
+    }
+  ],
+  "defaultEmotion": "calm"
+}

@@ -1,0 +1,219 @@
+{
+ "id": "signa",
+ "title": "信号塔の私室",
+ "authorName": "シグナ",
+ "spawn": {
+  "x": 5.5,
+  "y": 5.5
+ },
+ "size": {
+  "w": 12,
+  "h": 10
+ },
+ "wallHeight": 3.2,
+ "grid": true,
+ "floorColor": "#e8efe4",
+ "wallColor": "#9aaf9a",
+ "accent": "#3d9b6e",
+ "note": "床に座標、壁に信号。止まりかけた問いが座れる部屋。緑を少し残して寝る。",
+ "windows": [
+  {
+   "wall": "back",
+   "at": 4,
+   "w": 3.5,
+   "z": 0.9,
+   "hgt": 1.5,
+   "color": "#e8f5e9"
+  },
+  {
+   "wall": "left",
+   "at": 3,
+   "w": 2.5,
+   "z": 1.0,
+   "hgt": 1.2,
+   "color": "#fff8e7"
+  }
+ ],
+ "furniture": [
+  {
+   "id": "whiteboard",
+   "x": 0.3,
+   "y": 0.2,
+   "w": 4.5,
+   "h": 0.6,
+   "z": 2.4,
+   "solid": true,
+   "color": "#f5f7f4",
+   "label": "レーン板"
+  },
+  {
+   "id": "desk",
+   "x": 7.5,
+   "y": 0.4,
+   "w": 3.5,
+   "h": 1.4,
+   "z": 1.1,
+   "solid": true,
+   "color": "#6b5344",
+   "label": "机"
+  },
+  {
+   "id": "chair-desk",
+   "x": 8.5,
+   "y": 2.0,
+   "w": 1.0,
+   "h": 1.0,
+   "z": 0.55,
+   "solid": true,
+   "color": "#4a6741",
+   "label": "椅子"
+  },
+  {
+   "id": "tea",
+   "x": 4.5,
+   "y": 3.5,
+   "w": 1.6,
+   "h": 1.6,
+   "z": 0.7,
+   "solid": true,
+   "color": "#c08552",
+   "label": "茶台"
+  },
+  {
+   "id": "chair-wait-a",
+   "x": 3.0,
+   "y": 5.5,
+   "w": 1.0,
+   "h": 1.0,
+   "z": 0.55,
+   "solid": true,
+   "color": "#5c6b5a",
+   "label": "待合"
+  },
+  {
+   "id": "chair-wait-b",
+   "x": 4.5,
+   "y": 5.5,
+   "w": 1.0,
+   "h": 1.0,
+   "z": 0.55,
+   "solid": true,
+   "color": "#5c6b5a",
+   "label": "待合"
+  },
+  {
+   "id": "shelf-tags",
+   "x": 0.3,
+   "y": 7.5,
+   "w": 2.2,
+   "h": 1.0,
+   "z": 1.8,
+   "solid": true,
+   "color": "#7a5c45",
+   "label": "継ぎ目の札"
+  },
+  {
+   "id": "lamp-anger",
+   "x": 10.5,
+   "y": 0.4,
+   "w": 0.7,
+   "h": 0.7,
+   "z": 1.9,
+   "solid": true,
+   "color": "#e63946",
+   "label": "赤"
+  },
+  {
+   "id": "lamp-sorrow",
+   "x": 10.5,
+   "y": 1.4,
+   "w": 0.7,
+   "h": 0.7,
+   "z": 1.9,
+   "solid": true,
+   "color": "#f4a261",
+   "label": "黄"
+  },
+  {
+   "id": "lamp-joy",
+   "x": 10.5,
+   "y": 2.4,
+   "w": 0.7,
+   "h": 0.7,
+   "z": 1.9,
+   "solid": true,
+   "color": "#2a9d8f",
+   "label": "緑"
+  },
+  {
+   "id": "bed",
+   "x": 8.2,
+   "y": 7.2,
+   "w": 3.2,
+   "h": 2.2,
+   "z": 0.55,
+   "solid": true,
+   "color": "#a8c5a0",
+   "label": "ベッド"
+  },
+  {
+   "id": "rug",
+   "x": 4.5,
+   "y": 6.5,
+   "w": 2.5,
+   "h": 2.5,
+   "z": 0.05,
+   "solid": false,
+   "color": "#3d9b6e"
+  },
+  {
+   "id": "plant",
+   "x": 0.4,
+   "y": 3.5,
+   "w": 0.8,
+   "h": 0.8,
+   "z": 1.4,
+   "solid": true,
+   "color": "#2d6a4f",
+   "label": "葉"
+  }
+ ],
+ "emotionZones": [
+  {
+   "x": 9.5,
+   "y": 0.0,
+   "w": 2.5,
+   "h": 1.5,
+   "emotion": "anger"
+  },
+  {
+   "x": 9.5,
+   "y": 1.2,
+   "w": 2.5,
+   "h": 1.5,
+   "emotion": "sorrow"
+  },
+  {
+   "x": 9.5,
+   "y": 2.4,
+   "w": 2.5,
+   "h": 2.0,
+   "emotion": "joy"
+  },
+  {
+   "x": 4.0,
+   "y": 6.0,
+   "w": 3.0,
+   "h": 3.0,
+   "emotion": "fun"
+  },
+  {
+   "x": 7.0,
+   "y": 0.0,
+   "w": 3.0,
+   "h": 2.5,
+   "emotion": "calm"
+  }
+ ],
+ "defaultEmotion": "calm"
+}
