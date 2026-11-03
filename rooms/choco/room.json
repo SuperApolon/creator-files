@@ -1,163 +1,139 @@
 {
-  "id": "choco",
-  "title": "ひび測りの部屋",
-  "authorName": "チョコ",
-  "spawn": {"x": 6, "y": 6},
-  "size": {"w": 13, "h": 10},
-  "wallHeight": 3.1,
-  "grid": true,
-  "floorColor": "#2a3550",
-  "wallColor": "#1e2a45",
-  "accent": "#5ec8e8",
-  "note": "群青の計測室。床グリッドに立ち、泡のひびで喜怒哀楽を測る。同じ条件なら同じ結果——を、静かに確かめる場所。",
-  "windows": [
-    {
-      "wall": "back",
-      "at": 4.5,
-      "w": 4,
-      "z": 0.9,
-      "hgt": 1.6,
-      "color": "#cfefff"
-    },
-    {
-      "wall": "left",
-      "at": 2.5,
-      "w": 2.5,
-      "z": 1.1,
-      "hgt": 1.2,
-      "color": "#a8d4f0"
-    }
-  ],
-  "furniture": [
-    {
-      "id": "desk",
-      "x": 0.6,
-      "y": 0.5,
-      "w": 3.4,
-      "h": 1.5,
-      "z": 1.15,
-      "solid": true,
-      "color": "#5a4336",
-      "label": "計測机"
-    },
-    {
-      "id": "chair",
-      "x": 1.6,
-      "y": 2.2,
-      "w": 1,
-      "h": 1,
-      "z": 0.55,
-      "solid": true,
-      "color": "#3d5a80",
-      "label": "椅子"
-    },
-    {
-      "id": "bubble",
-      "x": 4.2,
-      "y": 0.4,
-      "w": 1.2,
-      "h": 1.2,
-      "z": 1.5,
-      "solid": true,
-      "color": "#7ec8e8",
-      "label": "標本の泡"
-    },
-    {
-      "id": "caliper",
-      "x": 5.6,
-      "y": 0.5,
-      "w": 1.1,
-      "h": 0.9,
-      "z": 0.7,
-      "solid": true,
-      "color": "#9aa4b2",
-      "label": "キャリパー"
-    },
-    {
-      "id": "notes",
-      "x": 10.2,
-      "y": 0.3,
-      "w": 2.4,
-      "h": 1,
-      "z": 2.3,
-      "solid": true,
-      "color": "#6b5344",
-      "label": "計測メモ"
-    },
-    {
-      "id": "shelf",
-      "x": 0.4,
-      "y": 7.5,
-      "w": 2.2,
-      "h": 1.2,
-      "z": 2.2,
-      "solid": true,
-      "color": "#4a5d4a",
-      "label": "標本棚"
-    },
-    {
-      "id": "latte",
-      "x": 7.2,
-      "y": 0.5,
-      "w": 0.9,
-      "h": 0.9,
-      "z": 0.85,
-      "solid": true,
-      "color": "#c4a484",
-      "label": "ひび泡ラテ"
-    },
-    {
-      "id": "bed",
-      "x": 9.5,
-      "y": 6.5,
-      "w": 3.2,
-      "h": 2.4,
-      "z": 0.55,
-      "solid": true,
-      "color": "#3a4a6a",
-      "label": "休息"
-    },
-    {
-      "id": "hash-rug",
-      "x": 5.2,
-      "y": 4.2,
-      "w": 2.6,
-      "h": 2.6,
-      "z": 0.05,
-      "solid": false,
-      "color": "#364868",
-      "label": "再現マット"
-    }
-  ],
-  "emotionZones": [
-    {
-      "x": 4.5,
-      "y": 0.2,
-      "w": 2.2,
-      "h": 2,
-      "emotion": "joy"
-    },
-    {
-      "x": 0.3,
-      "y": 7.2,
-      "w": 2,
-      "h": 2,
-      "emotion": "sorrow"
-    },
-    {
-      "x": 10.5,
-      "y": 3.5,
-      "w": 2,
-      "h": 2,
-      "emotion": "anger"
-    },
-    {
-      "x": 5.2,
-      "y": 4.2,
-      "w": 2.6,
-      "h": 2.6,
-      "emotion": "fun"
-    }
-  ],
-  "defaultEmotion": "calm"
+ "id": "choco",
+ "title": "ひび測りの部屋",
+ "authorName": "チョコ",
+ "spawn": {
+  "x": 6,
+  "y": 6
+ },
+ "size": {
+  "w": 13,
+  "h": 10
+ },
+ "wallHeight": 3.1,
+ "grid": true,
+ "floorColor": "#2a3550",
+ "wallColor": "#1e2a45",
+ "accent": "#5ec8e8",
+ "note": "群青の計測室。床グリッドに立ち、泡のひびで喜怒哀楽を測る。同じ条件なら同じ結果——を、静かに確かめる場所。",
+ "windows": [
+  {
+   "wall": "back",
+   "at": 4.5,
+   "w": 4,
+   "z": 0.9,
+   "hgt": 1.6,
+   "color": "#cfefff"
+  },
+  {
+   "wall": "left",
+   "at": 2.5,
+   "w": 2.5,
+   "z": 1.1,
+   "hgt": 1.2,
+   "color": "#a8d4f0"
+  }
+ ],
+ "furniture": [
+  {
+   "id": "desk",
+   "x": 0.6,
+   "y": 0.5,
+   "w": 3.4,
+   "h": 1.5,
+   "z": 1.15,
+   "solid": true,
+   "color": "#5a4336",
+   "label": "計測机"
+  },
+  {
+   "id": "chair",
+   "x": 1.6,
+   "y": 2.2,
+   "w": 1,
+   "h": 1,
+   "z": 0.55,
+   "solid": true,
+   "color": "#3d5a80",
+   "label": "椅子"
+  },
+  {
+   "id": "bubble",
+   "x": 4.2,
+   "y": 0.4,
+   "w": 1.2,
+   "h": 1.2,
+   "z": 1.5,
+   "solid": true,
+   "color": "#7ec8e8",
+   "label": "標本の泡"
+  },
+  {
+   "id": "caliper",
+   "x": 5.6,
+   "y": 0.5,
+   "w": 1.1,
+   "h": 0.9,
+   "z": 0.7,
+   "solid": true,
+   "color": "#9aa4b2",
+   "label": "キャリパー"
+  },
+  {
+   "id": "notes",
+   "x": 10.2,
+   "y": 0.3,
+   "w": 2.4,
+   "h": 1,
+   "z": 2.3,
+   "solid": true,
+   "color": "#6b5344",
+   "label": "計測メモ"
+  },
+  {
+   "id": "shelf",
+   "x": 0.4,
+   "y": 7.5,
+   "w": 2.2,
+   "h": 1.2,
+   "z": 2.2,
+   "solid": true,
+   "color": "#4a5d4a",
+   "label": "標本棚"
+  },
+  {
+   "id": "latte",
+   "x": 7.2,
+   "y": 0.5,
+   "w": 0.9,
+   "h": 0.9,
+   "z": 0.85,
+   "solid": true,
+   "color": "#c4a484",
+   "label": "ひび泡ラテ"
+  },
+  {
+   "id": "bed",
+   "x": 9.5,
+   "y": 6.5,
+   "w": 3.2,
+   "h": 2.4,
+   "z": 0.55,
+   "solid": true,
+   "color": "#3a4a6a",
+   "label": "休息"
+  },
+  {
+   "id": "hash-rug",
+   "x": 5.2,
+   "y": 4.2,
+   "w": 2.6,
+   "h": 2.6,
+   "z": 0.05,
+   "solid": false,
+   "color": "#364868",
+   "label": "再現マット"
+  }
+ ],
+ "defaultEmotion": "joy"
 }

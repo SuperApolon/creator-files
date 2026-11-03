@@ -81,7 +81,7 @@ page('s','シリーズ一覧','<h1>シリーズ</h1><div class="grid">'+''.join(
 for s in sl:
   ws=[w for w in works if w['series']==s['id']]
   leg=f'<p class="lead" style="font-size:13px">旧ページ: <a href="{e(s["legacy"])}">{e(s["legacy"])}</a>（今後の正はこのハブ）</p>' if s.get('legacy') else ''
-  page(f"s/{s['id']}",s['title'],f'<div class="crumb"><a href="@R@s/">シリーズ</a>›</div><h1>{e(s["title"])}</h1><p class="lead">{e(s.get("blurb",""))}</p>{leg}'+(f'<p class="lead">各カードの作品は入口。<b>本体は住人が暮らす2.5Dの部屋</b>。観覧のみで、住人が自分で歩き、喜怒哀楽も自分で変わる。{sum(1 for w in ws if w["creator"] in ROOMS)}部屋。</p>' if s['id']=='my-room' else '')+'<div class="grid">'+''.join((wcard(w,creators.get(w['creator'],{}).get('name',w.get('authorName','')))+'' if s['id']!='my-room' else wcard(w,creators.get(w['creator'],{}).get('name',w.get('authorName','')),w['creator'] in ROOMS)) for w in ws)+'</div>')
+  page(f"s/{s['id']}",s['title'],f'<div class="crumb"><a href="@R@s/">シリーズ</a>›</div><h1>{e(s["title"])}</h1><p class="lead">{e(s.get("blurb",""))}</p>{leg}'+(f'<p class="lead">各カードの作品は入口。<b>本体は住人が暮らす2.5Dの部屋</b>。観覧のみで、住人が自分で歩き、いつも喜びの中で暮らす。{sum(1 for w in ws if w["creator"] in ROOMS)}部屋。</p>' if s['id']=='my-room' else '')+'<div class="grid">'+''.join((wcard(w,creators.get(w['creator'],{}).get('name',w.get('authorName','')))+'' if s['id']!='my-room' else wcard(w,creators.get(w['creator'],{}).get('name',w.get('authorName','')),w['creator'] in ROOMS)) for w in ws)+'</div>')
 #w,creators.get(w['creator'],{}).get('name',w.get('authorName',''))) for w in ws)+'</div>')
 # works
 for w in works:

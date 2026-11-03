@@ -1,20 +1,20 @@
-// RoomEngine: 2.5D isometric room, 2D billboard resident. View-only: the resident walks and feels on its own. No player input.
-const EMO={joy:{c:'#ffb703',l:'喜',k:'1'},anger:{c:'#e63946',l:'怒',k:'2'},sorrow:{c:'#4c7bd9',l:'哀',k:'3'},fun:{c:'#2bb673',l:'楽',k:'4'},calm:{c:'#cfd6e4',l:'平',k:'0'}};
+// RoomEngine: 2.5D isometric room, 2D billboard resident. View-only: the resident walks on its own; emotion is joy only. No player input.
+const JOY='#ffc46b';
 const shade=(hex,f)=>{const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const m=v=>Math.max(0,Math.min(255,Math.round(v*f)));return`rgb(${m(r)},${m(g)},${m(b)})`;};
 export class RoomEngine{
   constructor(canvas,data,opt={}){
     this.cv=canvas;this.ctx=canvas.getContext('2d');this.d=data;this.opt=opt;
     this.W=data.size?.w||12;this.H=data.size?.h||10;
-    this.p={x:data.spawn?.x??this.W/2,y:data.spawn?.y??this.H/2,dir:1,step:0};
-    this.emo=data.defaultEmotion||'calm';this.zone=null;this.r=0.3;this.speed=1.1;
-    this.goal=null;this.wait=1+Math.random()*2;this.emoT=4+Math.random()*8;this.stuck=0;
+    this.p={x:data.spawn?.x??this.W/2,y:data.spawn?.y??this.H/2,dir:1,face:'front',step:0};
+    this.r=0.3;this.speed=1.1;
+    this.goal=null;this.wait=1+Math.random()*2;this.stuck=0;
     this.furn=(data.furniture||[]).map(f=>({z:1,color:'#888',...f}));
-    this.img=null;
-    if(opt.assetBase){const im=new Image();im.onload=()=>this.img=im;im.src=opt.assetBase+'avatar.png';}
+    this.img=null;this.spr={};
+    const ld=(n,cb)=>{const im=new Image();im.onload=()=>cb(im);im.onerror=()=>{};im.src=opt.assetBase+n;};
+    if(opt.assetBase){ld('avatar.png',im=>this.img=im);for(const k of['front','side','back'])ld('sprite-'+k+'.png',im=>this.spr[k]=im);}
   }
   start(){this._ui();addEventListener('resize',()=>this._resize());this._resize();
     let t0=performance.now();const loop=t=>{const dt=Math.min(.05,(t-t0)/1000);t0=t;this._update(dt);this._draw();requestAnimationFrame(loop)};requestAnimationFrame(loop);return this;}
-  _setEmo(e){if(EMO[e])this.emo=e;}
   _resize(){const dpr=devicePixelRatio||1;this.cv.width=innerWidth*dpr;this.cv.height=innerHeight*dpr;this.cv.style.width=innerWidth+'px';this.cv.style.height=innerHeight+'px';this.dpr=dpr;
     const t=Math.min(innerWidth*1.9/(this.W+this.H),innerHeight*1.5/((this.W+this.H)/2+3));this.tw=t;this.th=t/2;
     this.ox=innerWidth/2+(this.H-this.W)*t/4;this.oy=(innerHeight-(this.W+this.H)*this.th/2)/2+this.th*2;}
@@ -28,43 +28,40 @@ export class RoomEngine{
     return this.furn.some(f=>f.solid&&x+r>f.x&&x-r<f.x+f.w&&y+r>f.y&&y-r<f.y+f.h);}
   _pick(){for(let i=0;i<30;i++){const x=this.r+Math.random()*(this.W-2*this.r),y=this.r+Math.random()*(this.H-2*this.r);if(!this._hit(x,y))return{x,y};}return null;}
   _update(dt){const p=this.p;
-    if(this.wait>0){this.wait-=dt;p.step=0;if(Math.random()<dt*.4)p.dir=-p.dir;if(this.wait<=0)this.goal=this._pick();}
+    if(this.wait>0){this.wait-=dt;p.step=0;if(Math.random()<dt*.4){p.dir=-p.dir;}if(this.wait<=0)this.goal=this._pick();}
     else if(this.goal){const dx=this.goal.x-p.x,dy=this.goal.y-p.y,L=Math.hypot(dx,dy);
       if(L<.15){this.goal=null;this.wait=1.5+Math.random()*5;}
       else{const vx=dx/L*this.speed*dt,vy=dy/L*this.speed*dt;let mv=false;
         if(!this._hit(p.x+vx,p.y)){p.x+=vx;mv=true;}if(!this._hit(p.x,p.y+vy)){p.y+=vy;mv=true;}
         this.stuck=mv?0:this.stuck+dt;if(this.stuck>.6){this.stuck=0;this.goal=this._pick();}
-        p.step+=dt*5;const sx=vx-vy;if(Math.abs(sx)>1e-4)p.dir=sx>0?1:-1;
+        p.step+=dt*5;const sx=vx-vy,sd=vx+vy;if(Math.abs(sx)>1e-4||Math.abs(sd)>1e-4){if(Math.abs(sx)>Math.abs(sd)){p.face='side';p.dir=sx>0?1:-1;}else p.face=sd>0?'front':'back';}
         if(Math.random()<dt*.05){this.goal=null;this.wait=1+Math.random()*3;}}}
     else this.wait=.5;
-    const z=(this.d.emotionZones||[]).find(z=>p.x>=z.x&&p.x<=z.x+z.w&&p.y>=z.y&&p.y<=z.y+z.h);
-    if(z!==this.zone){this.zone=z;if(z)this._setEmo(z.emotion);}
-    if(!z){this.emoT-=dt;if(this.emoT<=0){this.emoT=4+Math.random()*10;const ks=Object.keys(EMO).filter(k=>k!==this.emo);this._setEmo(ks[Math.random()*ks.length|0]);}}}
+  }
   _poly(pts,fill,stroke){const c=this.ctx;c.beginPath();pts.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.stroke();}}
   _box(f){const{x,y,w,h,z}=f,col=f.color,I=(a,b,c)=>this.iso(a,b,c);
     this._poly([I(x,y+h,0),I(x+w,y+h,0),I(x+w,y+h,z),I(x,y+h,z)],shade(col,.75),'rgba(0,0,0,.15)');
     this._poly([I(x+w,y,0),I(x+w,y+h,0),I(x+w,y+h,z),I(x+w,y,z)],shade(col,.6),'rgba(0,0,0,.15)');
     this._poly([I(x,y,z),I(x+w,y,z),I(x+w,y+h,z),I(x,y+h,z)],shade(col,1.1),'rgba(0,0,0,.15)');
     if(f.label){const[lx,ly]=I(x+w/2,y+h/2,z);const c=this.ctx;c.font=`${Math.max(10,this.tw*.28)}px sans-serif`;c.textAlign='center';c.fillStyle='rgba(20,20,30,.75)';c.fillText(f.label,lx,ly-4);}}
-  _avatar(){const c=this.ctx,p=this.p,[x,y]=this.iso(p.x,p.y,0),s=this.tw*.9,col=EMO[this.emo].c,bob=Math.abs(Math.sin(p.step))*s*.06;
+  _avatar(){const c=this.ctx,p=this.p,[x,y]=this.iso(p.x,p.y,0),s=this.tw*.9,bob=Math.abs(Math.sin(p.step))*s*.06;
     c.fillStyle='rgba(0,0,0,.25)';c.beginPath();c.ellipse(x,y,s*.3,s*.13,0,0,7);c.fill();
-    c.save();c.translate(x,y-bob);c.scale(p.dir,1);
-    if(this.img){c.drawImage(this.img,-s*.45,-s*1.5,s*.9,s*1.5);c.strokeStyle=col;c.lineWidth=3;c.strokeRect(-s*.45,-s*1.5,s*.9,s*1.5);}
-    else{c.fillStyle=shade(this.d.accent||'#5b7cfa',1);c.strokeStyle=col;c.lineWidth=3;c.beginPath();c.roundRect(-s*.28,-s*.95,s*.56,s*.9,s*.15);c.fill();c.stroke();
-      c.fillStyle='#ffe8d6';c.beginPath();c.arc(0,-s*1.15,s*.26,0,7);c.fill();c.stroke();
+    const S=this.spr,full=S.front&&S.side&&S.back,im=full?S[p.face]:this.img;
+    c.save();c.translate(x,y-bob);
+    if(im){const hgt=this.tw*1.65,wd=hgt*im.naturalWidth/im.naturalHeight;if(!full||p.face==='side')c.scale(p.dir,1);c.drawImage(im,-wd/2,-hgt,wd,hgt);}
+    else{c.scale(p.dir,1);c.fillStyle=shade(this.d.accent||'#5b7cfa',1);c.beginPath();c.roundRect(-s*.28,-s*.95,s*.56,s*.9,s*.15);c.fill();
+      c.fillStyle='#ffe8d6';c.beginPath();c.arc(0,-s*1.15,s*.26,0,7);c.fill();
       c.fillStyle='#222';const ey=-s*1.17;c.fillRect(s*.03,ey,s*.05,s*.07);c.fillRect(s*.14,ey,s*.05,s*.07);
-      c.strokeStyle='#222';c.lineWidth=2;c.beginPath();const my=-s*1.03;
-      if(this.emo==='joy'||this.emo==='fun')c.arc(s*.1,my-s*.03,s*.07,.2,Math.PI-.2);else if(this.emo==='sorrow')c.arc(s*.1,my+s*.04,s*.06,Math.PI+.3,-.3);else if(this.emo==='anger'){c.moveTo(s*.02,ey-s*.06);c.lineTo(s*.1,ey-s*.02);c.moveTo(s*.2,ey-s*.06);c.lineTo(s*.12,ey-s*.02);c.moveTo(s*.04,my);c.lineTo(s*.17,my);}else{c.moveTo(s*.05,my);c.lineTo(s*.15,my);}c.stroke();}
-    c.restore();c.fillStyle=col;c.font=`bold ${Math.max(12,s*.3)}px sans-serif`;c.textAlign='center';c.fillText(EMO[this.emo].l,x,y-s*1.6-bob);}
+      c.strokeStyle='#222';c.lineWidth=2;c.beginPath();c.arc(s*.1,-s*1.06,s*.07,.2,Math.PI-.2);c.stroke();}
+    c.restore();}
   _draw(){const c=this.ctx,W=this.W,H=this.H,I=(a,b,z)=>this.iso(a,b,z);c.setTransform(this.dpr,0,0,this.dpr,0,0);
-    const col=EMO[this.emo].c;const g=c.createRadialGradient(innerWidth/2,innerHeight/2,0,innerWidth/2,innerHeight/2,Math.max(innerWidth,innerHeight));g.addColorStop(0,shade(col,.55));g.addColorStop(1,'#11131c');c.fillStyle=g;c.fillRect(0,0,innerWidth,innerHeight);
+    const col=JOY;const g=c.createRadialGradient(innerWidth/2,innerHeight/2,0,innerWidth/2,innerHeight/2,Math.max(innerWidth,innerHeight));g.addColorStop(0,shade(col,.55));g.addColorStop(1,'#11131c');c.fillStyle=g;c.fillRect(0,0,innerWidth,innerHeight);
     const wh=this.d.wallHeight||3,wc=this.d.wallColor||'#8a9bb5',fc=this.d.floorColor||'#d4c4a8';
     this._poly([I(0,0,0),I(W,0,0),I(W,0,wh),I(0,0,wh)],shade(wc,.95),'rgba(0,0,0,.2)');
     this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],shade(wc,.8),'rgba(0,0,0,.2)');
     for(const w of this.d.windows||[]){const wall=w.wall||'back',a=w.at,l=w.w||2,z0=w.z??1,z1=z0+(w.hgt||1.2);
       const q=wall==='left'?[I(0,a,z0),I(0,a+l,z0),I(0,a+l,z1),I(0,a,z1)]:[I(a,0,z0),I(a+l,0,z0),I(a+l,0,z1),I(a,0,z1)];this._poly(q,w.color||'#cfe8ff','rgba(255,255,255,.8)');}
     for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),this.d.grid?'rgba(0,0,0,.12)':null);
-    for(const z of this.d.emotionZones||[]){c.globalAlpha=.25;this._poly([I(z.x,z.y),I(z.x+z.w,z.y),I(z.x+z.w,z.y+z.h),I(z.x,z.y+z.h)],EMO[z.emotion]?.c||'#fff');c.globalAlpha=1;}
     const items=this.furn.map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
     for(const it of items)it.a?this._avatar():this._box(it.f);
     c.globalAlpha=.12;c.fillStyle=col;c.fillRect(0,0,innerWidth,innerHeight);c.globalAlpha=1;}
