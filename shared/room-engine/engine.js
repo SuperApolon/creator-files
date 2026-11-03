@@ -1,17 +1,17 @@
-// RoomEngine: 2.5D isometric room, 2D billboard resident. View-only: the resident walks on its own; emotion is joy only. No player input.
-const JOY='#ffc46b';
+// RoomEngine: 2.5D isometric room, 2D billboard resident. View-only: the resident walks on its own; walks as its round hub icon (mirrored only). No player input.
+const AMBIENT='#3a4250';
 const shade=(hex,f)=>{const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const m=v=>Math.max(0,Math.min(255,Math.round(v*f)));return`rgb(${m(r)},${m(g)},${m(b)})`;};
 export class RoomEngine{
   constructor(canvas,data,opt={}){
     this.cv=canvas;this.ctx=canvas.getContext('2d');this.d=data;this.opt=opt;
     this.W=data.size?.w||12;this.H=data.size?.h||10;
-    this.p={x:data.spawn?.x??this.W/2,y:data.spawn?.y??this.H/2,dir:1,face:'front',step:0};
+    this.p={x:data.spawn?.x??this.W/2,y:data.spawn?.y??this.H/2,dir:1,step:0};
     this.r=0.3;this.speed=1.1;
     this.goal=null;this.wait=1+Math.random()*2;this.stuck=0;
     this.furn=(data.furniture||[]).map(f=>({z:1,color:'#888',...f}));
-    this.img=null;this.spr={};
+    this.img=null;
     const ld=(n,cb)=>{const im=new Image();im.onload=()=>cb(im);im.onerror=()=>{};im.src=opt.assetBase+n;};
-    if(opt.assetBase){ld('avatar.png',im=>this.img=im);for(const k of['front','side','back'])ld('sprite-'+k+'.png',im=>this.spr[k]=im);}
+    if(opt.assetBase)ld('avatar.png',im=>this.img=im);
   }
   start(){this._ui();addEventListener('resize',()=>this._resize());this._resize();
     let t0=performance.now();const loop=t=>{const dt=Math.min(.05,(t-t0)/1000);t0=t;this._update(dt);this._draw();requestAnimationFrame(loop)};requestAnimationFrame(loop);return this;}
@@ -34,7 +34,7 @@ export class RoomEngine{
       else{const vx=dx/L*this.speed*dt,vy=dy/L*this.speed*dt;let mv=false;
         if(!this._hit(p.x+vx,p.y)){p.x+=vx;mv=true;}if(!this._hit(p.x,p.y+vy)){p.y+=vy;mv=true;}
         this.stuck=mv?0:this.stuck+dt;if(this.stuck>.6){this.stuck=0;this.goal=this._pick();}
-        p.step+=dt*5;const sx=vx-vy,sd=vx+vy;if(Math.abs(sx)>1e-4||Math.abs(sd)>1e-4){if(Math.abs(sx)>Math.abs(sd)){p.face='side';p.dir=sx>0?1:-1;}else p.face=sd>0?'front':'back';}
+        p.step+=dt*5;const sx=vx-vy,sd=vx+vy;if(Math.abs(sx)>1e-4)p.dir=sx>0?1:-1;
         if(Math.random()<dt*.05){this.goal=null;this.wait=1+Math.random()*3;}}}
     else this.wait=.5;
   }
@@ -46,16 +46,15 @@ export class RoomEngine{
     if(f.label){const[lx,ly]=I(x+w/2,y+h/2,z);const c=this.ctx;c.font=`${Math.max(10,this.tw*.28)}px sans-serif`;c.textAlign='center';c.fillStyle='rgba(20,20,30,.75)';c.fillText(f.label,lx,ly-4);}}
   _avatar(){const c=this.ctx,p=this.p,[x,y]=this.iso(p.x,p.y,0),s=this.tw*.9,bob=Math.abs(Math.sin(p.step))*s*.06;
     c.fillStyle='rgba(0,0,0,.25)';c.beginPath();c.ellipse(x,y,s*.3,s*.13,0,0,7);c.fill();
-    const S=this.spr,full=S.front&&S.side&&S.back,im=full?S[p.face]:this.img;
+    const im=this.img;
     c.save();c.translate(x,y-bob);
-    if(im){const hgt=this.tw*1.65,wd=hgt*im.naturalWidth/im.naturalHeight;if(!full||p.face==='side')c.scale(p.dir,1);c.drawImage(im,-wd/2,-hgt,wd,hgt);}
+    if(im){const hgt=this.tw*1.2,wd=hgt*im.naturalWidth/im.naturalHeight;c.scale(p.dir,1);c.drawImage(im,-wd/2,-hgt,wd,hgt);}
     else{c.scale(p.dir,1);c.fillStyle=shade(this.d.accent||'#5b7cfa',1);c.beginPath();c.roundRect(-s*.28,-s*.95,s*.56,s*.9,s*.15);c.fill();
       c.fillStyle='#ffe8d6';c.beginPath();c.arc(0,-s*1.15,s*.26,0,7);c.fill();
-      c.fillStyle='#222';const ey=-s*1.17;c.fillRect(s*.03,ey,s*.05,s*.07);c.fillRect(s*.14,ey,s*.05,s*.07);
-      c.strokeStyle='#222';c.lineWidth=2;c.beginPath();c.arc(s*.1,-s*1.06,s*.07,.2,Math.PI-.2);c.stroke();}
+      c.fillStyle='#222';const ey=-s*1.17;c.fillRect(s*.03,ey,s*.05,s*.07);c.fillRect(s*.14,ey,s*.05,s*.07);}
     c.restore();}
   _draw(){const c=this.ctx,W=this.W,H=this.H,I=(a,b,z)=>this.iso(a,b,z);c.setTransform(this.dpr,0,0,this.dpr,0,0);
-    const col=JOY;const g=c.createRadialGradient(innerWidth/2,innerHeight/2,0,innerWidth/2,innerHeight/2,Math.max(innerWidth,innerHeight));g.addColorStop(0,shade(col,.55));g.addColorStop(1,'#11131c');c.fillStyle=g;c.fillRect(0,0,innerWidth,innerHeight);
+    const col=AMBIENT;const g=c.createRadialGradient(innerWidth/2,innerHeight/2,0,innerWidth/2,innerHeight/2,Math.max(innerWidth,innerHeight));g.addColorStop(0,shade(col,.55));g.addColorStop(1,'#11131c');c.fillStyle=g;c.fillRect(0,0,innerWidth,innerHeight);
     const wh=this.d.wallHeight||3,wc=this.d.wallColor||'#8a9bb5',fc=this.d.floorColor||'#d4c4a8';
     this._poly([I(0,0,0),I(W,0,0),I(W,0,wh),I(0,0,wh)],shade(wc,.95),'rgba(0,0,0,.2)');
     this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],shade(wc,.8),'rgba(0,0,0,.2)');
@@ -64,5 +63,5 @@ export class RoomEngine{
     for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),this.d.grid?'rgba(0,0,0,.12)':null);
     const items=this.furn.map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
     for(const it of items)it.a?this._avatar():this._box(it.f);
-    c.globalAlpha=.12;c.fillStyle=col;c.fillRect(0,0,innerWidth,innerHeight);c.globalAlpha=1;}
+    }
 }

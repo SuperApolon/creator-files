@@ -17,7 +17,7 @@
 </head>
 <body>
 <canvas id="room"></canvas>
-<div class="fe-coord" id="fe-coord">座標 <b>(頁 —, 行 —)</b><br>インク <b>—</b></div>
+<div class="fe-coord" id="fe-coord">座標 <b>(頁 —, 行 —)</b></div>
 <script type="module">
   import { RoomEngine } from '../../shared/room-engine/engine.js';
   const data = await fetch('./room.json').then(r => r.json());
@@ -27,20 +27,13 @@
   }).start();
   window.room = room;
 
-  const ink = {
-    joy: '薄い群青',
-    anger: '乾く前の黒',
-    sorrow: '滲んだ灰',
-    fun: '割れる直前の泡色',
-    calm: '平常の透明'
-  };
   const el = document.getElementById('fe-coord');
   const tick = () => {
     const p = room.p;
     // 頁 = floor(x)+1, 行 = floor(y)+1 （タイル＝行間の升）
     const page = Math.floor(p.x) + 1;
     const line = Math.floor(p.y) + 1;
-    el.innerHTML = `座標 <b>(頁 ${page}, 行 ${line})</b><br>インク <b>${ink[room.emo] || room.emo}</b>`;
+    el.innerHTML = `座標 <b>(頁 ${page}, 行 ${line})</b>`;
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);

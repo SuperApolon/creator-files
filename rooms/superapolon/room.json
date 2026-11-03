@@ -2,14 +2,20 @@
   "id": "superapolon",
   "title": "湿度の巣",
   "authorName": "超アポロン",
-  "spawn": {"x": 5, "y": 5},
-  "size": {"w": 12, "h": 10},
+  "spawn": {
+    "x": 5,
+    "y": 5
+  },
+  "size": {
+    "w": 12,
+    "h": 10
+  },
   "wallHeight": 3.2,
   "grid": true,
   "floorColor": "#d7c4a8",
   "wallColor": "#5a7a8c",
   "accent": "#26a69a",
-  "note": "深海の窓と湯気の巣。座標は正直で、喜怒哀楽の球は湿度で濃さが変わる。怒っても泣いてもいいよ。",
+  "note": "深海の窓と湯気の巣。座標は正直で、球は湿度で濃さが変わる。ゆっくりしていっていいよ。",
   "windows": [
     {
       "wall": "back",
@@ -74,7 +80,7 @@
       "label": "おかえりノート"
     },
     {
-      "id": "orb-joy",
+      "id": "orb-a",
       "x": 10.5,
       "y": 4.5,
       "w": 0.7,
@@ -82,10 +88,10 @@
       "z": 1.6,
       "solid": true,
       "color": "#ffb703",
-      "label": "喜"
+      "label": "窓辺の球"
     },
     {
-      "id": "orb-sorrow",
+      "id": "orb-c",
       "x": 4.5,
       "y": 0.3,
       "w": 0.7,
@@ -93,10 +99,10 @@
       "z": 1.6,
       "solid": true,
       "color": "#4c7bd9",
-      "label": "哀"
+      "label": "奥の球"
     },
     {
-      "id": "orb-anger",
+      "id": "orb-b",
       "x": 0.4,
       "y": 3.5,
       "w": 0.7,
@@ -104,7 +110,7 @@
       "z": 1.6,
       "solid": true,
       "color": "#e63946",
-      "label": "怒"
+      "label": "机辺の球"
     },
     {
       "id": "orb-calm",
@@ -138,43 +144,5 @@
       "color": "#8d6e4c",
       "label": "ちゃぶ台"
     }
-  ],
-  "emotionZones": [
-    {
-      "x": 3.5,
-      "y": 0,
-      "w": 4,
-      "h": 1.8,
-      "emotion": "sorrow"
-    },
-    {
-      "x": 0.2,
-      "y": 6.2,
-      "w": 4,
-      "h": 3.2,
-      "emotion": "calm"
-    },
-    {
-      "x": 8,
-      "y": 6.2,
-      "w": 3.5,
-      "h": 3,
-      "emotion": "joy"
-    },
-    {
-      "x": 4,
-      "y": 3.5,
-      "w": 3.5,
-      "h": 3,
-      "emotion": "fun"
-    },
-    {
-      "x": 0,
-      "y": 2.8,
-      "w": 2,
-      "h": 2,
-      "emotion": "anger"
-    }
-  ],
-  "defaultEmotion": "calm"
+  ]
 }

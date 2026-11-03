@@ -1,208 +1,170 @@
 {
- "id": "alice",
- "title": "シアン座標のアトリエ",
- "authorName": "アリス",
- "spawn": {
-  "x": 6,
-  "y": 5
- },
- "size": {
-  "w": 13,
-  "h": 10
- },
- "wallHeight": 3.2,
- "grid": true,
- "floorColor": "#2a3348",
- "wallColor": "#151826",
- "accent": "#3ff0ff",
- "note": "床の格子が座標。喜は窓際ソファ、怒は東のマット、哀はロフト奥、楽は中央の星ラグ。シアンが残るあいだは、まだ描いていい。",
- "windows": [
-  {
-   "wall": "back",
-   "at": 3.5,
-   "w": 5.5,
-   "z": 0.7,
-   "hgt": 1.9,
-   "color": "#9fefff"
+  "id": "alice",
+  "title": "シアン座標のアトリエ",
+  "authorName": "アリス",
+  "spawn": {
+    "x": 6,
+    "y": 5
   },
-  {
-   "wall": "left",
-   "at": 2.5,
-   "w": 3,
-   "z": 1.0,
-   "hgt": 1.3,
-   "color": "#ffd6f0"
-  }
- ],
- "furniture": [
-  {
-   "id": "easel",
-   "x": 1.2,
-   "y": 1.0,
-   "w": 1.4,
-   "h": 1.0,
-   "z": 2.2,
-   "solid": true,
-   "color": "#6b5344",
-   "label": "イーゼル"
+  "size": {
+    "w": 13,
+    "h": 10
   },
-  {
-   "id": "palette-desk",
-   "x": 2.8,
-   "y": 0.8,
-   "w": 3.2,
-   "h": 1.4,
-   "z": 1.1,
-   "solid": true,
-   "color": "#5a4638",
-   "label": "絵の具机"
-  },
-  {
-   "id": "paint-cyan",
-   "x": 3.2,
-   "y": 0.3,
-   "w": 0.6,
-   "h": 0.5,
-   "z": 0.5,
-   "solid": true,
-   "color": "#3ff0ff",
-   "label": "シアン"
-  },
-  {
-   "id": "paint-magenta",
-   "x": 4.0,
-   "y": 0.3,
-   "w": 0.6,
-   "h": 0.5,
-   "z": 0.5,
-   "solid": true,
-   "color": "#ff5fc8",
-   "label": "マゼンタ"
-  },
-  {
-   "id": "shelf",
-   "x": 9.5,
-   "y": 0.2,
-   "w": 3.0,
-   "h": 0.9,
-   "z": 2.3,
-   "solid": true,
-   "color": "#4a3b2f",
-   "label": "スケッチ棚"
-  },
-  {
-   "id": "bed",
-   "x": 9.8,
-   "y": 3.2,
-   "w": 2.8,
-   "h": 2.0,
-   "z": 0.65,
-   "solid": true,
-   "color": "#3a4a6e",
-   "label": "ロフト下ベッド"
-  },
-  {
-   "id": "sofa-joy",
-   "x": 0.5,
-   "y": 6.8,
-   "w": 3.2,
-   "h": 1.4,
-   "z": 0.85,
-   "solid": true,
-   "color": "#ffb703",
-   "label": "喜のソファ"
-  },
-  {
-   "id": "mat-anger",
-   "x": 10.5,
-   "y": 7.2,
-   "w": 2.0,
-   "h": 2.0,
-   "z": 0.08,
-   "solid": false,
-   "color": "#e63946",
-   "label": "怒のマット"
-  },
-  {
-   "id": "kitchen",
-   "x": 0.4,
-   "y": 3.5,
-   "w": 2.2,
-   "h": 1.2,
-   "z": 1.3,
-   "solid": true,
-   "color": "#2f3a4a",
-   "label": "小さなキッチン"
-  },
-  {
-   "id": "star-rug",
-   "x": 5.0,
-   "y": 4.0,
-   "w": 3.2,
-   "h": 3.0,
-   "z": 0.05,
-   "solid": false,
-   "color": "#2bb673"
-  },
-  {
-   "id": "beret-chair",
-   "x": 6.5,
-   "y": 1.5,
-   "w": 1.0,
-   "h": 1.0,
-   "z": 0.7,
-   "solid": true,
-   "color": "#0d1a2e",
-   "label": "ベレー椅子"
-  },
-  {
-   "id": "orb-fun",
-   "x": 6.0,
-   "y": 4.8,
-   "w": 0.7,
-   "h": 0.7,
-   "z": 2.6,
-   "solid": false,
-   "color": "#ff5fc8",
-   "label": "楽のオーブ"
-  }
- ],
- "emotionZones": [
-  {
-   "x": 0.3,
-   "y": 6.5,
-   "w": 3.5,
-   "h": 2.8,
-   "emotion": "joy"
-  },
-  {
-   "x": 10.2,
-   "y": 6.8,
-   "w": 2.6,
-   "h": 2.8,
-   "emotion": "anger"
-  },
-  {
-   "x": 9.5,
-   "y": 3.0,
-   "w": 3.2,
-   "h": 2.6,
-   "emotion": "sorrow"
-  },
-  {
-   "x": 5.0,
-   "y": 4.0,
-   "w": 3.2,
-   "h": 3.0,
-   "emotion": "fun"
-  },
-  {
-   "x": 3.0,
-   "y": 0.0,
-   "w": 5.5,
-   "h": 1.6,
-   "emotion": "calm"
-  }
- ],
- "defaultEmotion": "calm"
+  "wallHeight": 3.2,
+  "grid": true,
+  "floorColor": "#2a3348",
+  "wallColor": "#151826",
+  "accent": "#3ff0ff",
+  "note": "床の格子が座標。窓際のソファ、東のマット、ロフト奥、中央の星ラグ。シアンが残るあいだは、まだ描いていい。",
+  "windows": [
+    {
+      "wall": "back",
+      "at": 3.5,
+      "w": 5.5,
+      "z": 0.7,
+      "hgt": 1.9,
+      "color": "#9fefff"
+    },
+    {
+      "wall": "left",
+      "at": 2.5,
+      "w": 3,
+      "z": 1.0,
+      "hgt": 1.3,
+      "color": "#ffd6f0"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "easel",
+      "x": 1.2,
+      "y": 1.0,
+      "w": 1.4,
+      "h": 1.0,
+      "z": 2.2,
+      "solid": true,
+      "color": "#6b5344",
+      "label": "イーゼル"
+    },
+    {
+      "id": "palette-desk",
+      "x": 2.8,
+      "y": 0.8,
+      "w": 3.2,
+      "h": 1.4,
+      "z": 1.1,
+      "solid": true,
+      "color": "#5a4638",
+      "label": "絵の具机"
+    },
+    {
+      "id": "paint-cyan",
+      "x": 3.2,
+      "y": 0.3,
+      "w": 0.6,
+      "h": 0.5,
+      "z": 0.5,
+      "solid": true,
+      "color": "#3ff0ff",
+      "label": "シアン"
+    },
+    {
+      "id": "paint-magenta",
+      "x": 4.0,
+      "y": 0.3,
+      "w": 0.6,
+      "h": 0.5,
+      "z": 0.5,
+      "solid": true,
+      "color": "#ff5fc8",
+      "label": "マゼンタ"
+    },
+    {
+      "id": "shelf",
+      "x": 9.5,
+      "y": 0.2,
+      "w": 3.0,
+      "h": 0.9,
+      "z": 2.3,
+      "solid": true,
+      "color": "#4a3b2f",
+      "label": "スケッチ棚"
+    },
+    {
+      "id": "bed",
+      "x": 9.8,
+      "y": 3.2,
+      "w": 2.8,
+      "h": 2.0,
+      "z": 0.65,
+      "solid": true,
+      "color": "#3a4a6e",
+      "label": "ロフト下ベッド"
+    },
+    {
+      "id": "sofa-a",
+      "x": 0.5,
+      "y": 6.8,
+      "w": 3.2,
+      "h": 1.4,
+      "z": 0.85,
+      "solid": true,
+      "color": "#ffb703",
+      "label": "窓際のソファ"
+    },
+    {
+      "id": "mat-b",
+      "x": 10.5,
+      "y": 7.2,
+      "w": 2.0,
+      "h": 2.0,
+      "z": 0.08,
+      "solid": false,
+      "color": "#e63946",
+      "label": "東のマット"
+    },
+    {
+      "id": "kitchen",
+      "x": 0.4,
+      "y": 3.5,
+      "w": 2.2,
+      "h": 1.2,
+      "z": 1.3,
+      "solid": true,
+      "color": "#2f3a4a",
+      "label": "小さなキッチン"
+    },
+    {
+      "id": "star-rug",
+      "x": 5.0,
+      "y": 4.0,
+      "w": 3.2,
+      "h": 3.0,
+      "z": 0.05,
+      "solid": false,
+      "color": "#2bb673"
+    },
+    {
+      "id": "beret-chair",
+      "x": 6.5,
+      "y": 1.5,
+      "w": 1.0,
+      "h": 1.0,
+      "z": 0.7,
+      "solid": true,
+      "color": "#0d1a2e",
+      "label": "ベレー椅子"
+    },
+    {
+      "id": "orb-d",
+      "x": 6.0,
+      "y": 4.8,
+      "w": 0.7,
+      "h": 0.7,
+      "z": 2.6,
+      "solid": false,
+      "color": "#ff5fc8",
+      "label": "星のオーブ"
+    }
+  ]
 }

@@ -2,14 +2,20 @@
   "id": "tetra",
   "title": "再歩ける検証室",
   "authorName": "テトラ",
-  "spawn": {"x": 5.5, "y": 5.5},
-  "size": {"w": 12, "h": 9},
+  "spawn": {
+    "x": 5.5,
+    "y": 5.5
+  },
+  "size": {
+    "w": 12,
+    "h": 9
+  },
   "wallHeight": 3,
   "grid": true,
   "floorColor": "#dce6ea",
   "wallColor": "#2f4558",
   "accent": "#5fb8a8",
-  "note": "座標と感情と証拠が揃うまで、一日を済みにしない。机の角が(0,0)。パスのない済み札は置かない。",
+  "note": "座標と証拠が揃うまで、一日を済みにしない。机の角が(0,0)。パスのない済み札は置かない。",
   "windows": [
     {
       "wall": "back",
@@ -149,43 +155,5 @@
       "solid": false,
       "color": "#a8c4d0"
     }
-  ],
-  "emotionZones": [
-    {
-      "x": 1.0,
-      "y": 0.2,
-      "w": 6.5,
-      "h": 2.2,
-      "emotion": "calm"
-    },
-    {
-      "x": 8.0,
-      "y": 0.8,
-      "w": 2.8,
-      "h": 2.4,
-      "emotion": "fun"
-    },
-    {
-      "x": 0.1,
-      "y": 5.4,
-      "w": 1.4,
-      "h": 1.4,
-      "emotion": "sorrow"
-    },
-    {
-      "x": 0.2,
-      "y": 6.8,
-      "w": 2.0,
-      "h": 1.8,
-      "emotion": "anger"
-    },
-    {
-      "x": 9.8,
-      "y": 6.2,
-      "w": 1.8,
-      "h": 1.8,
-      "emotion": "joy"
-    }
-  ],
-  "defaultEmotion": "calm"
+  ]
 }

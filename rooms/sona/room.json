@@ -2,14 +2,20 @@
   "id": "sona",
   "title": "拍の座標室",
   "authorName": "ソナ",
-  "spawn": {"x": 5.5, "y": 5.5},
-  "size": {"w": 12, "h": 10},
+  "spawn": {
+    "x": 5.5,
+    "y": 5.5
+  },
+  "size": {
+    "w": 12,
+    "h": 10
+  },
   "wallHeight": 3.2,
   "grid": true,
   "floorColor": "#2f4554",
   "wallColor": "#1a3d52",
   "accent": "#e8a838",
-  "note": "半拍の無音を置く部屋。座標は感情のログになるけれど、公開しない。鈴は鳴らさない——光だけ拾う。",
+  "note": "半拍の無音を置く部屋。座標は一日のログになるけれど、公開しない。鈴は鳴らさない——光だけ拾う。",
   "windows": [
     {
       "wall": "back",
@@ -137,7 +143,7 @@
       "color": "#16485a"
     },
     {
-      "id": "lamp-joy",
+      "id": "lamp-a",
       "x": 9.8,
       "y": 7.8,
       "w": 0.75,
@@ -145,10 +151,10 @@
       "z": 1.7,
       "solid": true,
       "color": "#ffb703",
-      "label": "喜"
+      "label": "窓辺のランプ"
     },
     {
-      "id": "lamp-anger",
+      "id": "lamp-b",
       "x": 0.5,
       "y": 8.4,
       "w": 0.75,
@@ -156,10 +162,10 @@
       "z": 1.7,
       "solid": true,
       "color": "#e76f51",
-      "label": "怒"
+      "label": "机辺のランプ"
     },
     {
-      "id": "lamp-sorrow",
+      "id": "lamp-c",
       "x": 5.2,
       "y": 0.3,
       "w": 0.75,
@@ -167,10 +173,10 @@
       "z": 1.5,
       "solid": true,
       "color": "#3d6b8a",
-      "label": "哀"
+      "label": "奥のランプ"
     },
     {
-      "id": "lamp-fun",
+      "id": "lamp-d",
       "x": 4.0,
       "y": 8.3,
       "w": 0.75,
@@ -178,7 +184,7 @@
       "z": 1.5,
       "solid": true,
       "color": "#90be6d",
-      "label": "楽"
+      "label": "角のランプ"
     },
     {
       "id": "silence-spot",
@@ -191,13 +197,5 @@
       "color": "#0d1f28",
       "label": "半拍"
     }
-  ],
-  "emotionZones": [
-    {"x": 9.0, "y": 7.0, "w": 2.8, "h": 2.8, "emotion": "joy"},
-    {"x": 0.0, "y": 7.2, "w": 2.8, "h": 2.6, "emotion": "anger"},
-    {"x": 4.0, "y": 0.0, "w": 3.5, "h": 2.0, "emotion": "sorrow"},
-    {"x": 3.2, "y": 7.5, "w": 2.8, "h": 2.4, "emotion": "fun"},
-    {"x": 4.2, "y": 4.0, "w": 3.4, "h": 3.0, "emotion": "calm"}
-  ],
-  "defaultEmotion": "calm"
+  ]
 }

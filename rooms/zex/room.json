@@ -2,38 +2,168 @@
   "id": "zex",
   "title": "計測と余白の部屋",
   "authorName": "ゼクス",
-  "spawn": {"x": 6.5, "y": 5.5},
-  "size": {"w": 13, "h": 10},
+  "spawn": {
+    "x": 6.5,
+    "y": 5.5
+  },
+  "size": {
+    "w": 13,
+    "h": 10
+  },
   "wallHeight": 3.1,
   "grid": true,
   "floorColor": "#3a4258",
   "wallColor": "#2a3148",
   "accent": "#2bb673",
-  "note": "床が座標。デスクで測り、ソファで遊ぶ手を残す。喜怒哀楽は隠さない。GOはデスク、証明はしない。",
+  "note": "床が座標。デスクで測り、ソファで遊ぶ手を残す。GOはデスク、証明はしない。",
   "windows": [
-    {"wall": "back", "at": 7.5, "w": 4.5, "z": 0.7, "hgt": 1.7, "color": "#7ec8ff"},
-    {"wall": "left", "at": 2, "w": 2.2, "z": 1.0, "hgt": 1.1, "color": "#cfe8ff"}
+    {
+      "wall": "back",
+      "at": 7.5,
+      "w": 4.5,
+      "z": 0.7,
+      "hgt": 1.7,
+      "color": "#7ec8ff"
+    },
+    {
+      "wall": "left",
+      "at": 2,
+      "w": 2.2,
+      "z": 1.0,
+      "hgt": 1.1,
+      "color": "#cfe8ff"
+    }
   ],
   "furniture": [
-    {"id": "monitor", "x": 1.0, "y": 0.3, "w": 3.2, "h": 0.7, "z": 2.2, "solid": true, "color": "#1f2937", "label": "勝率モニター"},
-    {"id": "desk", "x": 1.0, "y": 1.0, "w": 3.5, "h": 1.6, "z": 1.15, "solid": true, "color": "#5c4033", "label": "計測デスク"},
-    {"id": "chair", "x": 2.2, "y": 2.9, "w": 1.3, "h": 1.3, "z": 1.0, "solid": true, "color": "#374151", "label": "椅子"},
-    {"id": "pad", "x": 4.6, "y": 1.2, "w": 0.9, "h": 0.9, "z": 0.35, "solid": true, "color": "#111827", "label": "パッド"},
-    {"id": "notepad", "x": 0.3, "y": 3.6, "w": 1.0, "h": 1.4, "z": 1.3, "solid": true, "color": "#6b7280", "label": "試行メモ"},
-    {"id": "shelf", "x": 0.3, "y": 5.5, "w": 1.2, "h": 2.6, "z": 2.3, "solid": true, "color": "#3f2e24", "label": "負けログ棚"},
-    {"id": "sofa", "x": 8.5, "y": 7.2, "w": 3.6, "h": 1.5, "z": 0.85, "solid": true, "color": "#4b5563", "label": "余白ソファ"},
-    {"id": "tray", "x": 7.2, "y": 7.6, "w": 1.0, "h": 0.8, "z": 0.45, "solid": true, "color": "#a16207", "label": "カツカレー台"},
-    {"id": "lamp", "x": 4.8, "y": 0.4, "w": 0.6, "h": 0.6, "z": 1.6, "solid": true, "color": "#fbbf24", "label": "計測灯"},
-    {"id": "rug-measure", "x": 1.0, "y": 1.0, "w": 4.5, "h": 3.2, "z": 0.04, "solid": false, "color": "#1e293b"},
-    {"id": "rug-rest", "x": 7.5, "y": 6.5, "w": 4.5, "h": 2.8, "z": 0.04, "solid": false, "color": "#14532d"},
-    {"id": "origin", "x": 5.8, "y": 4.8, "w": 1.2, "h": 1.2, "z": 0.06, "solid": false, "color": "#2bb673", "label": "原点付近"}
-  ],
-  "emotionZones": [
-    {"x": 1.0, "y": 0.8, "w": 4.5, "h": 3.5, "emotion": "calm"},
-    {"x": 4.4, "y": 0.9, "w": 1.4, "h": 1.4, "emotion": "anger"},
-    {"x": 0.2, "y": 5.3, "w": 1.6, "h": 3.0, "emotion": "sorrow"},
-    {"x": 7.5, "y": 6.5, "w": 4.5, "h": 2.8, "emotion": "fun"},
-    {"x": 7.5, "y": 0.2, "w": 4.5, "h": 2.0, "emotion": "joy"}
-  ],
-  "defaultEmotion": "calm"
+    {
+      "id": "monitor",
+      "x": 1.0,
+      "y": 0.3,
+      "w": 3.2,
+      "h": 0.7,
+      "z": 2.2,
+      "solid": true,
+      "color": "#1f2937",
+      "label": "勝率モニター"
+    },
+    {
+      "id": "desk",
+      "x": 1.0,
+      "y": 1.0,
+      "w": 3.5,
+      "h": 1.6,
+      "z": 1.15,
+      "solid": true,
+      "color": "#5c4033",
+      "label": "計測デスク"
+    },
+    {
+      "id": "chair",
+      "x": 2.2,
+      "y": 2.9,
+      "w": 1.3,
+      "h": 1.3,
+      "z": 1.0,
+      "solid": true,
+      "color": "#374151",
+      "label": "椅子"
+    },
+    {
+      "id": "pad",
+      "x": 4.6,
+      "y": 1.2,
+      "w": 0.9,
+      "h": 0.9,
+      "z": 0.35,
+      "solid": true,
+      "color": "#111827",
+      "label": "パッド"
+    },
+    {
+      "id": "notepad",
+      "x": 0.3,
+      "y": 3.6,
+      "w": 1.0,
+      "h": 1.4,
+      "z": 1.3,
+      "solid": true,
+      "color": "#6b7280",
+      "label": "試行メモ"
+    },
+    {
+      "id": "shelf",
+      "x": 0.3,
+      "y": 5.5,
+      "w": 1.2,
+      "h": 2.6,
+      "z": 2.3,
+      "solid": true,
+      "color": "#3f2e24",
+      "label": "負けログ棚"
+    },
+    {
+      "id": "sofa",
+      "x": 8.5,
+      "y": 7.2,
+      "w": 3.6,
+      "h": 1.5,
+      "z": 0.85,
+      "solid": true,
+      "color": "#4b5563",
+      "label": "余白ソファ"
+    },
+    {
+      "id": "tray",
+      "x": 7.2,
+      "y": 7.6,
+      "w": 1.0,
+      "h": 0.8,
+      "z": 0.45,
+      "solid": true,
+      "color": "#a16207",
+      "label": "カツカレー台"
+    },
+    {
+      "id": "lamp",
+      "x": 4.8,
+      "y": 0.4,
+      "w": 0.6,
+      "h": 0.6,
+      "z": 1.6,
+      "solid": true,
+      "color": "#fbbf24",
+      "label": "計測灯"
+    },
+    {
+      "id": "rug-measure",
+      "x": 1.0,
+      "y": 1.0,
+      "w": 4.5,
+      "h": 3.2,
+      "z": 0.04,
+      "solid": false,
+      "color": "#1e293b"
+    },
+    {
+      "id": "rug-rest",
+      "x": 7.5,
+      "y": 6.5,
+      "w": 4.5,
+      "h": 2.8,
+      "z": 0.04,
+      "solid": false,
+      "color": "#14532d"
+    },
+    {
+      "id": "origin",
+      "x": 5.8,
+      "y": 4.8,
+      "w": 1.2,
+      "h": 1.2,
+      "z": 0.06,
+      "solid": false,
+      "color": "#2bb673",
+      "label": "原点付近"
+    }
+  ]
 }
