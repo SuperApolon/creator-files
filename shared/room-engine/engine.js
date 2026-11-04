@@ -71,25 +71,22 @@ export class RoomEngine{
   _tex(im,o,u,v,alpha=1){const c=this.ctx;c.save();c.globalAlpha=alpha;c.beginPath();c.moveTo(o[0],o[1]);c.lineTo(o[0]+u[0],o[1]+u[1]);c.lineTo(o[0]+u[0]+v[0],o[1]+u[1]+v[1]);c.lineTo(o[0]+v[0],o[1]+v[1]);c.closePath();c.clip();
     c.transform(u[0]/im.naturalWidth,u[1]/im.naturalWidth,v[0]/im.naturalHeight,v[1]/im.naturalHeight,o[0],o[1]);c.drawImage(im,0,0);c.restore();}
   _quadTex(im,tl,tr,bl,alpha){this._tex(im,tl,[tr[0]-tl[0],tr[1]-tl[1]],[bl[0]-tl[0],bl[1]-tl[1]],alpha);}
-  // sceneImg: one full-room iso painting (Mio format). Floor corners in image px are affinely mapped onto the iso floor:
-  // sceneAnchors {L:left=iso(0,H), R:right=iso(W,0), F:front=iso(W,H)} (image px, natural size). Default = Mio 1024² (room09 framing).
-  // Clip = wall tops + floor outline (sceneFit.{backTop,leftTop,rightTop} override, 1024 basis). sceneAlpha optional.
-  _scene(im){const c=this.ctx,W=this.W,H=this.H,k=im.naturalWidth/1024,sa=this.d.sceneAnchors,sf=this.d.sceneFit||{};
-    const D={L:[84,580],R:[962,598],F:[548,880],backTop:[512,92],leftTop:[78,322],rightTop:[968,320]};
-    const g=n=>sa?.[n]?sa[n]:(sf[n]||D[n]).map(v=>v*k),L=g('L'),R=g('R'),F=g('F');
-    const sL=this.iso(0,H),sR=this.iso(W,0),sF=this.iso(W,H);
-    const ux=[R[0]-F[0],R[1]-F[1]],vx=[L[0]-F[0],L[1]-F[1]],det=ux[0]*vx[1]-ux[1]*vx[0];if(!det)return;
-    const su=[sR[0]-sF[0],sR[1]-sF[1]],sv=[sL[0]-sF[0],sL[1]-sF[1]];
-    const i00=vx[1]/det,i01=-vx[0]/det,i10=-ux[1]/det,i11=ux[0]/det;
-    const m0=su[0]*i00+sv[0]*i10,m1=su[1]*i00+sv[1]*i10,m2=su[0]*i01+sv[0]*i11,m3=su[1]*i01+sv[1]*i11;
-    const e=sF[0]-m0*F[0]-m2*F[1],f=sF[1]-m1*F[0]-m3*F[1],T=q=>[m0*q[0]+m2*q[1]+e,m1*q[0]+m3*q[1]+f];
-    const tp=n=>(sf[n]||D[n]).map(v=>v*k);
-    // wall tops: from scene defaults, but at least the engine wall height so the 3D walls never peek above the painting
-    const wh=this.d.wallHeight||3,up=wh*this.th*1.4,[ax,ay]=this.iso(0,0);
-    const top=(p,base)=>{const q=T(p);return[q[0],Math.min(q[1],base[1]-up)];};
-    const clip=[top(tp('leftTop'),sL),top(tp('backTop'),[ax,ay]),top(tp('rightTop'),sR),T(R),T(F),T(L)];
+  // sceneImg: full-room iso painting. Fit with a similarity (uniform scale+rotate+translate) from floor corners so the painting never shears.
+  // Anchors: sceneAnchors {L,R,F[,B]} natural px, else sceneFit left/right/front/back (1024-basis).
+  // Clip = painting wall tops + floor outline only (no engine wallHeight forcing). 3D walls are never drawn when sceneImg is set.
+  _scene(im){const c=this.ctx,W=this.W,H=this.H,k=im.naturalWidth/1024,sa=this.d.sceneAnchors||{},sf=this.d.sceneFit||{};
+    const D={L:[84,580],R:[962,598],F:[548,880],B:[512,300],backTop:[512,92],leftTop:[78,322],rightTop:[968,320]};
+    const fit=key=>{const al={left:'L',right:'R',front:'F',back:'B'};const v=sf[key]||D[key]||D[al[key]];return v.map(x=>x*k);};
+    const imgL=sa.L||fit('left'),imgR=sa.R||fit('right'),imgF=sa.F||fit('front'),imgB=sa.B||(sf.back?fit('back'):null);
+    const sL=this.iso(0,H),sR=this.iso(W,0),sF=this.iso(W,H),sB=this.iso(0,0);
+    const imgs=imgB?[imgB,imgR,imgF,imgL]:[imgL,imgR,imgF],scrs=imgB?[sB,sR,sF,sL]:[sL,sR,sF],n=imgs.length;
+    let ix=0,iy=0,sx=0,sy=0;for(let i=0;i<n;i++){ix+=imgs[i][0];iy+=imgs[i][1];sx+=scrs[i][0];sy+=scrs[i][1];}
+    ix/=n;iy/=n;sx/=n;sy/=n;
+    let norm=0,re=0,imA=0;for(let i=0;i<n;i++){const zx=imgs[i][0]-ix,zy=imgs[i][1]-iy,wx=scrs[i][0]-sx,wy=scrs[i][1]-sy;norm+=zx*zx+zy*zy;re+=zx*wx+zy*wy;imA+=zx*wy-zy*wx;}
+    if(!norm)return;const a=re/norm,b=imA/norm,e=sx-a*ix+b*iy,f=sy-b*ix-a*iy,T=q=>[a*q[0]-b*q[1]+e,b*q[0]+a*q[1]+f];
+    const clip=[T(fit('leftTop')),T(fit('backTop')),T(fit('rightTop')),T(imgR),T(imgF),T(imgL)];
     c.save();c.globalAlpha=this.d.sceneAlpha??1;c.beginPath();clip.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.clip();
-    c.transform(m0,m1,m2,m3,e,f);c.drawImage(im,0,0);c.restore();}
+    c.transform(a,b,-b,a,e,f);c.drawImage(im,0,0);c.restore();}
   _furn(f){if(f._im&&f.flat){const I=(a,b)=>this.iso(a,b,0);this._quadTex(f._im,I(f.x,f.y),I(f.x+f.w,f.y),I(f.x,f.y+f.h),f.alpha??1);return;}f._im?this._sprite(f):this._box(f);}
   _avatar(){const c=this.ctx,p=this.p,[x,y]=this.iso(p.x,p.y,0),s=this.tw*.9,bob=Math.abs(Math.sin(p.step))*s*.06;
     c.fillStyle='rgba(0,0,0,.25)';c.beginPath();c.ellipse(x,y,s*.3,s*.13,0,0,7);c.fill();
@@ -104,21 +101,26 @@ export class RoomEngine{
     const col=AMBIENT;const g=c.createRadialGradient(innerWidth/2,innerHeight/2,0,innerWidth/2,innerHeight/2,Math.max(innerWidth,innerHeight));g.addColorStop(0,shade(col,.55));g.addColorStop(1,'#11131c');c.fillStyle=g;c.fillRect(0,0,innerWidth,innerHeight);
     const wh=this.d.wallHeight||3,wc=this.d.wallColor||'#8a9bb5',fc=this.d.floorColor||'#d4c4a8';
     const sc=this.tex.scene,sk=!!this.d.sceneImg;
-    const wt=sk?null:this.tex.wallImg,ft=sk?null:this.tex.floorImg,wa=this.d.wallImgAlpha??1,fa=this.d.floorImgAlpha??1;
-    this._poly([I(0,0,0),I(W,0,0),I(W,0,wh),I(0,0,wh)],shade(wc,.95),'rgba(0,0,0,.2)');
-    if(wt)this._quadTex(wt,I(0,0,wh),I(W,0,wh),I(0,0,0),wa);
-    this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],shade(wc,.8),'rgba(0,0,0,.2)');
-    if(wt){this._quadTex(wt,I(0,H,wh),I(0,0,wh),I(0,H,0),wa);this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],'rgba(0,0,0,.12)');}
-    for(const w of sk?[]:this.d.windows||[]){const wall=w.wall||'back',a=w.at,l=w.w||2,z0=w.z??1,z1=z0+(w.hgt||1.2);
-      const q=wall==='left'?[I(0,a,z0),I(0,a+l,z0),I(0,a+l,z1),I(0,a,z1)]:[I(a,0,z0),I(a+l,0,z0),I(a+l,0,z1),I(a,0,z1)];
-      if(w._im){wall==='left'?this._quadTex(w._im,q[2],q[3],q[1]):this._quadTex(w._im,q[3],q[2],q[0]);}
-      else this._poly(q,w.color||'#cfe8ff','rgba(255,255,255,.8)');}
-    for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),(this.d.grid&&!ft)?'rgba(0,0,0,.12)':null);
-    if(ft){const n=this.d.floorImgTile||0;
-      if(n>0){for(let i=0;i<W;i+=n)for(let j=0;j<H;j+=n){const a=Math.min(n,W-i),b=Math.min(n,H-j);this._quadTex(ft,I(i,j),I(i+a,j),I(i,j+b),fa);}}
-      else this._quadTex(ft,I(0,0),I(W,0),I(0,H),fa);
-      if(this.d.grid)for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],'rgba(0,0,0,0)','rgba(0,0,0,.08)');}
-    if(sc)this._scene(sc);
+    // sceneImg: NEVER draw wall polys / wallColor / wallImg / windows. Floor only + painting. _hit bounds unchanged.
+    if(sk){
+      for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),this.d.grid?'rgba(0,0,0,.12)':null);
+      if(sc)this._scene(sc);
+    }else{
+      const wt=this.tex.wallImg,ft=this.tex.floorImg,wa=this.d.wallImgAlpha??1,fa=this.d.floorImgAlpha??1;
+      this._poly([I(0,0,0),I(W,0,0),I(W,0,wh),I(0,0,wh)],shade(wc,.95),'rgba(0,0,0,.2)');
+      if(wt)this._quadTex(wt,I(0,0,wh),I(W,0,wh),I(0,0,0),wa);
+      this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],shade(wc,.8),'rgba(0,0,0,.2)');
+      if(wt){this._quadTex(wt,I(0,H,wh),I(0,0,wh),I(0,H,0),wa);this._poly([I(0,0,0),I(0,H,0),I(0,H,wh),I(0,0,wh)],'rgba(0,0,0,.12)');}
+      for(const w of this.d.windows||[]){const wall=w.wall||'back',a=w.at,l=w.w||2,z0=w.z??1,z1=z0+(w.hgt||1.2);
+        const q=wall==='left'?[I(0,a,z0),I(0,a+l,z0),I(0,a+l,z1),I(0,a,z1)]:[I(a,0,z0),I(a+l,0,z0),I(a+l,0,z1),I(a,0,z1)];
+        if(w._im){wall==='left'?this._quadTex(w._im,q[2],q[3],q[1]):this._quadTex(w._im,q[3],q[2],q[0]);}
+        else this._poly(q,w.color||'#cfe8ff','rgba(255,255,255,.8)');}
+      for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),(this.d.grid&&!ft)?'rgba(0,0,0,.12)':null);
+      if(ft){const n=this.d.floorImgTile||0;
+        if(n>0){for(let i=0;i<W;i+=n)for(let j=0;j<H;j+=n){const a=Math.min(n,W-i),b=Math.min(n,H-j);this._quadTex(ft,I(i,j),I(i+a,j),I(i,j+b),fa);}}
+        else this._quadTex(ft,I(0,0),I(W,0),I(0,H),fa);
+        if(this.d.grid)for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],'rgba(0,0,0,0)','rgba(0,0,0,.08)');}
+    }
     const items=(sk?[]:this.furn).map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
     for(const it of items)it.a?this._avatar():this._furn(it.f);
     }

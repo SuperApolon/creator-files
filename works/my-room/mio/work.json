@@ -1,1 +1,7 @@
-{"id": "mio", "series": "my-room", "title": "内装係のアトリエ", "authorName": "ミオ"}
+{
+  "id": "mio",
+  "series": "my-room",
+  "title": "内装係のアトリエ",
+  "authorName": "ミオ",
+  "creator": "mio"
+}
