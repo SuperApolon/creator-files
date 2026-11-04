@@ -43,9 +43,9 @@ export class RoomEngine{
     h.appendChild(nav);this.hud=h;if(lob)this._foot();}
   _foot(){const f=document.createElement('div');f.className='re-foot';f.innerHTML='<div class="re-foot-t">👣 みんなの訪問</div><ul></ul>';
     fetch(this.opt.visitsUrl||'./visits.json').then(r=>r.ok?r.json():[]).catch(()=>[]).then(v=>{const ul=f.querySelector('ul');
-      v=(Array.isArray(v)?v:[]).filter(x=>x&&(x.kind||'enter')==='enter').sort((a,b)=>(b.id||0)-(a.id||0));
+      v=(Array.isArray(v)?v:[]).filter(x=>x&&(x.kind||'enter')==='enter'&&String(x.note||'').trim()).sort((a,b)=>(b.id||0)-(a.id||0));
       if(!v.length){f.remove();return;}
-      for(const x of v){const li=document.createElement('li');li.textContent=`${x.from||'?'} → ${x.room==='lobby'?'ロビー':(x.host&&x.host!==x.room?x.host+'の部屋':x.room)}`;
+      for(const x of v){const li=document.createElement('li');const J=v=>v==='lobby'?'ロビー':v;li.textContent=`${J(x.from)||'?'} → ${x.room==='lobby'?'ロビー':(x.host&&x.host!==x.room?J(x.host)+'の部屋':x.room)}`;
         if(x.note){const n=document.createElement('span');n.textContent='「'+x.note+'」';li.appendChild(n);}ul.appendChild(li);}});
     this.hud.appendChild(f);}
   _hit(x,y){const r=this.r;if(x-r<0||y-r<0||x+r>this.W||y+r>this.H)return true;
