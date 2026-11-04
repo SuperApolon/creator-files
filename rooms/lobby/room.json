@@ -326,5 +326,32 @@
       537,
       900
     ]
-  }
+  },
+  "portals": [
+    {
+      "id": "portal-vz",
+      "x": 8.5,
+      "y": 0.2,
+      "w": 7.0,
+      "h": 0.8,
+      "z": 2.2,
+      "solid": false,
+      "href": "https://superapolon.github.io/verdant-zero-games/rpg/",
+      "label": "VERDANT//ZERO",
+      "toast": "ゲームをひらく"
+    },
+    {
+      "id": "portal-tarot",
+      "x": 0.3,
+      "y": 2.0,
+      "w": 1.2,
+      "h": 2.5,
+      "z": 2.2,
+      "solid": false,
+      "href": "https://note.com/superapolon/n/nc388f49a671f",
+      "label": "タロット論文",
+      "toast": "論文をひらく"
+    }
+  ],
+  "portalsNote": "portal-pain（対戦カード台→https://superapolon.github.io/mirror-v0/、案 x14.5 y9.5 w3.2 h2.4）はミオ描き足し後に実測して追加"
 }

@@ -10,6 +10,9 @@ export class RoomEngine{
     this.goal=null;this.wait=1+Math.random()*2;this.stuck=0;
     this.furn=(data.furniture||[]).map(f=>({z:1,color:'#888',...f}));
     this.img=null;
+    // portals: transparent click zones (solid:false, never block walking). {id,x,y,w,h[,z],href,label,toast}. Frame only with ?debug=1 or data.debugPortals.
+    this.portals=(data.portals||[]).filter(q=>q&&q.href).map(q=>({z:1,...q,solid:false}));
+    this.dbg=!!data.debugPortals||/[?&]debug=1\b/.test(location.search);
     const ld=(n,cb)=>{const im=new Image();im.onload=()=>cb(im);im.onerror=()=>{};im.src=opt.assetBase+n;};
     if(opt.assetBase)ld('avatar.png',im=>this.img=im);
     if(opt.assetBase)for(const f of this.furn)if(f.img)ld(f.img,im=>{if(im.naturalWidth&&im.naturalHeight)f._im=im;});
@@ -19,7 +22,7 @@ export class RoomEngine{
       for(const w of data.windows||[])if(w.img)ld(w.img,im=>{if(ok(im))w._im=im;});
       if(data.sceneImg)ld(data.sceneImg,im=>{if(ok(im))this.tex.scene=im;});}
   }
-  start(){this._ui();addEventListener('resize',()=>this._resize());this._resize();
+  start(){this._ui();this._portalUi();addEventListener('resize',()=>this._resize());this._resize();
     let t0=performance.now();const loop=t=>{const dt=Math.min(.05,(t-t0)/1000);t0=t;this._update(dt);this._draw();requestAnimationFrame(loop)};requestAnimationFrame(loop);return this;}
   _resize(){const dpr=devicePixelRatio||1;this.cv.width=innerWidth*dpr;this.cv.height=innerHeight*dpr;this.cv.style.width=innerWidth+'px';this.cv.style.height=innerHeight+'px';this.dpr=dpr;
     let t=Math.min(innerWidth*1.9/(this.W+this.H),innerHeight*1.5/((this.W+this.H)/2+3));
@@ -48,6 +51,24 @@ export class RoomEngine{
       for(const x of v){const li=document.createElement('li');const J=v=>v==='lobby'?'ロビー':v;li.textContent=`${J(x.from)||'?'} → ${x.room==='lobby'?'ロビー':(x.host&&x.host!==x.room?J(x.host)+'の部屋':x.room)}`;
         if(x.note){const n=document.createElement('span');n.textContent='「'+x.note+'」';li.appendChild(n);}ul.appendChild(li);}});
     this.hud.appendChild(f);}
+  // iso hull of portal box (8 corners) in screen px; recomputed each frame
+  _pq(q){const{x,y,w,h,z}=q,P=[];for(const a of[x,x+w])for(const b of[y,y+h])for(const k of[0,z])P.push(this.iso(a,b,k));
+    P.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]),L=[],U=[];
+    for(const p of P){while(L.length>1&&cr(L[L.length-2],L[L.length-1],p)<=0)L.pop();L.push(p);}
+    for(const p of P.slice().reverse()){while(U.length>1&&cr(U[U.length-2],U[U.length-1],p)<=0)U.pop();U.push(p);}
+    return L.slice(0,-1).concat(U.slice(0,-1));}
+  _pAt(mx,my){for(let i=this.portals.length-1;i>=0;i--){const q=this.portals[i],h=q._s||this._pq(q);let ins=false;
+      for(let a=0,b=h.length-1;a<h.length;b=a++){const[xa,ya]=h[a],[xb,yb]=h[b];if((ya>my)!==(yb>my)&&mx<(xb-xa)*(my-ya)/(yb-ya)+xa)ins=!ins;}
+      if(ins)return q;}return null;}
+  _portalUi(){if(!this.portals.length)return;const t=document.createElement('div');t.className='re-toast';
+    t.style.cssText='position:fixed;left:0;top:0;pointer-events:none;padding:3px 8px;border-radius:6px;background:rgba(15,17,26,.78);color:#fff;font:12px sans-serif;opacity:0;transition:opacity .15s;z-index:9;white-space:nowrap';
+    document.body.appendChild(t);this.toast=t;let cur=null;
+    const show=(q,x,y)=>{cur=q;this.cv.style.cursor=q?'pointer':'';if(!q){t.style.opacity=0;return;}
+      t.textContent=q.toast||q.label||'ひらく';if(q.label)t.title=q.label;t.style.left=(x+14)+'px';t.style.top=(y+10)+'px';t.style.opacity=1;};
+    this.cv.addEventListener('pointermove',e=>show(this._pAt(e.clientX,e.clientY),e.clientX,e.clientY));
+    this.cv.addEventListener('pointerleave',()=>show(null));
+    this.cv.addEventListener('click',e=>{const q=this._pAt(e.clientX,e.clientY);if(!q)return;show(q,e.clientX,e.clientY);window.open(q.href,'_blank','noopener');
+      if(e.pointerType!=='mouse')setTimeout(()=>{if(cur===q)show(null);},1200);});}
   _hit(x,y){const r=this.r;if(x-r<0||y-r<0||x+r>this.W||y+r>this.H)return true;
     return this.furn.some(f=>f.solid&&x+r>f.x&&x-r<f.x+f.w&&y+r>f.y&&y-r<f.y+f.h);}
   _pick(){for(let i=0;i<30;i++){const x=this.r+Math.random()*(this.W-2*this.r),y=this.r+Math.random()*(this.H-2*this.r);if(!this._hit(x,y))return{x,y};}return null;}
@@ -129,5 +150,6 @@ export class RoomEngine{
     }
     const items=(sk?[]:this.furn).map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));if(!(this.d.isLobby||this.d.id==='lobby'))items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
     for(const it of items)it.a?this._avatar():this._furn(it.f);
+    for(const q of this.portals){q._s=this._pq(q);if(this.dbg)this._poly(q._s,'rgba(120,200,255,.12)','rgba(120,200,255,.7)');}
     }
 }
