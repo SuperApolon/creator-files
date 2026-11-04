@@ -73,7 +73,7 @@ export class RoomEngine{
   _quadTex(im,tl,tr,bl,alpha){this._tex(im,tl,[tr[0]-tl[0],tr[1]-tl[1]],[bl[0]-tl[0],bl[1]-tl[1]],alpha);}
   // sceneImg: full-room iso painting. Fit with a similarity (uniform scale+rotate+translate) from floor corners so the painting never shears.
   // Anchors: sceneAnchors {L,R,F[,B]} natural px, else sceneFit left/right/front/back (1024-basis).
-  // Clip = painting wall tops + floor outline only (no engine wallHeight forcing). 3D walls are never drawn when sceneImg is set.
+  // Clip = painting wall tops + floor outline only (no engine wallHeight forcing). 3D walls and floor are never drawn when sceneImg is set (collision kept).
   _scene(im){const c=this.ctx,W=this.W,H=this.H,k=im.naturalWidth/1024,sa=this.d.sceneAnchors||{},sf=this.d.sceneFit||{};
     const D={L:[84,580],R:[962,598],F:[548,880],B:[512,300],backTop:[512,92],leftTop:[78,322],rightTop:[968,320]};
     const fit=key=>{const al={left:'L',right:'R',front:'F',back:'B'};const v=sf[key]||D[key]||D[al[key]];return v.map(x=>x*k);};
@@ -101,9 +101,8 @@ export class RoomEngine{
     const col=AMBIENT;const g=c.createRadialGradient(innerWidth/2,innerHeight/2,0,innerWidth/2,innerHeight/2,Math.max(innerWidth,innerHeight));g.addColorStop(0,shade(col,.55));g.addColorStop(1,'#11131c');c.fillStyle=g;c.fillRect(0,0,innerWidth,innerHeight);
     const wh=this.d.wallHeight||3,wc=this.d.wallColor||'#8a9bb5',fc=this.d.floorColor||'#d4c4a8';
     const sc=this.tex.scene,sk=!!this.d.sceneImg;
-    // sceneImg: NEVER draw wall polys / wallColor / wallImg / windows. Floor only + painting. _hit bounds unchanged.
+    // sceneImg: NEVER draw walls or floor (no polys / wallColor / floorColor / wallImg / floorImg / windows / grid). Painting only. _hit bounds unchanged.
     if(sk){
-      for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],(i+j)%2?fc:shade(fc,.94),this.d.grid?'rgba(0,0,0,.12)':null);
       if(sc)this._scene(sc);
     }else{
       const wt=this.tex.wallImg,ft=this.tex.floorImg,wa=this.d.wallImgAlpha??1,fa=this.d.floorImgAlpha??1;
@@ -121,7 +120,7 @@ export class RoomEngine{
         else this._quadTex(ft,I(0,0),I(W,0),I(0,H),fa);
         if(this.d.grid)for(let i=0;i<W;i++)for(let j=0;j<H;j++)this._poly([I(i,j),I(i+1,j),I(i+1,j+1),I(i,j+1)],'rgba(0,0,0,0)','rgba(0,0,0,.08)');}
     }
-    const items=(sk?[]:this.furn).map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
+    const items=(sk?[]:this.furn).map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));if(!(this.d.isLobby||this.d.id==='lobby'))items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
     for(const it of items)it.a?this._avatar():this._furn(it.f);
     }
 }
