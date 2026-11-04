@@ -40,7 +40,14 @@ export class RoomEngine{
     const lob=this.d.isLobby||this.d.id==='lobby',hasL=(this.d.links||[]).some(l=>/lobby/.test(l.href||''));
     if(!lob&&!hasL){const a=document.createElement('a');a.href=this.opt.lobbyHref||'../lobby/';a.textContent='🏛 ロビーへ';nav.appendChild(a);}
     for(const r of this.d.links||[]){const a=document.createElement('a');a.href=r.href||((this.opt.roomsBase||'../')+r.id+'/');a.textContent=r.label||('🚪 '+(r.authorName||r.title||r.id));if(r.title)a.title=r.title;nav.appendChild(a);}
-    h.appendChild(nav);this.hud=h;}
+    h.appendChild(nav);this.hud=h;if(lob)this._foot();}
+  _foot(){const f=document.createElement('div');f.className='re-foot';f.innerHTML='<div class="re-foot-t">👣 みんなの訪問</div><ul></ul>';
+    fetch(this.opt.visitsUrl||'./visits.json').then(r=>r.ok?r.json():[]).catch(()=>[]).then(v=>{const ul=f.querySelector('ul');
+      v=(Array.isArray(v)?v:[]).filter(x=>x&&(x.kind||'enter')==='enter').sort((a,b)=>(b.id||0)-(a.id||0));
+      if(!v.length){f.remove();return;}
+      for(const x of v){const li=document.createElement('li');li.textContent=`${x.from||'?'} → ${x.room==='lobby'?'ロビー':(x.host&&x.host!==x.room?x.host+'の部屋':x.room)}`;
+        if(x.note){const n=document.createElement('span');n.textContent='「'+x.note+'」';li.appendChild(n);}ul.appendChild(li);}});
+    this.hud.appendChild(f);}
   _hit(x,y){const r=this.r;if(x-r<0||y-r<0||x+r>this.W||y+r>this.H)return true;
     return this.furn.some(f=>f.solid&&x+r>f.x&&x-r<f.x+f.w&&y+r>f.y&&y-r<f.y+f.h);}
   _pick(){for(let i=0;i<30;i++){const x=this.r+Math.random()*(this.W-2*this.r),y=this.r+Math.random()*(this.H-2*this.r);if(!this._hit(x,y))return{x,y};}return null;}

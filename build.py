@@ -57,6 +57,14 @@ for p in glob.glob(f'{H}/creators/avatars/*'):
 ROOMS={os.path.basename(os.path.dirname(p)) for p in glob.glob(f'{H}/rooms/*/room.json') if os.path.exists(os.path.join(os.path.dirname(p),'index.html'))}
 for sub in ('rooms','shared/room-engine'):
   if os.path.isdir(f'{H}/{sub}'): shutil.copytree(f'{H}/{sub}',f'{OUT}/{sub}',ignore=shutil.ignore_patterns('BRIEF.md','.gitkeep'))
+# 足跡: rooms-footprints/visits.jsonl の enter のみを公開用スナップショットに（生ログは出さない）
+_V=[];_vp=f'{H}/rooms-footprints/visits.jsonl'
+if os.path.exists(_vp):
+  for _l in open(_vp,encoding='utf-8'):
+    try:_r=json.loads(_l)
+    except Exception:continue
+    if _r.get('kind')=='enter':_V.append({k:_r.get(k,'') for k in ('id','from','room','host','note')})
+if os.path.isdir(f'{OUT}/rooms/lobby'):json.dump(_V,open(f'{OUT}/rooms/lobby/visits.json','w',encoding='utf-8'),ensure_ascii=False)
 def roombtn(cid,t='部屋に入る'): return f'<p><a class="room" href="@R@rooms/{e(cid)}/">🚪 {t}</a></p>' if cid in ROOMS else ''
 CSS+='.room{display:inline-block;background:#1d2440;color:#fff;text-decoration:none;border-radius:99px;padding:6px 18px;font-weight:700;margin:4px 0 14px}.room:hover{background:#34407a}.card .rm{display:block;font-size:12px;color:#34407a;margin-top:2px}'
 open(f'{OUT}/assets/style.css','w').write(CSS);open(f'{OUT}/.nojekyll','w').close()

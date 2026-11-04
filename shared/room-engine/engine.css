@@ -7,3 +7,5 @@ html,body{margin:0;height:100%;overflow:hidden;background:#11131c;font-family:"H
 .re-note{position:absolute;top:40px;left:14px;max-width:min(420px,70vw);font-size:13px;opacity:.85;text-shadow:0 1px 3px #000}
 .re-help{position:absolute;right:12px;bottom:10px;font-size:12px;opacity:.7;text-shadow:0 1px 3px #000}
 .re-nav{position:absolute;top:12px;right:12px;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;max-width:min(520px,60vw);pointer-events:auto}.re-nav a{color:#fff;text-decoration:none;font-size:13px;background:rgba(20,24,40,.7);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:3px 10px}.re-nav a:hover{background:rgba(60,80,140,.8)}
+
+.re-foot{position:absolute;left:12px;bottom:12px;width:min(300px,70vw);max-height:38vh;overflow:auto;background:rgba(20,24,40,.7);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:8px 12px;font-size:13px;pointer-events:auto}.re-foot-t{font-weight:700;margin-bottom:4px}.re-foot ul{list-style:none;margin:0;padding:0}.re-foot li{padding:3px 0;border-top:1px solid rgba(255,255,255,.12)}.re-foot li span{display:block;opacity:.8;font-size:12px}
