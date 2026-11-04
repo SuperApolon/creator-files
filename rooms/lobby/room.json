@@ -194,6 +194,16 @@
       "z": 0.9,
       "solid": true,
       "label": "角の二人席"
+    },
+    {
+      "id": "card-stand",
+      "x": 15.0,
+      "y": 14.3,
+      "w": 1.5,
+      "h": 1.1,
+      "z": 1.0,
+      "solid": true,
+      "label": "対戦カード台"
     }
   ],
   "isLobby": true,
@@ -351,7 +361,18 @@
       "href": "https://note.com/superapolon/n/nc388f49a671f",
       "label": "タロット論文",
       "toast": "論文をひらく"
+    },
+    {
+      "id": "portal-pain",
+      "x": 15.0,
+      "y": 14.3,
+      "w": 1.5,
+      "h": 1.1,
+      "z": 1.0,
+      "solid": false,
+      "href": "https://superapolon.github.io/mirror-v0/",
+      "label": "Pain Reflection",
+      "toast": "カードをひらく"
     }
-  ],
-  "portalsNote": "portal-pain（対戦カード台→https://superapolon.github.io/mirror-v0/、案 x14.5 y9.5 w3.2 h2.4）はミオ描き足し後に実測して追加"
+  ]
 }
