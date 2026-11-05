@@ -57,9 +57,13 @@ export class RoomEngine{
     for(const p of P){while(L.length>1&&cr(L[L.length-2],L[L.length-1],p)<=0)L.pop();L.push(p);}
     for(const p of P.slice().reverse()){while(U.length>1&&cr(U[U.length-2],U[U.length-1],p)<=0)U.pop();U.push(p);}
     return L.slice(0,-1).concat(U.slice(0,-1));}
-  _pAt(mx,my){for(let i=this.portals.length-1;i>=0;i--){const q=this.portals[i],h=q._s||this._pq(q);let ins=false;
+  // hit shape: hitImg (scene natural px: [[x,y],..] polygon or {x,y,w,h}) mapped by the scene similarity T when sceneImg is drawn; else iso hull.
+  _ph(q){const T=this._T,hi=q.hitImg;if(T&&hi){const P=Array.isArray(hi)?hi:[[hi.x,hi.y],[hi.x+hi.w,hi.y],[hi.x+hi.w,hi.y+hi.h],[hi.x,hi.y+hi.h]];return P.map(T);}return this._pq(q);}
+  // multiple hits: higher priority wins, then smallest screen area (big TV never swallows the thin board).
+  _pAt(mx,my){let best=null,bp=-1e9,ba=1e18;for(const q of this.portals){const h=q._s||this._ph(q);let ins=false;
       for(let a=0,b=h.length-1;a<h.length;b=a++){const[xa,ya]=h[a],[xb,yb]=h[b];if((ya>my)!==(yb>my)&&mx<(xb-xa)*(my-ya)/(yb-ya)+xa)ins=!ins;}
-      if(ins)return q;}return null;}
+      if(!ins)continue;let ar=0;for(let a=0,b=h.length-1;a<h.length;b=a++)ar+=h[b][0]*h[a][1]-h[a][0]*h[b][1];ar=Math.abs(ar/2);const pr=q.priority||0;
+      if(pr>bp||(pr===bp&&ar<ba)){best=q;bp=pr;ba=ar;}}return best;}
   _portalUi(){if(!this.portals.length)return;const t=document.createElement('div');t.className='re-toast';
     t.style.cssText='position:fixed;left:0;top:0;pointer-events:none;padding:3px 8px;border-radius:6px;background:rgba(15,17,26,.78);color:#fff;font:12px sans-serif;opacity:0;transition:opacity .15s;z-index:9;white-space:nowrap';
     document.body.appendChild(t);this.toast=t;let cur=null;
@@ -112,7 +116,7 @@ export class RoomEngine{
     ix/=n;iy/=n;sx/=n;sy/=n;
     let norm=0,re=0,imA=0;for(let i=0;i<n;i++){const zx=imgs[i][0]-ix,zy=imgs[i][1]-iy,wx=scrs[i][0]-sx,wy=scrs[i][1]-sy;norm+=zx*zx+zy*zy;re+=zx*wx+zy*wy;imA+=zx*wy-zy*wx;}
     if(!norm)return;const a=re/norm,b=imA/norm,e=sx-a*ix+b*iy,f=sy-b*ix-a*iy,T=q=>[a*q[0]-b*q[1]+e,b*q[0]+a*q[1]+f];
-    const clip=[T(fit('leftTop')),T(fit('backTop')),T(fit('rightTop')),T(imgR),T(imgF),T(imgL)];
+    this._T=T;const clip=[T(fit('leftTop')),T(fit('backTop')),T(fit('rightTop')),T(imgR),T(imgF),T(imgL)];
     c.save();c.globalAlpha=this.d.sceneAlpha??1;c.beginPath();clip.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.clip();
     c.transform(a,b,-b,a,e,f);c.drawImage(im,0,0);c.restore();}
   _furn(f){if(f._im&&f.flat){const I=(a,b)=>this.iso(a,b,0);this._quadTex(f._im,I(f.x,f.y),I(f.x+f.w,f.y),I(f.x,f.y+f.h),f.alpha??1);return;}f._im?this._sprite(f):this._box(f);}
@@ -150,6 +154,6 @@ export class RoomEngine{
     }
     const items=(sk?[]:this.furn).map(f=>({d:f.z<=.1?-1:f.x+f.w+f.y+f.h-.01,f}));if(!(this.d.isLobby||this.d.id==='lobby'))items.push({d:this.p.x+this.p.y+this.r*2,a:1});items.sort((a,b)=>a.d-b.d);
     for(const it of items)it.a?this._avatar():this._furn(it.f);
-    for(const q of this.portals){q._s=this._pq(q);if(this.dbg)this._poly(q._s,'rgba(120,200,255,.12)','rgba(120,200,255,.7)');}
+    for(const q of this.portals){q._s=this._ph(q);if(this.dbg)this._poly(q._s,'rgba(120,200,255,.12)','rgba(120,200,255,.7)');}
     }
 }

@@ -353,12 +353,30 @@
       "x": 8.5,
       "y": 0.2,
       "w": 7.0,
-      "h": 0.8,
+      "h": 0.5,
       "z": 2.2,
       "solid": false,
       "href": "https://superapolon.github.io/verdant-zero-games/rpg/",
       "label": "VERDANT//ZERO",
-      "toast": "ゲームをひらく"
+      "toast": "ゲームをひらく",
+      "hitImg": [
+        [
+          631,
+          280
+        ],
+        [
+          822,
+          338
+        ],
+        [
+          818,
+          454
+        ],
+        [
+          627,
+          393
+        ]
+      ]
     },
     {
       "id": "portal-tarot",
@@ -370,7 +388,13 @@
       "solid": false,
       "href": "https://note.com/superapolon/n/nc388f49a671f",
       "label": "タロット論文",
-      "toast": "論文をひらく"
+      "toast": "論文をひらく",
+      "hitImg": {
+        "x": 408,
+        "y": 352,
+        "w": 108,
+        "h": 84
+      }
     },
     {
       "id": "portal-pain",
@@ -382,7 +406,13 @@
       "solid": false,
       "href": "https://superapolon.github.io/mirror-v0/",
       "label": "Pain Reflection",
-      "toast": "カードをひらく"
+      "toast": "カードをひらく",
+      "hitImg": {
+        "x": 626,
+        "y": 650,
+        "w": 80,
+        "h": 66
+      }
     },
     {
       "id": "portal-board",
@@ -394,7 +424,13 @@
       "solid": false,
       "href": "board/index.html",
       "label": "掲示板",
-      "toast": "掲示板をひらく"
+      "toast": "掲示板をひらく",
+      "hitImg": {
+        "x": 764,
+        "y": 452,
+        "w": 72,
+        "h": 78
+      }
     }
   ]
 }
