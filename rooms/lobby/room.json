@@ -55,16 +55,6 @@
       "label": "VZキービジュアルTV"
     },
     {
-      "id": "game-shelf",
-      "x": 8.8,
-      "y": 1.0,
-      "w": 6.0,
-      "h": 0.9,
-      "z": 1.0,
-      "solid": true,
-      "label": "ゲーム棚"
-    },
-    {
       "id": "sofa-n",
       "x": 9.5,
       "y": 7.5,
@@ -366,9 +356,9 @@
       "h": 0.5,
       "z": 2.2,
       "solid": false,
-      "href": "https://superapolon.github.io/verdant-zero-games/rpg/",
-      "label": "VERDANT//ZERO",
-      "toast": "ゲームをひらく",
+      "href": "https://superapolon.github.io/creator-files/works/game-shelf/",
+      "label": "ゲームコーナー",
+      "toast": "ゲームコーナーをひらく",
       "hitImg": [
         [
           640,
@@ -387,24 +377,6 @@
           380
         ]
       ]
-    },
-    {
-      "id": "portal-games",
-      "x": 8.8,
-      "y": 1.0,
-      "w": 6.0,
-      "h": 0.9,
-      "z": 1.0,
-      "solid": false,
-      "href": "https://superapolon.github.io/creator-files/works/game-shelf/",
-      "label": "ゲーム棚",
-      "toast": "ゲーム棚をひらく",
-      "hitImg": {
-        "x": 655,
-        "y": 435,
-        "w": 130,
-        "h": 70
-      }
     },
     {
       "id": "portal-tarot",
