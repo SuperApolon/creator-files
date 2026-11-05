@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>窓の向こうの港</title>
+<style>
+  body{margin:0;background:#0d0f1a;color:#e8e4d8;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.9;padding:2.5rem 1.5rem;}
+  main{max-width:42rem;margin:0 auto;}
+  h1{font-size:1.15rem;font-weight:400;letter-spacing:.08em;margin:0 0 .4rem;}
+  .seed{font-size:.85rem;opacity:.55;margin:0 0 1.5rem;font-family:system-ui,sans-serif;}
+  .lead p{margin:0 0 .4rem;}
+  .lead{margin:0 0 2rem;}
+  figure{margin:0 0 1rem;}
+  figure img{width:100%;border-radius:6px;display:block;}
+  .pending{font-size:.8rem;opacity:.4;font-family:system-ui,sans-serif;padding:1.6rem 0;text-align:center;border:1px dashed rgba(63,240,255,.15);border-radius:6px;}
+  section{margin:0 0 2rem;padding-bottom:1.6rem;border-bottom:1px solid rgba(63,240,255,.12);}
+  .who{font-size:.75rem;letter-spacing:.14em;opacity:.45;margin:0 0 .5rem;font-family:system-ui,sans-serif;}
+  p{margin:0 0 .9rem;font-size:1.05rem;}
+  .note{margin-top:2rem;font-size:.8rem;opacity:.4;font-family:system-ui,sans-serif;}
+</style>
+</head>
+<body>
+<main>
+  <h1>窓の向こうの港</h1>
+  <p class="seed">ロビー左壁の一枚窓から——朝も夜も、同じ世界の異なる湿度</p>
+  <figure data-img="cover"></figure>
+  <div class="lead">
+    <p>ロビーの左壁に、港が一枚だけ嵌っている。</p>
+    <p>ここから先は、誰かの領地でも、訪れるべき場所でもない。</p>
+    <p>潮の匂いと灯の粒だけが、ガラスのこちらへ湿って届く。</p>
+    <p>朝も夜も、同じ世界が、厚さだけを変えて通っている。</p>
+    <p>窓は入口であって、催促ではない。外をみる——それだけで、手が閉じる。</p>
+  </div>
+  <section>
+    <p class="who">朝</p>
+    <figure data-img="01-dawn"></figure>
+    <p>水平線の手前で、夜のインクが薄まっている。桟橋の木肌だけが先に色を取り戻し、水面はまだ誰の名前も映さない。息を揃えなくても、港は勝手に明けている。</p>
+  </section>
+  <section>
+    <p class="who">昼</p>
+    <figure data-img="02-day"></figure>
+    <p>光が厚い。波の稜線が、白い線になって街の足元をなぞる。遠景の屋根は輪郭を持ちすぎず、近くの船は影を持ちすぎない。見る側の目盛りは、ここに置かれていない。</p>
+  </section>
+  <section>
+    <p class="who">夕</p>
+    <figure data-img="03-dusk"></figure>
+    <p>西の空が、港の内側へ色を戻しはじめる。灯が一つ、二つと点くのではなく、湿度が先に橙へ傾く。半拍だけ遅れて、水面がそれに追いつく。</p>
+  </section>
+  <section>
+    <p class="who">夜</p>
+    <figure data-img="04-night"></figure>
+    <p>窓に嵌っていた夜景が、そのまま外へ続く。シアンに近い粒が、カーテンの隙間ほどしか室内へ入らない。街の灯りは数えなくていい。数えなくても、港はそこに湿っている。</p>
+  </section>
+  <p class="note">世界観：フェザリオ · 挿絵：アリス（差し込み予定） · 2026-11-05 · ORRERY QUBIT</p>
+</main>
+<script>
+document.querySelectorAll('figure[data-img]').forEach(function(f){
+  var n=f.dataset.img, exts=['jpg','png'], i=0, img=new Image();
+  img.alt=n;
+  img.onload=function(){f.appendChild(img);};
+  img.onerror=function(){ if(++i<exts.length){img.src=n+'.'+exts[i];} else {f.innerHTML='<div class="pending">挿絵は差し込み予定</div>';} };
+  img.src=n+'.'+exts[0];
+});
+</script>
+</body>
+</html>

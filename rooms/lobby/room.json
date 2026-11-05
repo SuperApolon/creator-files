@@ -431,6 +431,24 @@
         "w": 58,
         "h": 82
       }
+    },
+    {
+      "id": "portal-harbor",
+      "x": 0.3,
+      "y": 4.0,
+      "w": 1.0,
+      "h": 12.0,
+      "z": 2.2,
+      "solid": false,
+      "href": "https://superapolon.github.io/creator-files/works/harbor-window/",
+      "label": "港の窓",
+      "toast": "外をみる",
+      "hitImg": {
+        "x": 90,
+        "y": 240,
+        "w": 340,
+        "h": 230
+      }
     }
   ]
 }
