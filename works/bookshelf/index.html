@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>著書</title>
+<!-- 運用: books.json の books 配列は削除禁止（公太2026-11-05）。追加のみ可。このページは表示のみで books を書き換え・空化しない。 -->
+<style>
+body{margin:0;background:#0d0f1a;color:#e8e4d8;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.9;padding:2.5rem 1.5rem;}
+main{max-width:40rem;margin:0 auto;}
+h1{font-size:1.15rem;font-weight:400;letter-spacing:.08em;margin:0 0 1.2rem;}
+ul{list-style:none;margin:0;padding:0;}
+li{padding:.55rem 0;border-bottom:1px solid rgba(232,228,216,.08);}
+a{color:#e8e4d8;text-decoration:none;}a:hover{color:#e8a85a;}
+.note{margin-top:2rem;font-size:.8rem;opacity:.4;font-family:system-ui,sans-serif;}
+</style></head><body><main>
+<h1>著書</h1>
+<ul id="list"></ul>
+<p class="note"><a href="../../">← ロビーへ</a></p>
+</main>
+<script>
+// books 配列は削除禁止（公太2026-11-05）。追加のみ可。ここでは読み取り・表示のみ。
+const list=document.getElementById('list');
+fetch('books.json',{cache:'no-cache'}).then(r=>r.json()).then(j=>{
+  list.textContent='';
+  (j.books||[]).forEach(b=>{
+    const li=document.createElement('li'),a=document.createElement('a');
+    a.href=b.href;a.target='_blank';a.rel='noopener';a.textContent=b.title;li.appendChild(a);
+    list.appendChild(li);
+  });
+}).catch(()=>{list.innerHTML='<li>読み込めませんでした</li>';});
+</script></body></html>

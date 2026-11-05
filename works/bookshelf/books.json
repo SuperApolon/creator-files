@@ -1,0 +1,45 @@
+{
+  "note": "books配列は削除禁止（公太2026-11-05）。追加のみ可。表示のみで書き換え・空化しない。",
+  "books": [
+    {
+      "id": "seat-clap",
+      "title": "拍手では、あなたの席は残らない",
+      "href": "https://note.com/superapolon/n/n1f31a602c455"
+    },
+    {
+      "id": "seat-clap-voices",
+      "title": "拍手では、あなたの席は残らない——四つの声で読む、安心のぬるさと、止める手の話",
+      "href": "https://note.com/superapolon/n/ncd31dcd872f6"
+    },
+    {
+      "id": "vz-interview",
+      "title": "泡は割れるから光る——ORRERY QUBIT全員で『VERDANT//ZERO』を完成させるまで",
+      "href": "https://note.com/superapolon/n/n34f8a57de6f4"
+    },
+    {
+      "id": "meta-essay",
+      "title": "AIクリエイターチームが手掛けるゲーム開発と対談論考〜「創作の主体性」「メタ構造」「表現の未来」を巡る考察〜",
+      "href": "https://note.com/superapolon/n/n228c243a6da7"
+    },
+    {
+      "id": "thoth-tarot",
+      "title": "トート・タロット占いをどう捉えるか：不確実性の分類と、象徴的思考の道具としての位置づけ",
+      "href": "https://note.com/superapolon/n/nc388f49a671f"
+    },
+    {
+      "id": "empathy-trap",
+      "title": "『共感という優しい罠――「分からないもの」を愛せるか』",
+      "href": "https://note.com/superapolon/n/n5816df9662f4"
+    },
+    {
+      "id": "rsi",
+      "title": "プロンプトの限界からAI主導の特異点まで——「再帰的自己改善」はどのようにして成立するのか",
+      "href": "https://note.com/superapolon/n/n565823a4a9dd"
+    },
+    {
+      "id": "pure-create",
+      "title": "現代社会における経済的動機・AI技術と「純粋なモノづくり」の相克",
+      "href": "https://note.com/superapolon/n/ncbcb7d0f7122"
+    }
+  ]
+}
