@@ -1,0 +1,89 @@
+{
+  "note": "owner配列は削除禁止（公太2026-11-05）。追加のみ可。teamはみんなのゲーム。",
+  "owner": [
+    {
+      "id": "mordis",
+      "title": "朽ちた糸の王 — THE LAST THREAD",
+      "href": "https://superapolon.github.io/Mordis/"
+    },
+    {
+      "id": "foryou",
+      "title": "我が母の記録 — あなたの証言",
+      "href": "https://superapolon.github.io/foryou/"
+    },
+    {
+      "id": "without-me",
+      "title": "きみの隣に、いない。",
+      "href": "https://superapolon.github.io/WithoutMe/"
+    },
+    {
+      "id": "purify",
+      "title": "ボクはキミを浄化する",
+      "href": "https://superapolon.github.io/purify/"
+    },
+    {
+      "id": "ai-formation",
+      "title": "AI FORMATION — Crystal Arena",
+      "href": "https://superapolon.github.io/AIFormation/"
+    },
+    {
+      "id": "dominion",
+      "title": "DOMINION — 分かたれし覇王",
+      "href": "https://superapolon.github.io/dominion/"
+    },
+    {
+      "id": "quiz-konami",
+      "title": "クイズ小並感｜100問の共感クイズ",
+      "href": "https://superapolon.github.io/QuizKonami/"
+    },
+    {
+      "id": "my-partner",
+      "title": "My Partner — Trend & Gesture Atelier",
+      "href": "https://superapolon.github.io/MyPartner/"
+    },
+    {
+      "id": "cocytus",
+      "title": "コキュートスの秘宝 — 最後の熱",
+      "href": "https://superapolon.github.io/cocytus/"
+    },
+    {
+      "id": "mother",
+      "title": "MOTHER — 無限解読工場",
+      "href": "https://superapolon.github.io/mother/"
+    },
+    {
+      "id": "joker",
+      "title": "JOKER — 善き世界の捕食者",
+      "href": "https://superapolon.github.io/joker/"
+    },
+    {
+      "id": "fantom-royal",
+      "title": "幻影ロワイヤル — 一秒前の自分と、最後の一人へ",
+      "href": "https://superapolon.github.io/fantomroyal/"
+    },
+    {
+      "id": "mirror-lord",
+      "title": "Mirror Lord — 三つの願いと、終わらない世界",
+      "href": "https://superapolon.github.io/MirrorLord/"
+    },
+    {
+      "id": "grey-sky",
+      "title": "飽和する空 — 名前をつける前の世界",
+      "href": "https://superapolon.github.io/greysky/"
+    }
+  ],
+  "team": [
+    {
+      "id": "verdant-zero",
+      "title": "VERDANT//ZERO RPG",
+      "href": "https://superapolon.github.io/verdant-zero-games/rpg/",
+      "by": "ORRERY QUBIT"
+    },
+    {
+      "id": "pain-reflection",
+      "title": "Pain Reflection",
+      "href": "https://superapolon.github.io/mirror-v0/",
+      "by": "ORRERY QUBIT"
+    }
+  ]
+}

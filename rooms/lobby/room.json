@@ -55,6 +55,16 @@
       "label": "VZキービジュアルTV"
     },
     {
+      "id": "game-shelf",
+      "x": 8.5,
+      "y": 0.2,
+      "w": 7.0,
+      "h": 0.5,
+      "z": 1.0,
+      "solid": true,
+      "label": "ゲーム棚"
+    },
+    {
       "id": "sofa-n",
       "x": 9.5,
       "y": 7.5,
@@ -377,6 +387,24 @@
           380
         ]
       ]
+    },
+    {
+      "id": "portal-games",
+      "x": 8.5,
+      "y": 0.2,
+      "w": 7.0,
+      "h": 0.5,
+      "z": 1.0,
+      "solid": false,
+      "href": "https://superapolon.github.io/creator-files/works/game-shelf/",
+      "label": "ゲーム棚",
+      "toast": "ゲーム棚をひらく",
+      "hitImg": {
+        "x": 640,
+        "y": 430,
+        "w": 160,
+        "h": 70
+      }
     },
     {
       "id": "portal-tarot",

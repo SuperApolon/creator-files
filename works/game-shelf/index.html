@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ゲーム棚</title>
+<!-- 運用: games.json の owner 配列は削除禁止（公太2026-11-05）。追加のみ可。このページは表示のみで owner を書き換え・空化しない。 -->
+<style>
+body{margin:0;background:#0d0f1a;color:#e8e4d8;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.9;padding:2.5rem 1.5rem;}
+main{max-width:40rem;margin:0 auto;}
+h1{font-size:1.15rem;font-weight:400;letter-spacing:.08em;margin:0 0 1.2rem;}
+.tabs{display:flex;gap:1.2rem;margin:0 0 1.4rem;font-family:system-ui,sans-serif;font-size:.85rem;}
+.tabs button{background:none;border:0;border-bottom:1px solid transparent;color:#e8e4d8;opacity:.5;padding:.2rem 0;cursor:pointer;letter-spacing:.12em;font:inherit;}
+.tabs button[aria-selected=true]{opacity:1;border-bottom-color:#e8a85a;}
+ul{list-style:none;margin:0;padding:0;}
+li{padding:.55rem 0;border-bottom:1px solid rgba(232,228,216,.08);}
+a{color:#e8e4d8;text-decoration:none;}a:hover{color:#e8a85a;}
+.by{font-size:.72rem;opacity:.45;margin-left:.6rem;font-family:system-ui,sans-serif;}
+.note{margin-top:2rem;font-size:.8rem;opacity:.4;font-family:system-ui,sans-serif;}
+</style></head><body><main>
+<h1>ゲーム棚</h1>
+<div class="tabs" role="tablist">
+<button role="tab" data-k="owner" aria-selected="true">オーナー</button>
+<button role="tab" data-k="team" aria-selected="false">みんな</button>
+</div>
+<ul id="list"></ul>
+<p class="note"><a href="../../">← ロビーへ</a></p>
+</main>
+<script>
+// owner 配列は削除禁止（公太2026-11-05）。追加のみ可。ここでは読み取り・表示のみ。
+let data={owner:[],team:[]};
+const list=document.getElementById('list');
+function show(k){
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));
+  list.textContent='';
+  (data[k]||[]).forEach(g=>{
+    const li=document.createElement('li'),a=document.createElement('a');
+    a.href=g.href;a.target='_blank';a.rel='noopener';a.textContent=g.title;li.appendChild(a);
+    if(g.by){const s=document.createElement('span');s.className='by';s.textContent=g.by;li.appendChild(s);}
+    list.appendChild(li);
+  });
+}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.k));
+fetch('games.json',{cache:'no-cache'}).then(r=>r.json()).then(j=>{data=j;show('owner');})
+  .catch(()=>{list.innerHTML='<li>読み込めませんでした</li>';});
+</script></body></html>
