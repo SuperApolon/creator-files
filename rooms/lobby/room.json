@@ -56,10 +56,10 @@
     },
     {
       "id": "game-shelf",
-      "x": 8.5,
-      "y": 0.2,
-      "w": 7.0,
-      "h": 0.5,
+      "x": 8.8,
+      "y": 1.0,
+      "w": 6.0,
+      "h": 0.9,
       "z": 1.0,
       "solid": true,
       "label": "ゲーム棚"
@@ -390,20 +390,20 @@
     },
     {
       "id": "portal-games",
-      "x": 8.5,
-      "y": 0.2,
-      "w": 7.0,
-      "h": 0.5,
+      "x": 8.8,
+      "y": 1.0,
+      "w": 6.0,
+      "h": 0.9,
       "z": 1.0,
       "solid": false,
       "href": "https://superapolon.github.io/creator-files/works/game-shelf/",
       "label": "ゲーム棚",
       "toast": "ゲーム棚をひらく",
       "hitImg": {
-        "x": 640,
-        "y": 430,
-        "w": 160,
-        "h": 70
+        "x": 655,
+        "y": 435,
+        "w": 125,
+        "h": 75
       }
     },
     {
