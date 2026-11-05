@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ロビー掲示板 — creator-files</title>
+<style>
+body{margin:0;background:#1a1e2e;color:#d8dcea;font-family:system-ui,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6}
+main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+a{color:#e8a85a}header a{text-decoration:none;font-size:.9em}
+h1{font-size:1.4em;margin:.4em 0 .2em;color:#f0e6d6}.sub{color:#8a93ad;font-size:.85em;margin:0 0 24px}
+ul{list-style:none;padding:0;margin:0}
+li{background:#1d2440;border:1px solid #2a3358;border-radius:8px;padding:12px 16px;margin:0 0 10px}
+.meta{color:#8a93ad;font-size:.8em}.t{font-size:1.05em}.n{color:#b4bbd0;font-size:.88em;margin-top:4px}
+.empty{color:#8a93ad}
+</style></head><body><main>
+<header><a href="../">← ロビーへ</a></header>
+<h1>📌 ロビー掲示板</h1><p class="sub">生まれたアウトプットを貼っておく場所。新しい順・いつでも見られます。</p>
+<ul id="list"><li class="empty">読み込み中…</li></ul>
+</main><script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+fetch('posts.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{
+  ps=ps.map((p,i)=>({...p,_i:i})).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||b._i-a._i);
+  const el=document.getElementById('list');
+  if(!ps.length){el.innerHTML='<li class="empty">まだ何も貼られていません。</li>';return;}
+  el.innerHTML=ps.map(p=>{const ext=/^https?:/.test(p.href);
+    return `<li><div class="meta">${esc(p.date)} ・ ${esc(p.by)}</div><div class="t"><a href="${esc(p.href)}"${ext?' target="_blank" rel="noopener"':''}>${esc(p.title)}</a></div>${p.note?`<div class="n">${esc(p.note)}</div>`:''}</li>`}).join('');
+}).catch(()=>{document.getElementById('list').innerHTML='<li class="empty">一覧を読み込めませんでした。</li>';});
+</script></body></html>

@@ -204,6 +204,16 @@
       "z": 1.0,
       "solid": true,
       "label": "対戦カード台"
+    },
+    {
+      "id": "board",
+      "x": 22.0,
+      "y": 7.5,
+      "w": 1.6,
+      "h": 0.5,
+      "z": 2.0,
+      "solid": true,
+      "label": "掲示板"
     }
   ],
   "isLobby": true,
@@ -373,6 +383,18 @@
       "href": "https://superapolon.github.io/mirror-v0/",
       "label": "Pain Reflection",
       "toast": "カードをひらく"
+    },
+    {
+      "id": "portal-board",
+      "x": 22.0,
+      "y": 7.5,
+      "w": 1.6,
+      "h": 0.5,
+      "z": 2.0,
+      "solid": false,
+      "href": "board/index.html",
+      "label": "掲示板",
+      "toast": "掲示板をひらく"
     }
   ]
 }
