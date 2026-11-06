@@ -11,6 +11,12 @@
   const finaleEl = document.getElementById('finale');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Unified JP sans stack — avoid mincho fallback mix (small kana vs kanji size mismatch)
+  const FONT_STACK = '"Noto Sans CJK JP","Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic",Meiryo,system-ui,sans-serif';
+  const FONT_MEMBER = `600 10px ${FONT_STACK}`;
+  const FONT_TEXT = `12.5px ${FONT_STACK}`;
+  let resolvedFont = '';
+
   let W = 0, H = 0, dpr = 1;
   let lines = [];
   let nextLine = 0;
@@ -282,6 +288,10 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     pickSkyForOrientation();
     if (!wallTexts.length) seedWallTexts();
+    if ((collapsed || collapsing) && floaters.length) {
+      layoutFloaters();
+      for (const f of floaters) { f.x = f.tx; f.y = f.ty; f.settled = true; }
+    }
   }
   window.addEventListener('resize', resize, { passive: true });
   window.addEventListener('orientationchange', () => setTimeout(resize, 60));
@@ -458,30 +468,206 @@
     if (countEl) countEl.textContent = `${nextLine} / ${lines.length}`;
   }
 
+  function cloudMaxWidth() {
+    // Keep a clear side margin on narrow phones; still up to ~34em on wide
+    return Math.min(W * 0.86, 34 * 16);
+  }
+
+  function wrapLines(g, text, maxW) {
+    const chars = Array.from(text);
+    const lines = [];
+    let cur = '';
+    for (const ch of chars) {
+      const trial = cur + ch;
+      if (cur && g.measureText(trial).width > maxW) {
+        lines.push(cur);
+        cur = ch;
+      } else {
+        cur = trial;
+      }
+    }
+    if (cur) lines.push(cur);
+    return lines.length ? lines : [''];
+  }
+
+  function measureFloater(f, opt) {
+    const o = opt || {};
+    const textSize = o.textSize || 12.5;
+    const nameSize = o.nameSize || 10;
+    const padX = o.padX != null ? o.padX : 12;
+    const padY = o.padY != null ? o.padY : 7;
+    const nameH = o.nameH != null ? o.nameH : 11;
+    const gap = o.gap != null ? o.gap : 3;
+    const lineH = o.lineH != null ? o.lineH : Math.round(textSize * 1.2);
+    const maxCloud = cloudMaxWidth();
+    const maxW = maxCloud - padX * 2;
+    const g = ctx;
+    const textFont = `${textSize}px ${FONT_STACK}`;
+    const memberFont = `600 ${nameSize}px ${FONT_STACK}`;
+    g.font = textFont;
+    f.lines = wrapLines(g, f.text, maxW);
+    let textW = 0;
+    for (const ln of f.lines) textW = Math.max(textW, g.measureText(ln).width);
+    g.font = memberFont;
+    const nameW = g.measureText(f.member).width;
+    f.bw = Math.min(maxCloud, Math.max(textW, nameW) + padX * 2);
+    f.bh = padY + nameH + gap + f.lines.length * lineH + padY;
+    f._padY = padY; f._nameH = nameH; f._gap = gap; f._lineH = lineH;
+    f._textFont = textFont; f._memberFont = memberFont;
+  }
+
+  function floaterBox(f) {
+    // axis-aligned bounds from center x,y
+    return {
+      left: f.x - f.bw / 2,
+      right: f.x + f.bw / 2,
+      top: f.y - f.bh / 2,
+      bottom: f.y + f.bh / 2,
+      w: f.bw,
+      h: f.bh,
+    };
+  }
+
+  function boxesOverlap(a, b, pad) {
+    const p = pad || 2;
+    return !(a.right + p <= b.left || b.right + p <= a.left || a.bottom + p <= b.top || b.bottom + p <= a.top);
+  }
+
+  function clampFloaterPos(f, x, y) {
+    const margin = Math.max(6, W * 0.03);
+    const halfW = f.bw / 2, halfH = f.bh / 2;
+    const topM = 34;
+    const botM = 40;
+    // If cloud itself taller than usable band, pin center into band anyway
+    const minY = topM + halfH;
+    const maxY = H - botM - halfH;
+    f.x = Math.min(W - margin - halfW, Math.max(margin + halfW, x));
+    if (minY > maxY) f.y = (topM + H - botM) / 2;
+    else f.y = Math.min(maxY, Math.max(minY, y));
+  }
+
+  function placeReadable(f) {
+    // Nudge vertically so this cloud doesn't cover existing ones (hole phase)
+    measureFloater(f);
+    clampFloaterPos(f, f.x, f.y);
+    for (let attempt = 0; attempt < 24; attempt++) {
+      let hit = false;
+      const box = floaterBox(f);
+      for (const o of floaters) {
+        if (o === f || !o.bw) continue;
+        if (boxesOverlap(box, floaterBox(o), 4)) { hit = true; break; }
+      }
+      if (!hit) return;
+      f.y += (attempt % 2 === 0 ? 1 : -1) * (14 + attempt * 3);
+      clampFloaterPos(f, f.x, f.y);
+    }
+  }
+
   function releaseFloater(hole) {
-    floaters.push({
+    const f = {
       x: hole.x,
       y: hole.y - hole.targetR * 0.2,
-      vx: (Math.random() - 0.5) * 18,
-      vy: -22 - Math.random() * 18,
+      vx: (Math.random() - 0.5) * 10,
+      vy: -14 - Math.random() * 10,
       member: hole.member,
       text: hole.text,
       a: 0, age: 0, settled: false, tx: 0, ty: 0,
-    });
+      bw: 0, bh: 0, lines: null,
+    };
+    floaters.push(f);
+    placeReadable(f);
   }
 
   function layoutFloaters() {
     const n = floaters.length;
-    const marginX = W * 0.06;
-    const usableW = W - marginX * 2;
-    const cols = portrait ? 2 : 4;
-    const rows = Math.ceil(n / cols);
-    for (let i = 0; i < n; i++) {
-      const f = floaters[i];
-      const col = i % cols;
-      const row = (i / cols) | 0;
-      f.tx = marginX + (col + 0.5) * (usableW / cols) + (Math.random() - 0.5) * 16;
-      f.ty = H * 0.14 + row * ((H * 0.62) / Math.max(1, rows)) + (Math.random() - 0.5) * 10;
+    const marginX = Math.max(8, W * 0.06);
+    const topM = 36;
+    const botM = 44;
+    const usableH = H - topM - botM;
+    const mobile = portrait || W < 720;
+
+    if (mobile) {
+      // Fit all 20 in a single centered column by shrinking metrics until they fit
+      const trials = [
+        // Prefer readable size with clearer gaps between clouds
+        { textSize: 11.5, nameSize: 9, padY: 4, nameH: 10, gap: 2, lineH: 14, stackGap: 5 },
+        { textSize: 11, nameSize: 9, padY: 4, nameH: 9, gap: 2, lineH: 13, stackGap: 4 },
+        { textSize: 10.5, nameSize: 8.5, padY: 3, nameH: 9, gap: 1, lineH: 12.5, stackGap: 3 },
+        { textSize: 10, nameSize: 8, padY: 3, nameH: 8, gap: 1, lineH: 12, stackGap: 2 },
+        { textSize: 9.5, nameSize: 8, padY: 2, nameH: 8, gap: 1, lineH: 11.5, stackGap: 2 },
+        { textSize: 9, nameSize: 7.5, padY: 2, nameH: 7, gap: 1, lineH: 11, stackGap: 1 },
+      ];
+      let chosen = trials[trials.length - 1];
+      for (const tr of trials) {
+        for (const f of floaters) measureFloater(f, tr);
+        const totalH = floaters.reduce((s, f) => s + f.bh, 0) + tr.stackGap * Math.max(0, n - 1);
+        if (totalH <= usableH) { chosen = tr; break; }
+        chosen = tr;
+      }
+      for (const f of floaters) measureFloater(f, chosen);
+      const totalH = floaters.reduce((s, f) => s + f.bh, 0) + chosen.stackGap * Math.max(0, n - 1);
+      let y = topM + Math.max(0, (usableH - totalH) / 2);
+      // If still overflowing (extreme), compress stackGap to 0 and pin to top
+      if (totalH > usableH) y = topM;
+      const cx = W / 2;
+      for (const f of floaters) {
+        f.tx = cx;
+        f.ty = y + f.bh / 2;
+        f.driftAmp = 0;
+        y += f.bh + chosen.stackGap;
+      }
+      // Final safety clamp — should be no-ops if fit succeeded
+      for (const f of floaters) {
+        clampFloaterPos(f, f.tx, f.ty);
+        f.tx = f.x; f.ty = f.y;
+      }
+    } else {
+      // Desktop: 3–4 columns, pack top-down (no overlap, fully in viewport)
+      const gap = 8;
+      const cols = W >= 1100 ? 4 : 3;
+      const colW = (W - marginX * 2) / cols;
+      const maxColInner = Math.max(160, colW - 12);
+      // Temporarily constrain cloudMaxWidth via measure opt
+      const deskOpt = { textSize: 13, nameSize: 10, padX: 12, padY: 7, nameH: 11, gap: 3, lineH: 16, _maxW: maxColInner };
+      // monkey-patch cloud width for this pass
+      const origMax = cloudMaxWidth;
+      // measure with capped width
+      for (const f of floaters) {
+        const maxW = maxColInner;
+        const textSize = 13, nameSize = 10, padX = 12, padY = 7, nameH = 11, igap = 3, lineH = 16;
+        const g = ctx;
+        const textFont = `${textSize}px ${FONT_STACK}`;
+        const memberFont = `600 ${nameSize}px ${FONT_STACK}`;
+        g.font = textFont;
+        f.lines = wrapLines(g, f.text, maxW - padX * 2);
+        let textW = 0;
+        for (const ln of f.lines) textW = Math.max(textW, g.measureText(ln).width);
+        g.font = memberFont;
+        const nameW = g.measureText(f.member).width;
+        f.bw = Math.min(maxW, Math.max(textW, nameW) + padX * 2);
+        f.bh = padY + nameH + igap + f.lines.length * lineH + padY;
+        f._padY = padY; f._nameH = nameH; f._gap = igap; f._lineH = lineH;
+        f._textFont = textFont; f._memberFont = memberFont;
+      }
+      const buckets = Array.from({ length: cols }, () => []);
+      floaters.forEach((f, i) => buckets[i % cols].push(f));
+      for (let c = 0; c < cols; c++) {
+        let y = topM;
+        const list = buckets[c];
+        const colH = list.reduce((s, f) => s + f.bh, 0) + gap * Math.max(0, list.length - 1);
+        if (colH < usableH) y = topM + (usableH - colH) / 2;
+        const cx = marginX + colW * (c + 0.5);
+        for (const f of list) {
+          f.tx = cx;
+          f.ty = y + f.bh / 2;
+          f.driftAmp = 0;
+          y += f.bh + gap;
+        }
+      }
+      for (const f of floaters) {
+        clampFloaterPos(f, f.tx, f.ty);
+        f.tx = f.x; f.ty = f.y;
+      }
     }
   }
 
@@ -565,13 +751,27 @@
       if (!collapsing && !collapsed) {
         f.a = Math.min(1, f.age * 2.2);
         f.x += f.vx * dt; f.y += f.vy * dt;
-        f.vx *= Math.pow(0.55, dt); f.vy *= Math.pow(0.7, dt);
-        f.vx += Math.sin(f.age * 1.3) * 4 * dt;
+        f.vx *= Math.pow(0.4, dt); f.vy *= Math.pow(0.55, dt);
+        f.vx += Math.sin(f.age * 1.1) * 2 * dt;
+        // Keep fully on-screen and de-overlap during hole phase
+        if (!f.bw) measureFloater(f);
+        clampFloaterPos(f, f.x, f.y);
+        const box = floaterBox(f);
+        for (const o of floaters) {
+          if (o === f || !o.bw) continue;
+          if (boxesOverlap(box, floaterBox(o), 3)) {
+            f.y += (f.y <= o.y ? -1 : 1) * 20 * dt;
+            clampFloaterPos(f, f.x, f.y);
+          }
+        }
       } else {
         f.a = Math.min(1, f.a + dt);
-        const k = 1 - Math.pow(0.08, dt);
+        const k = 1 - Math.pow(0.06, dt);
         f.x += (f.tx - f.x) * k;
         f.y += (f.ty - f.y) * k;
+        if (Math.abs(f.x - f.tx) < 0.4 && Math.abs(f.y - f.ty) < 0.4) {
+          f.x = f.tx; f.y = f.ty; f.settled = true;
+        }
       }
     }
     shake *= Math.pow(0.04, dt);
@@ -638,30 +838,32 @@
   }
 
   function drawFloater(g, f) {
+    if (!f.bw || !f.lines) measureFloater(f);
     g.save();
-    g.globalAlpha = f.a * 0.95;
+    g.globalAlpha = f.a * 0.96;
     g.textAlign = 'center';
     g.textBaseline = 'middle';
-    const memberFont = '600 11px system-ui,sans-serif';
-    const textFont = '15px "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif';
-    g.font = textFont;
-    const tw = g.measureText(f.text).width;
-    g.font = memberFont;
-    const mw = g.measureText(f.member).width;
-    const bw = Math.max(tw, mw) + 28;
-    const bh = 44;
-    g.fillStyle = 'rgba(255,255,255,0.55)';
-    roundRect(g, f.x - bw / 2, f.y - bh / 2, bw, bh, 14);
+    const bw = f.bw, bh = f.bh;
+    const left = f.x - bw / 2, top = f.y - bh / 2;
+    g.fillStyle = 'rgba(255,255,255,0.72)';
+    roundRect(g, left, top, bw, bh, 11);
     g.fill();
-    g.fillStyle = 'rgba(255,255,255,0.25)';
-    roundRect(g, f.x - bw / 2 - 4, f.y - bh / 2 + 4, bw + 8, bh, 16);
+    // soft inner highlight (stays inside measured box — no neighbor bleed)
+    g.fillStyle = 'rgba(255,255,255,0.2)';
+    roundRect(g, left + 2, top + 2, bw - 4, Math.max(6, bh * 0.35), 8);
     g.fill();
-    g.fillStyle = 'rgba(40,55,75,0.55)';
-    g.font = memberFont;
-    g.fillText(f.member, f.x, f.y - 10);
-    g.fillStyle = 'rgba(25,35,50,0.88)';
-    g.font = textFont;
-    g.fillText(f.text, f.x, f.y + 8);
+
+    let cy = top + f._padY + f._nameH / 2;
+    g.fillStyle = 'rgba(40,55,75,0.58)';
+    g.font = f._memberFont || FONT_MEMBER;
+    g.fillText(f.member, f.x, cy);
+    cy += f._nameH / 2 + f._gap + f._lineH / 2;
+    g.fillStyle = 'rgba(25,35,50,0.9)';
+    g.font = f._textFont || FONT_TEXT;
+    for (const ln of f.lines) {
+      g.fillText(ln, f.x, cy);
+      cy += f._lineH;
+    }
     g.restore();
   }
 
@@ -766,9 +968,38 @@
     }
     prefetchAudio(); // parallel, no await required before paint
     await probeSky();
+    // Ensure CJK face is ready before first measureText (avoids kana/kanji size mix)
+    try {
+      if (document.fonts && document.fonts.load) {
+        await Promise.race([
+          Promise.all([
+            document.fonts.load(`12.5px "Noto Sans CJK JP"`),
+            document.fonts.load(`12.5px "Noto Sans JP"`),
+            document.fonts.load(`600 10px "Noto Sans CJK JP"`),
+          ]),
+          new Promise((r) => setTimeout(r, 1200)),
+        ]);
+        await document.fonts.ready;
+      }
+    } catch (_) {}
     seedWallTexts();
     updateCount();
     requestAnimationFrame(frame);
+
+    // Probe which face canvas actually picks (for font diagnostics)
+    try {
+      const probe = document.createElement('canvas').getContext('2d');
+      probe.font = FONT_TEXT;
+      resolvedFont = probe.font;
+      if (document.fonts && document.fonts.check) {
+        const checks = {
+          'Noto Sans CJK JP': document.fonts.check('12px "Noto Sans CJK JP"'),
+          'Noto Sans JP': document.fonts.check('12px "Noto Sans JP"'),
+          'Hiragino Sans': document.fonts.check('12px "Hiragino Sans"'),
+        };
+        resolvedFont = JSON.stringify({ css: probe.font, checks });
+      }
+    } catch (_) {}
 
     window.__kazaana = {
       get audioState() { return audio.state; },
@@ -782,6 +1013,15 @@
         const src = skyImg && skyImg.src ? skyImg.src : '';
         return { portrait, src, tall: !!(skyTall && skyImg === skyTall), wide: !!(skyWide && skyImg === skyWide) };
       },
+      get font() { return { stack: FONT_STACK, resolved: resolvedFont }; },
+      getFloaterBounds() {
+        return floaters.map((f) => {
+          if (!f.bw) measureFloater(f);
+          const b = floaterBox(f);
+          return { member: f.member, text: f.text, ...b, settled: !!f.settled };
+        });
+      },
+      get viewport() { return { w: W, h: H }; },
       tap(x, y) { audio.unlock(); openHole(x, y); },
     };
   }
