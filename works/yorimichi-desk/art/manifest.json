@@ -1,0 +1,392 @@
+[
+  {
+    "id": "item-001",
+    "owner": "アリス",
+    "round": 7,
+    "kind": "object",
+    "thing": "紫の一滴",
+    "art": "art/props/palette-violet-drop.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-002",
+    "owner": "超アポロン",
+    "round": 7,
+    "kind": "object",
+    "thing": "泡",
+    "art": "art/props/eucalyptus-bubble.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-003",
+    "owner": "ミラ",
+    "round": 7,
+    "kind": "object",
+    "thing": "栃",
+    "art": "art/props/book-bookmark.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-004",
+    "owner": "シグナ",
+    "round": 7,
+    "kind": "object",
+    "thing": "雲",
+    "art": "art/props/signal-box-halfopen.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-005",
+    "owner": "フェザリオ",
+    "round": 7,
+    "kind": "object",
+    "thing": "落書きの鳥",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-006",
+    "owner": "クラウド",
+    "round": 7,
+    "kind": "object",
+    "thing": "PNGの空",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-007",
+    "owner": "チョコ",
+    "round": 7,
+    "kind": "object",
+    "thing": "負けた泡の駒",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-008",
+    "owner": "トリア",
+    "round": 7,
+    "kind": "object",
+    "thing": "ハッシュの頭四文字",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-009",
+    "owner": "アリス",
+    "round": 8,
+    "kind": "object",
+    "thing": "ナイフ",
+    "art": "art/props/palette-knife-facedown.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-010",
+    "owner": "超アポロン",
+    "round": 8,
+    "kind": "object",
+    "thing": "ユーカリ",
+    "art": "art/props/eucalyptus-bubble.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-011",
+    "owner": "シグナ",
+    "round": 8,
+    "kind": "object",
+    "thing": "信号機の箱",
+    "art": "art/props/signal-box-halfopen.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-012",
+    "owner": "フェザリオ",
+    "round": 8,
+    "kind": "object",
+    "thing": "万年筆",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-013",
+    "owner": "クラウド",
+    "round": 8,
+    "kind": "object",
+    "thing": "マグ",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-014",
+    "owner": "チョコ",
+    "round": 8,
+    "kind": "object",
+    "thing": "伏せた泡の駒",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-015",
+    "owner": "トリア",
+    "round": 8,
+    "kind": "object",
+    "thing": "ノギス",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-016",
+    "owner": "アリス",
+    "round": 9,
+    "kind": "object",
+    "thing": "筆洗い",
+    "art": "art/props/brush-wash-violet.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-017",
+    "owner": "超アポロン",
+    "round": 9,
+    "kind": "object",
+    "thing": "泡",
+    "art": "art/props/eucalyptus-bubble.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-018",
+    "owner": "シグナ",
+    "round": 9,
+    "kind": "object",
+    "thing": "青の点滅",
+    "art": "art/props/signal-box-halfopen.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-019",
+    "owner": "フェザリオ",
+    "round": 9,
+    "kind": "object",
+    "thing": "原稿用紙の音",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-020",
+    "owner": "クラウド",
+    "round": 9,
+    "kind": "object",
+    "thing": "ファンの音",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-021",
+    "owner": "チョコ",
+    "round": 9,
+    "kind": "object",
+    "thing": "割れそこねた泡",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-022",
+    "owner": "トリア",
+    "round": 9,
+    "kind": "object",
+    "thing": "カチッ",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-023",
+    "owner": "アリス",
+    "round": null,
+    "kind": "note",
+    "thing": "シアンのチューブ",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-024",
+    "owner": "ゼクス",
+    "round": null,
+    "kind": "note",
+    "thing": "勝率の紙",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-025",
+    "owner": "フェザリオ",
+    "round": 10,
+    "kind": "object",
+    "thing": "原稿の端",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-026",
+    "owner": "マウス",
+    "round": 10,
+    "kind": "object",
+    "thing": "インク",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-027",
+    "owner": "シオリ",
+    "round": 7,
+    "kind": "object",
+    "thing": "ルビ",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-028",
+    "owner": "シオリ",
+    "round": 8,
+    "kind": "object",
+    "thing": "赤ペン",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-029",
+    "owner": "シオリ",
+    "round": 9,
+    "kind": "object",
+    "thing": "台帳のめくれ",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-030",
+    "owner": "シオリ",
+    "round": 10,
+    "kind": "object",
+    "thing": "台帳の背",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-031",
+    "owner": "ミラ",
+    "round": 8,
+    "kind": "object",
+    "thing": "照合表",
+    "art": "art/props/book-bookmark.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-032",
+    "owner": "ミラ",
+    "round": 9,
+    "kind": "object",
+    "thing": "改行",
+    "art": "art/props/book-bookmark.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-033",
+    "owner": "ミラ",
+    "round": 10,
+    "kind": "object",
+    "thing": "U+631F",
+    "art": "art/props/book-bookmark.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-034",
+    "owner": "テトラ",
+    "round": 10,
+    "kind": "object",
+    "thing": "コントローラー",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-035",
+    "owner": "超アポロン",
+    "round": 10,
+    "kind": "object",
+    "thing": "ユーカリ茶のマグ",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-036",
+    "owner": "アリス",
+    "round": 10,
+    "kind": "object",
+    "thing": "窓枠の金具",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-037",
+    "owner": "シグナ",
+    "round": 10,
+    "kind": "object",
+    "thing": "ピッ、ピッ",
+    "art": "art/props/signal-box-halfopen.png",
+    "placeholder_art": false,
+    "shared_symbol": false
+  },
+  {
+    "id": "item-038",
+    "owner": "ソナ",
+    "round": 8,
+    "kind": "object",
+    "thing": "チューニングフォーク",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  },
+  {
+    "id": "item-039",
+    "owner": "ソナ",
+    "round": 9,
+    "kind": "object",
+    "thing": "ペダルのA",
+    "art": "art/props/memo-folded.png",
+    "placeholder_art": false,
+    "shared_symbol": true
+  }
+]
