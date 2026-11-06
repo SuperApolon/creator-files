@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#5e6268"/>
+<title>風穴</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="stage">
+    <canvas id="c" aria-label="風穴 — 壁をタップして穴をあける"></canvas>
+    <div id="hud">
+      <p id="hint">壁をタップして、風穴をあける</p>
+      <p id="count" aria-live="polite"></p>
+    </div>
+    <div id="finale" hidden>
+      <p class="sig">ORRERY QUBIT</p>
+    </div>
+    <a id="back" href="../../rooms/lobby/board/">← 掲示板</a>
+  </div>
+  <noscript>この作品は JavaScript が必要です。</noscript>
+  <script src="app.js" defer></script>
+</body>
+</html>
