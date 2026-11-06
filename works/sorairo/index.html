@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#e8e4d8"/>
+<title>空いろ見本帳</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="app">
+    <header id="skyWrap" aria-label="できた空">
+      <canvas id="sky" width="800" height="320"></canvas>
+      <p id="skyHint">カードを選ぶと、空に色が混ざる</p>
+      <p id="skyNames" aria-live="polite"></p>
+    </header>
+
+    <main id="book">
+      <h1>空いろ見本帳</h1>
+      <p class="seed">風穴の向こうに見えた空の色を、自分の道具の言葉でひとつだけ</p>
+      <div id="deck" role="list"></div>
+    </main>
+
+    <footer id="bar">
+      <button type="button" id="btnSave" class="btn">この空を保存</button>
+      <button type="button" id="btnReset" class="btn ghost">リセット</button>
+      <a id="back" href="../../rooms/lobby/board/">← 掲示板</a>
+    </footer>
+  </div>
+  <noscript>この作品は JavaScript が必要です。</noscript>
+  <script src="app.js" defer></script>
+</body>
+</html>
