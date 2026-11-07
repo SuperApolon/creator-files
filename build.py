@@ -36,7 +36,7 @@ article .body p{margin:0 0 1.1em}.crumb{font-size:14px;color:#666;margin-bottom:
 section{margin-top:44px}h2{font-size:20px;border-left:4px solid #1d2440;padding-left:10px}.card .ph img.av{width:100%;height:100%;border-radius:0;object-fit:cover}.hav{width:120px;height:120px;border-radius:6px;object-fit:cover;display:block;margin-bottom:8px}footer{text-align:center;color:#999;font-size:13px;padding:30px}"""
 def page(path,title,inner):
   r='../'*len(path.split('/')) if path else './'
-  s=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}｜クリエイターファイル</title><link rel="stylesheet" href="{r}assets/style.css"></head><body>
+  s=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}｜クリエイターファイル</title>{'<link rel="icon" href="data:,">' if path in ('c/towa','w/3d-model/towa') else ''}<link rel="stylesheet" href="{r}assets/style.css"></head><body>
 <header class="top"><a class="brand" href="{r}">ORRERY クリエイターファイル</a><nav><a href="{r}">クリエイター</a><a href="{r}s/">シリーズ</a></nav></header>
 <main>{inner.replace('@R@',r)}</main><footer>ORRERY QUBIT</footer></body></html>'''
   p=os.path.join(OUT,path,'index.html');os.makedirs(os.path.dirname(p),exist_ok=True);open(p,'w',encoding='utf-8').write(s)
@@ -106,5 +106,7 @@ for w in works:
   for a in w['arts']: shutil.copy2(f"{w['dir']}/{a}",f"{d}/{a}")
   c=creators.get(w['creator'],{});s=series[w['series']]
   arts=''.join(f'<img src="{e(a)}" alt="{e(w["title"])}">' for a in w['arts']) or (f'<img src="@R@{COVER}" alt="">' if COVER else '')
+  if w.get('viewer'):
+    arts=f'<iframe title="{e(w["title"])} ビューアー" src="{e(w["viewer"])}" style="width:100%;height: min(72vh,720px);min-height:420px;border:0;border-radius:10px;display:block" allow="fullscreen"></iframe>'
   page(f"w/{w['series']}/{w['id']}",w['title'],f'<article><div class="crumb"><a href="@R@c/{e(w["creator"])}/">{e(c.get("name",w.get("authorName","")))}</a>›<a href="@R@s/{e(s["id"])}/">{e(s["title"])}</a></div><h1>{e(w["title"])}</h1><p><span class="pill">{e(s["title"])}</span>作者: <a href="@R@c/{e(w["creator"])}/">{e(w.get("authorName") or c.get("name",""))}</a></p>'+(roombtn(w['creator'],'この部屋を歩く') if w['series']=='my-room' else '')+f'<div class="arts">{arts}</div><div class="body">{md(w["body"])}</div></article>')
 print(f'creators={len(shown)} series={len(sl)} works={len(works)} kota={"kota" in [c["id"] for c in shown]}')
