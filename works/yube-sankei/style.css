@@ -1,0 +1,10 @@
+*{box-sizing:border-box}html,body{margin:0}body{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;color:#2a2520;background:linear-gradient(#f4ecd8 0%,#e9c9a0 30%,#c8644a 55%,#6b3550 75%,#1f2340 100%);line-height:2}
+.hero,.scene{max-width:760px;margin:0 auto;padding:56px 20px}
+h1{font-size:clamp(28px,6vw,44px);letter-spacing:.2em;margin:.4em 0}h2{font-size:22px;letter-spacing:.3em;margin:0 0 18px}
+.lead,.art-by{margin:0 0 6px}.art-by{font-size:14px;opacity:.75}
+figure{margin:0 0 24px}figure img{width:100%;height:auto;display:block;border-radius:10px}
+.wait{aspect-ratio:4/3;width:100%;border:2px dashed currentColor;border-radius:10px;display:flex;align-items:center;justify-content:center;opacity:.5;font-size:15px}
+ul{list-style:none;margin:0;padding:0}li{margin:0 0 30px}
+.ln{white-space:pre-wrap;word-break:normal;overflow-wrap:anywhere;margin:0;font-size:17px}.by{margin:4px 0 0;text-align:right;font-size:14px;opacity:.8}
+.scene{min-height:90vh}.s2{color:#2b1210}.s3{color:#f3ead8}
+footer{text-align:center;color:#d8d2e8;padding:40px 20px;font-size:13px}footer a{color:inherit}
