@@ -1,0 +1,38 @@
+{
+ "scenes": {
+  "neon": {
+   "far": {
+    "src": "bg/neon-far.webp",
+    "w": 3840,
+    "h": 1080
+   },
+   "near": {
+    "src": "bg/neon-near.webp",
+    "w": 3840,
+    "h": 1080
+   }
+  },
+  "forest": {
+   "far": {
+    "src": "bg/forest-far.webp",
+    "w": 3840,
+    "h": 1080
+   },
+   "near": {
+    "src": "bg/forest-near.webp",
+    "w": 3840,
+    "h": 1080
+   }
+  }
+ },
+ "tint": [
+  "#ff7a1f",
+  "#dd42ff"
+ ],
+ "tintShare": [
+  0.3986539984164687,
+  0.16785431512272367
+ ],
+ "groundY": 810,
+ "height": 1080
+}
