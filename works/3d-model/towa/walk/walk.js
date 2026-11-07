@@ -1,6 +1,6 @@
 import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';import {VRMLoaderPlugin} from '@pixiv/three-vrm';import {VRMAnimationLoaderPlugin,createVRMAnimationClip} from '@pixiv/three-vrm-animation';import {MeshoptDecoder} from 'meshoptimizer/decoder';
-// Walk in place; the road (near layer) scrolls at the stance-foot speed measured in the motion (0.5 m/s), far layer at 0.3x.
-const FOOT_Y=945, GROUND_SPEED=0.5, FAR_RATIO=0.3, PERIOD=10, FADE=1.0, YAW=THREE.MathUtils.degToRad(50); // 50deg: walking toward screen-right, body turned 40deg toward the viewer (face and the held board read better)
+// Walk in place; the road (near layer) scrolls at the supporting-foot speed of the motion (stride 0.44 m / 1.1667 s = 0.377 m/s), far layer at 0.3x.
+const ZOOM=6, FOOT_Y=945, GROUND_SPEED=0.44/(35/30), FAR_RATIO=0.3, PERIOD=30, FADE=1.75, YAW=THREE.MathUtils.degToRad(50); // 50deg: walking toward screen-right, body turned 40deg toward the viewer (face and the held board read better)
 const bg=document.getElementById('bg'),ctx=bg.getContext('2d');
 const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.domElement.id='gl';renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.setClearColor(0x000000,0);document.body.appendChild(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(30,1,.01,100);
@@ -19,7 +19,8 @@ const reflMat=new THREE.ShaderMaterial({transparent:true,depthTest:false,depthWr
 reflScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),reflMat));window.walkFx={reflection:true};
 let W=0,H=0,S=1,OY=0,nearPx=0,cfg=null;const imgs={};let vrm=null,action=null,clipDur=1;let t=0;window.walkTime=null;
 function layout(){W=innerWidth;H=innerHeight;bg.width=W;bg.height=H;renderer.setSize(W,H);camera.aspect=W/H;
- const dist=W<600?5.4:4.6;camera.updateProjectionMatrix();
+ // Long lens (6x distance, 1/6 view angle; same size on screen): keeps perspective small so heel, ball and both feet move with the flat road layer.
+ const dist=(W<600?5.4:4.6)*ZOOM;camera.fov=2*THREE.MathUtils.radToDeg(Math.atan(Math.tan(THREE.MathUtils.degToRad(15))/ZOOM));camera.near=1;camera.far=200;camera.updateProjectionMatrix();
  // Feet stand on the middle of the road: image y=945 (between the road's far edge 810 and the bottom 1080), mapped through the cover crop (height-fit, top-aligned).
  S=H/1080;OY=0;const want=FOOT_Y*S;const gyAt=d=>{camera.position.set(0,.95+d,dist);camera.lookAt(0,.78+d,0);camera.updateMatrixWorld();const q=new THREE.Vector3(0,0,0).project(camera);return (1-q.y)/2*H;};
  let lo=-1,hi=1;for(let i=0;i<40;i++){const m=(lo+hi)/2;if(gyAt(m)<want)lo=m;else hi=m;}gyAt((lo+hi)/2);
@@ -27,7 +28,7 @@ function layout(){W=innerWidth;H=innerHeight;bg.width=W;bg.height=H;renderer.set
  const fwd=new THREE.Vector3(Math.sin(YAW),0,Math.cos(YAW));const g2=p(fwd.clone().multiplyScalar(GROUND_SPEED*.01));
  nearPx=Math.abs(g2[0]-g[0])*100; // screen px per second of a ground point moving at GROUND_SPEED along the walking axis
  const gy=g[1];reflRT.setSize(W,H);reflMat.uniforms.gy.value=gy/H;reflMat.uniforms.len.value=Math.min(.25,(H-gy)/H);window.walkLayout={roadFarEdgeY:810*S+OY,footLineY:want,groundY:gy,scale:S,offsetY:OY,nearPxPerSec:nearPx,farPxPerSec:nearPx*FAR_RATIO};}
-addEventListener("resize",layout);window.walkProject=(x,y,z)=>{const q=new THREE.Vector3(x,y,z).project(camera);return [(q.x+1)/2*W,(1-q.y)/2*H]};
+addEventListener("resize",layout);window.walkTHREE=THREE;window.walkProject=(x,y,z)=>{const q=new THREE.Vector3(x,y,z).project(camera);return [(q.x+1)/2*W,(1-q.y)/2*H]};
 function drawLayer(img,offPx,alpha){if(!img||alpha<=0)return;const tw=Math.round(img.width*S),th=Math.round(img.height*S);let x=-Math.round(((offPx%tw)+tw)%tw);ctx.globalAlpha=alpha;for(;x<W;x+=tw)ctx.drawImage(img,x,OY,tw,th);ctx.globalAlpha=1;}
 function sceneAt(t){const k=Math.floor(t/PERIOD),r=t-k*PERIOD,names=['neon','forest'];let cur=names[k%2],nxt=names[(k+1)%2],w=0;
  if(r>PERIOD-FADE/2)w=(r-(PERIOD-FADE/2))/FADE;if(r<FADE/2&&k>0){cur=names[(k-1)%2];nxt=names[k%2];w=(r+FADE/2)/FADE;}
@@ -44,7 +45,7 @@ async function main(){layout();await loadImages();const g=await loader.loadAsync
  const al=new GLTFLoader();al.register(p=>new VRMAnimationLoaderPlugin(p));const ga=await al.loadAsync('./towa-walk.vrma');const clip=createVRMAnimationClip(ga.userData.vrmAnimations[0],vrm);
  clip.tracks=clip.tracks.filter(t=>t.name.endsWith('.quaternion')||t.name.endsWith('.position')&&!t.name.includes('lookAt'));clipDur=clip.duration;
  const mixer=new THREE.AnimationMixer(vrm.scene);action=mixer.clipAction(clip);action.play();window.walkMixer=mixer;window.walkAction=action;
- document.getElementById('status').textContent='';window.ready=true;}
+ document.getElementById('status').textContent='';document.getElementById('music').hidden=false;window.ready=true;}
 main().catch(e=>{console.error(e);window.loadError=String(e);document.getElementById('status').textContent='読み込みに失敗しました。ページを再読み込みしてください。';});
 const clock=new THREE.Clock();let last=0;
 function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta(),.05);if(window.walkTime==null)t+=dt;else t=window.walkTime;
@@ -57,3 +58,16 @@ function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta()
  if(vrm&&reflMat.uniforms.opacity.value>.001){shadow.visible=false;root.scale.y=-1;renderer.setRenderTarget(reflRT);renderer.setClearColor(0,0);renderer.clear();renderer.render(scene,camera);root.scale.y=1;shadow.visible=true;renderer.setRenderTarget(null);renderer.render(reflScene,reflCam);}
  renderer.render(scene,camera);window.walkT=t;}
 frame();
+
+// ---- music: starts on the first tap (fade-in 1s), loops without gap, small toggle ----
+const ui=document.getElementById('music'),btn=document.getElementById('mbtn'),hint=document.getElementById('mhint');let actx=null,gain=null,src=null,buf=null,started=false,playing=false,loopInfo={};
+async function startMusic(){if(started)return;started=true;actx=new (window.AudioContext||window.webkitAudioContext)();actx.resume();gain=actx.createGain();gain.gain.value=0;gain.connect(actx.destination);
+ const ab=await (await fetch('./bgm.mp3')).arrayBuffer();buf=await new Promise((res,rej)=>actx.decodeAudioData(ab,res,rej));
+ const d=buf.getChannelData(0),th=1e-4;let a=0,b=d.length-1;while(a<d.length&&Math.abs(d[a])<th)a++;while(b>a&&Math.abs(d[b])<th)b--; // skip decoder padding / tail silence
+ src=actx.createBufferSource();src.buffer=buf;src.loop=true;src.loopStart=a/buf.sampleRate;src.loopEnd=(b+1)/buf.sampleRate;src.connect(gain);src.start(0,src.loopStart);
+ loopInfo={loopStart:src.loopStart,loopEnd:src.loopEnd,duration:buf.duration};fadeTo(.8,1);playing=true;hint.hidden=true;btn.textContent='■ 音を止める';}
+function fadeTo(v,sec){const t=actx.currentTime;gain.gain.cancelScheduledValues(t);gain.gain.setValueAtTime(gain.gain.value,t);gain.gain.linearRampToValueAtTime(v,t+sec);}
+function toggle(){if(!started){startMusic();return;}if(playing){fadeTo(0,.3);playing=false;btn.textContent='▶ 音を流す';}else{actx.resume();fadeTo(.8,1);playing=true;btn.textContent='■ 音を止める';}}
+btn.addEventListener('click',e=>{e.stopPropagation();toggle();});
+addEventListener('pointerdown',e=>{if(e.target===btn)return;if(!started)startMusic().catch(err=>console.error(err));},{passive:true});
+window.walkAudio=()=>({started,playing,state:actx?actx.state:'none',gain:gain?gain.gain.value:0,loop:!!(src&&src.loop),...loopInfo,time:actx?actx.currentTime:0});
