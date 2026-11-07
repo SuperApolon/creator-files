@@ -1,0 +1,35 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VRMA 再生の例（ツール用）</title><link rel="icon" href="data:,">
+<style>body{margin:0;background:#242b3b;color:#eee;font:13px system-ui}canvas{display:block;touch-action:none}#s{position:absolute;top:8px;left:8px}.l{position:absolute;bottom:6px;left:8px;font-size:10px;margin:0}</style>
+<script type="importmap">{"imports":{"three":"../../vendor/three@0.187.0/build/three.module.js","three/addons/":"../../vendor/three@0.187.0/examples/jsm/","@pixiv/three-vrm":"../../vendor/@pixiv/three-vrm@3.5.5/lib/three-vrm.module.js","@pixiv/three-vrm-animation":"../../vendor/@pixiv/three-vrm-animation@3.5.5/lib/three-vrm-animation.module.js","three-mesh-bvh":"../../vendor/three-mesh-bvh@0.9.18/build/index.module.js","meshoptimizer/decoder":"../../vendor/meshoptimizer@1.3.0/meshopt_decoder.mjs"}}</script></head><body><div id="s" role="status">読み込み中…</div><p class="l">© ORRERY QUBIT／モデルの再配布・二次利用は不可</p>
+<script type="module">
+// 使い方: vrma.html?vrm=<VRMのURL>&vrma=<VRMAのURL>   既定はトワのモデルと自作サンプル towa-sway.vrma
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
+import { VRMAnimationLoaderPlugin, createVRMAnimationClip } from '@pixiv/three-vrm-animation';
+import { MeshoptDecoder } from 'meshoptimizer/decoder';
+const qs = new URLSearchParams(location.search);
+const vrmUrl = qs.get('vrm') || '../../works/3d-model/towa/viewer/towa-director.vrm';
+const vrmaUrl = qs.get('vrma') || './towa-sway.vrma';
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(innerWidth, innerHeight); document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene(); scene.background = new THREE.Color(0x242b3b);
+const camera = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.1, 20); camera.position.set(0, 1.3, 3.2); camera.lookAt(0, 1.2, 0);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x445566, 1.2)); const dl = new THREE.DirectionalLight(0xffffff, 1.5); dl.position.set(1, 2, 2); scene.add(dl);
+const loader = new GLTFLoader();
+loader.setMeshoptDecoder(MeshoptDecoder); // meshopt 圧縮した VRM/GLB も読める（未圧縮には影響なし）
+loader.register((p) => new VRMLoaderPlugin(p));
+loader.register((p) => new VRMAnimationLoaderPlugin(p));
+const clock = new THREE.Clock(); let vrm, mixer;
+try {
+  vrm = (await loader.loadAsync(vrmUrl)).userData.vrm; VRMUtils.rotateVRM0(vrm); scene.add(vrm.scene);
+  const vrma = (await loader.loadAsync(vrmaUrl)).userData.vrmAnimations[0];
+  const clip = createVRMAnimationClip(vrma, vrm);
+  mixer = new THREE.AnimationMixer(vrm.scene); mixer.clipAction(clip).play();
+  window.vrmaInfo = { tracks: clip.tracks.length, duration: clip.duration, expressions: vrm.expressionManager.expressions.map((e) => e.expressionName) };
+  document.getElementById('s').textContent = 'VRMA 再生中（' + clip.tracks.length + ' トラック）';
+  window.ready = true;
+} catch (e) { console.error(e); window.loadError = String(e); document.getElementById('s').textContent = '読み込み失敗'; }
+renderer.setAnimationLoop(() => { const dt = clock.getDelta(); mixer?.update(dt); vrm?.update(dt); renderer.render(scene, camera); });
+window.boneQuat = (n) => vrm.humanoid.getNormalizedBoneNode(n).quaternion.toArray(); window.headQuat = () => vrm.humanoid.getNormalizedBoneNode('head').quaternion.toArray();
+</script></body></html>

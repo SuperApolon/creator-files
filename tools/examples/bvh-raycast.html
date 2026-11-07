@@ -1,0 +1,23 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>three-mesh-bvh 高速レイキャストの例（ツール用）</title><link rel="icon" href="data:,">
+<style>body{margin:0;background:#1c2230;color:#eee;font:13px system-ui}pre{position:absolute;top:8px;left:8px;margin:0;white-space:pre-wrap}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"../../vendor/three@0.187.0/build/three.module.js","three/addons/":"../../vendor/three@0.187.0/examples/jsm/","@pixiv/three-vrm":"../../vendor/@pixiv/three-vrm@3.5.5/lib/three-vrm.module.js","@pixiv/three-vrm-animation":"../../vendor/@pixiv/three-vrm-animation@3.5.5/lib/three-vrm-animation.module.js","three-mesh-bvh":"../../vendor/three-mesh-bvh@0.9.18/build/index.module.js","meshoptimizer/decoder":"../../vendor/meshoptimizer@1.3.0/meshopt_decoder.mjs"}}</script></head><body><pre id="s" role="status">計測中…</pre>
+<script type="module">
+// three-mesh-bvh の基本：geometry.boundsTree に MeshBVH を作り、その Mesh の raycast を acceleratedRaycast にする。
+import * as THREE from 'three';
+import { MeshBVH, acceleratedRaycast } from 'three-mesh-bvh';
+
+const scene = new THREE.Scene();
+const geo = new THREE.TorusKnotGeometry(1, 0.35, 800, 120); // 約19万三角形
+const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial()); scene.add(mesh); mesh.updateMatrixWorld();
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 50); camera.position.set(0, 0, 5); camera.updateMatrixWorld();
+const rc = new THREE.Raycaster(); rc.firstHitOnly = true; // BVH 版は最初の当たりだけで止められる
+const rays = Array.from({ length: 300 }, (_, i) => new THREE.Vector2(Math.sin(i * 12.9898) * 0.6, Math.cos(i * 78.233) * 0.6));
+const run = () => { let hits = 0; const t = performance.now(); for (const p of rays) { rc.setFromCamera(p, camera); hits += rc.intersectObject(mesh).length ? 1 : 0; } return { ms: performance.now() - t, hits }; };
+
+const plain = run();
+const tb = performance.now(); geo.boundsTree = new MeshBVH(geo); const build = performance.now() - tb;
+mesh.raycast = acceleratedRaycast; const fast = run();
+window.result = { triangles: geo.index.count / 3, rays: rays.length, plainMs: +plain.ms.toFixed(1), bvhBuildMs: +build.toFixed(1), bvhMs: +fast.ms.toFixed(1), hitsPlain: plain.hits, hitsBvh: fast.hits };
+document.getElementById('s').textContent = JSON.stringify(window.result, null, 1);
+const r = new THREE.WebGLRenderer({ antialias: true }); r.setSize(innerWidth, innerHeight); document.body.appendChild(r.domElement); r.render(scene, camera);
+</script></body></html>

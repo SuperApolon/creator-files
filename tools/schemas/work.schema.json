@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "oq/work.schema.json",
+  "title": "作品 works/**/work.json",
+  "type": "object",
+  "required": ["title"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$" },
+    "series": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "authorName": { "type": "string", "minLength": 1 },
+    "creator": { "type": "string", "minLength": 1 },
+    "type": { "type": "string", "minLength": 1 },
+    "art": { "type": "string" },
+    "viewer": { "type": "string" },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "lines"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "lines": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["by", "text"],
+              "properties": { "by": { "type": "string" }, "text": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anyOf": [ { "required": ["id", "authorName"] }, { "required": ["creator"] } ]
+}
