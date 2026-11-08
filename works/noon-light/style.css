@@ -1,7 +1,7 @@
 *{box-sizing:border-box}html,body{margin:0}body{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;color:#2a2520;background:linear-gradient(#f2dcc8 0%,#f7e6cf 25%,#fbf0da 50%,#fdf8ec 75%,#f4f8fb 100%);line-height:2}
 .hero,.scene{max-width:760px;margin:0 auto;padding:56px 20px}
 h1{font-size:clamp(28px,6vw,44px);letter-spacing:.2em;margin:.4em 0}h2{font-size:22px;letter-spacing:.2em;margin:0 0 10px}
-.lead,.art-by{margin:0 0 6px}.art-by{font-size:14px;color:#5a4e44}.seed{font-size:14px;color:#5a4e44;margin:0 0 18px}
+.lead,.art-by{margin:0 0 6px}.lead{text-wrap:pretty}.art-by{font-size:14px;color:#5a4e44}.seed{font-size:14px;color:#5a4e44;margin:0 0 18px}
 figure{margin:0 0 28px}figure img{width:100%;height:auto;display:block;border-radius:10px}
 .ph{aspect-ratio:16/9;width:100%;border-radius:10px;background:linear-gradient(160deg,#e9c9a8,#f6e2c4 60%,#fff3dc)}
 .ph-scene2{background:linear-gradient(160deg,#d9e6ee,#f4ecd8 60%,#fff8e6)}.ph-scene3{background:linear-gradient(170deg,#eef3f6,#fbf6ea 70%,#ffffff)}
