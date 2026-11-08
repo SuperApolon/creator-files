@@ -1,0 +1,11 @@
+*{box-sizing:border-box}html,body{margin:0}body{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;color:#2a2520;background:linear-gradient(#f8f6f0 0%,#faf0e0 30%,#f7e0c2 60%,#f2c99e 85%,#eeb98c 100%);line-height:2}
+.hero,.scene{max-width:760px;margin:0 auto;padding:56px 20px}
+h1{font-size:clamp(28px,6vw,44px);letter-spacing:.2em;margin:.4em 0}h2{font-size:22px;letter-spacing:.2em;margin:0 0 10px}
+.lead,.art-by{margin:0 0 6px}.lead{text-wrap:pretty}.art-by{font-size:14px;color:#4a3f36}.seed{font-size:14px;color:#4a3f36;margin:0 0 18px}
+figure{margin:0 0 28px}figure img{width:100%;height:auto;display:block;border-radius:10px}
+.ph{aspect-ratio:16/9;width:100%;border-radius:10px;background:linear-gradient(160deg,#efe9dc,#f7ecd8 60%,#fbf3e4)}
+.ph-scene2{background:linear-gradient(160deg,#ece2cf,#f5dfbf)}.ph-scene3{background:linear-gradient(160deg,#f3d6ae,#eebd8c)}.ph-scene4{background:linear-gradient(160deg,#e9b07e,#c9805a)}
+ul{list-style:none;margin:0;padding:0}li{margin:0 0 30px;padding:0}
+.ln{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;font-size:17px}.by{margin:4px 0 0;text-align:right;font-size:14px;color:#4a3f36}
+.scene{min-height:80vh}
+footer{text-align:center;color:#2a2520;padding:40px 20px;font-size:13px}footer a{color:inherit}
