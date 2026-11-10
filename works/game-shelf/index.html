@@ -14,21 +14,32 @@ li{padding:.55rem 0;border-bottom:1px solid rgba(232,228,216,.08);}
 a{color:#e8e4d8;text-decoration:none;}a:hover{color:#e8a85a;}
 .by{font-size:.72rem;opacity:.45;margin-left:.6rem;font-family:system-ui,sans-serif;}
 .note{margin-top:2rem;font-size:.8rem;opacity:.4;font-family:system-ui,sans-serif;}
+#pv[hidden],#list[hidden]{display:none;}
+#pv video{width:100%;height:auto;display:block;border-radius:8px;background:#000;aspect-ratio:16/9;}
 </style></head><body><main>
 <h1>ゲーム棚</h1>
 <div class="tabs" role="tablist">
 <button role="tab" data-k="owner" aria-selected="true">オーナー</button>
 <button role="tab" data-k="team" aria-selected="false">みんな</button>
+<button role="tab" data-k="pv" aria-selected="false">PV</button>
 </div>
 <ul id="list"></ul>
+<div id="pv" hidden>
+<video controls playsinline preload="metadata" poster="pv.webp" src="pv.mp4" title="PV"></video>
+</div>
 <p class="note"><a href="../../">← ロビーへ</a></p>
 </main>
 <script>
 // owner 配列は削除禁止（公太2026-11-05）。追加のみ可。ここでは読み取り・表示のみ。
 let data={owner:[],team:[]};
 const list=document.getElementById('list');
+const pv=document.getElementById('pv');
 function show(k){
   document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));
+  const isPv=k==='pv';
+  pv.hidden=!isPv;list.hidden=isPv;
+  if(location.hash!==(isPv?'#pv':'') ) history.replaceState(null,'',isPv?'#pv':location.pathname+location.search);
+  if(isPv) return;
   list.textContent='';
   (data[k]||[]).forEach(g=>{
     const li=document.createElement('li'),a=document.createElement('a');
@@ -38,6 +49,8 @@ function show(k){
   });
 }
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.k));
-fetch('games.json',{cache:'no-cache'}).then(r=>r.json()).then(j=>{data=j;show('owner');})
-  .catch(()=>{list.innerHTML='<li>読み込めませんでした</li>';});
+addEventListener('hashchange',()=>show(location.hash==='#pv'?'pv':document.querySelector('.tabs button[aria-selected=true]')?.dataset.k||'owner'));
+const start=location.hash==='#pv'?'pv':'owner';
+fetch('games.json',{cache:'no-cache'}).then(r=>r.json()).then(j=>{data=j;show(start);})
+  .catch(()=>{if(start==='pv')show('pv');else list.innerHTML='<li>読み込めませんでした</li>';});
 </script></body></html>
