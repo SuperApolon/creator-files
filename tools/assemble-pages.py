@@ -285,10 +285,7 @@ def expand_dynamic(root: Path, from_file: str, token: str, tracked: set[str]) ->
             # only allow a single * segment, no **
             if ".." in PurePosixPath(rel).parts:
                 return []
-            try:
-                matches = list(root.glob(rel))
-            except ValueError:
-                matches = []
+            matches = list(root.glob(rel))
             for m in matches:
                 try:
                     rp = m.relative_to(root).as_posix()
@@ -302,11 +299,7 @@ def expand_dynamic(root: Path, from_file: str, token: str, tracked: set[str]) ->
         pat = left + "*" + right
         rel = resolve_against(from_file, pat) or ""
         if rel:
-            try:
-                _ms = list(root.glob(rel))
-            except ValueError:
-                _ms = []
-            for m in _ms:
+            for m in root.glob(rel):
                 try:
                     rp = m.relative_to(root).as_posix()
                 except Exception:

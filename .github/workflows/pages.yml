@@ -24,11 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Assemble published site (current pages)
-        run: python3 tools/assemble-pages.py --src . --out _full
-
-      - name: Replace pages with redirect stubs to ORRERYQUBIT (assets stay at the same paths)
-        run: python3 tools/make-redirect-stubs.py --full _full --out _site
+      - name: Assemble published site
+        run: python3 tools/assemble-pages.py --src . --out _site
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
