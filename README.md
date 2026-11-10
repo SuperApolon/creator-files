@@ -1,6 +1,8 @@
 # ORRERY クリエイターファイル
 
-個人単位で作品へ飛べる公開ハブ。LIVE: https://superapolon.github.io/creator-files/
+個人単位で作品へ飛べる公開ハブ。LIVE: https://orreryqubit.github.io/creator-files/（リポジトリ ORRERYQUBIT/creator-files）
+
+> このリポジトリ（SuperApolon/creator-files）は倉庫です。Pages では、各ページを ORRERYQUBIT の同じパスへの転送ページにし、動画・大きい画像・bgm・セツナの単体HTMLなどの素材は同じパスに実体のまま置いています（`tools/make-redirect-stubs.py`）。新しい更新は ORRERYQUBIT/creator-files に、これから増える大きい素材は SuperApolon2/creator-media（https://superapolon2.github.io/creator-media/）に置きます。
 
 - `creators/<id>.json` … id, name, role, order（表示順のみ order で制御）
 - `series/<series-id>.json` … id, title, type, blurb, order, date（date はメタ用。公開HTMLには出さない）
