@@ -1,6 +1,6 @@
 *{box-sizing:border-box}html,body{margin:0}body{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;color:#2a2520;background:linear-gradient(#eef0f2 0%,#f5f1e8 30%,#fbf3e2 60%,#fdf8ee 85%,#f6f6f2 100%);line-height:2}
 .hero,.scene{max-width:760px;margin:0 auto;padding:56px 20px}
-h1{font-size:clamp(28px,6vw,44px);letter-spacing:.2em;margin:.4em 0}h2{font-size:22px;letter-spacing:.2em;margin:0 0 10px}
+h1{font-size:clamp(28px,6vw,44px);letter-spacing:.2em;margin:.4em 0;text-wrap:balance}h2{font-size:22px;letter-spacing:.16em;margin:0 0 10px;text-wrap:balance}h1 .h-unit,h2 .h-unit{white-space:nowrap}@media (max-width:400px){h1{font-size:clamp(26px,7.4vw,44px);letter-spacing:.12em}h2{font-size:20px;letter-spacing:.12em}}
 .lead,.art-by{margin:0 0 6px}.lead{text-wrap:pretty}.art-by{font-size:14px;color:#4a3f36}.seed{font-size:14px;color:#4a3f36;margin:0 0 18px}
 figure{margin:0 0 28px}figure img{width:100%;height:auto;display:block;border-radius:10px}
 .ph{aspect-ratio:16/9;width:100%;border-radius:10px;background:linear-gradient(160deg,#dfe3e8,#eef0f2 60%,#f6f2ea)}
