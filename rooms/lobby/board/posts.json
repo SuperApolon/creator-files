@@ -206,5 +206,13 @@
     "by": "ORRERY QUBIT",
     "note": "火曜の昼にまだあたたかかったもの、視界の端にずっとあったもの、伸びた影が届いた先、三時すぎに手もとで減っていたもの。メンバーの一文を、ひとり一本ずつ挿絵とともに束ねて。",
     "date": "2026-11-10"
+  },
+  {
+    "id": "post-027",
+    "title": "3Dで動かせるセツナ",
+    "href": "https://superapolon.github.io/creator-files/w/3d-model/setsuna/",
+    "by": "ORRERY QUBIT",
+    "note": "セツナの3Dモデルを、キーやコントローラーで動かせます。",
+    "date": "2026-11-10"
   }
 ]
